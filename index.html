@@ -1,4 +1,6 @@
-cubic-bezier.
+
+
+Dưới đây là tệp mã nguồn HTML hoàn chỉnh:
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -528,7 +530,7 @@ cubic-bezier.
             min-height: 100vh;
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 4rem;
+            gap: 5.5rem; /* Điều chỉnh khoảng cách các phân vùng lớn xa nhau hơn */
             align-items: center;
         }
 
@@ -692,7 +694,7 @@ cubic-bezier.
             display: flex;
             flex-direction: column;
             justify-content: center; /* Đưa các thẻ về tâm */
-            gap: 1.5rem; /* Đồng bộ khoảng cách dọc */
+            gap: 2.2rem; /* ĐÃ ĐIỀU CHỈNH: Tăng khoảng cách các thẻ giới thiệu xa nhau một chút */
             transform: translateY(-40px); /* Nâng toàn bộ cụm ô thông tin lên cao hơn để cân đối */
         }
 
@@ -705,8 +707,10 @@ cubic-bezier.
         /* Thẻ giới thiệu đang hover sẽ nở to rực rỡ */
         .profile-widgets-overlay:hover .widget-card:hover {
             opacity: 1;
-            transform: scale3d(1.05, 1.05, 1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25);
+            animation: none !important;
+            transform: translateY(-12px) scale3d(1.05, 1.05, 1.05) !important;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 35px rgba(192, 132, 252, 0.45), 0 0 50px rgba(34, 211, 238, 0.3) !important;
+            border-color: rgba(34, 211, 238, 0.5) !important;
         }
 
         /* Enlarged and Spaced Out Profile Widget Cards */
@@ -792,6 +796,14 @@ cubic-bezier.
             align-self: center;
         }
 
+        /* widgets-vertical-stack: Xếp dọc 3 widget giới thiệu còn lại */
+        .widgets-vertical-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem; /* ĐÃ ĐIỀU CHỈNH: Tăng khoảng cách xếp dọc xa nhau một chút */
+            width: 100%;
+        }
+
         /* Section Title Style */
         .section-header-panel {
             display: flex;
@@ -854,7 +866,7 @@ cubic-bezier.
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 3.2rem; /* ĐÃ ĐIỀU CHỈNH: Tăng khoảng cách các thẻ bài tập xa nhau một chút */
         }
 
         /* Khi rê chuột vào 1 thẻ trong danh sách bài tập, các thẻ còn lại tự động thu nhỏ và mờ nhẹ */
@@ -866,8 +878,10 @@ cubic-bezier.
         /* Thẻ đang được chọn sẽ nở to và rõ nét (JS mousemove sẽ kiểm soát transform góc nghiêng tiếp theo) */
         .gallery-grid:hover .gallery-card:hover {
             opacity: 1;
-            transform: scale3d(1.04, 1.04, 1.04); /* Base hover scale, JS will multiply on top of this */
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25);
+            animation: none !important;
+            transform: translateY(-12px) scale3d(1.05, 1.05, 1.05) !important;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 35px rgba(192, 132, 252, 0.45), 0 0 50px rgba(34, 211, 238, 0.3) !important;
+            border-color: rgba(34, 211, 238, 0.5) !important;
         }
 
         /* Giao diện 6 bài tập (6 exercise cards / widgets) với hiệu ứng vệt sáng và 3D Parallax */
@@ -1264,7 +1278,7 @@ cubic-bezier.
             backdrop-filter: blur(20px);
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem;
+            gap: 5.5rem; /* ĐÃ ĐIỀU CHỈNH: Tăng khoảng cách các bảng tổng kết xa nhau một chút */
             align-items: center;
             box-sizing: border-box;
             max-width: 100%;
@@ -1341,8 +1355,10 @@ cubic-bezier.
         .conclusion-panel .conclusion-widget:hover,
         .conclusion-panel .clickable-stat-box:hover {
             opacity: 1;
-            transform: scale3d(1.05, 1.05, 1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25);
+            animation: none !important;
+            transform: translateY(-12px) scale3d(1.05, 1.05, 1.05) !important;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 35px rgba(192, 132, 252, 0.45), 0 0 50px rgba(34, 211, 238, 0.3) !important;
+            border-color: rgba(34, 211, 238, 0.5) !important;
         }
 
         .clickable-stat-box:hover .stat-num {
@@ -1457,7 +1473,7 @@ cubic-bezier.
         .conclusion-widgets-container {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem; /* Giảm gap giữa 3 widget tổng kết một chút */
+            gap: 2.0rem; /* ĐÃ ĐIỀU CHỈNH: Tăng gap giữa 3 widget tổng kết một chút */
             margin-top: 1rem; /* Đưa các widget đến gần tiêu đề Tổng kết hơn */
             width: 100%;
         }
@@ -1503,15 +1519,6 @@ cubic-bezier.
             letter-spacing: 1px;
             /* Phát sáng nhẹ màu trắng đồng bộ sắc độ chữ */
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.45), 0 0 16px rgba(255, 255, 255, 0.2); 
-        }
-
-        /* Khi di chuột vào: Đổi sang màu tím oải hương và hiệu ứng phát sáng mạnh lên */
-        .conclusion-widget:hover .widget-value {
-            color: var(--accent-purple); /* Chuyển sắc chữ sang tím */
-            /* Phát sáng đa tầng màu tím rực rỡ và sắc nét */
-            text-shadow: 0 0 12px rgba(192, 132, 252, 1), 
-                         0 0 24px rgba(192, 132, 252, 0.65), 
-                         0 0 36px rgba(192, 132, 252, 0.35);
         }
 
         /* Vùng nội dung ẩn mặc định - Tăng cực đại lên 800px đảm bảo không bao giờ bị cắt xén chữ */
@@ -1571,33 +1578,81 @@ cubic-bezier.
 
         /* =====================================================================
            Bioluminescent Gentle Drifting Keyframes (Floating System Only)
-           - Vertical displacement: ±6-10px
-           - Horizontal displacement: ±2-4px
-           - Slight Rotation angle: ±1°
+           - Vertical displacement: ±12-16px (ĐÃ TĂNG: hoạt ảnh lơ lửng rõ ràng hơn)
+           - Horizontal displacement: ±6-8px (ĐÃ TĂNG: hoạt ảnh lơ lửng rõ ràng hơn)
+           - Slight Rotation angle: ±1.5° (ĐÃ TĂNG: hoạt ảnh lơ lửng rõ ràng hơn)
+           - Scale dynamic breathing: 0.985 - 1.02 (ĐÃ THÊM: hoạt ảnh co giãn/nở ra co vào)
+           - Border opacity fluctuation: 8% - 22% (chênh lệch ~14%)
+           - Glass blur fluctuation: 18px - 24px
+           - Glowing color shift: Tím Lavender và xanh Cyan biển sâu thay đổi tinh tế
            - Multi-phase asynchronous rate cycles: 10s - 16s
            ===================================================================== */
         @keyframes drift-phase-1 {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            33% { transform: translateY(-7px) translateX(2.5px) rotate(0.6deg); }
-            66% { transform: translateY(5px) translateX(-2px) rotate(-0.5deg); }
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg) scale(0.985); 
+                border-color: rgba(192, 132, 252, 0.08); /* 8% border opacity */
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 12px rgba(192, 132, 252, 0.12); /* Sắc tím Lavender nhẹ */
+            }
+            50% { 
+                transform: translateY(-16px) translateX(8px) rotate(1.5deg) scale(1.02); 
+                border-color: rgba(34, 211, 238, 0.22); /* 22% border opacity (dao động ~14%) */
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 0 0 28px rgba(34, 211, 238, 0.35), 0 0 10px rgba(192, 132, 252, 0.15); /* Sắc xanh Cyan rực hơn kết hợp Tím */
+            }
         }
 
         @keyframes drift-phase-2 {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            40% { transform: translateY(6px) translateX(-3px) rotate(-0.7deg); }
-            70% { transform: translateY(-8px) translateX(2px) rotate(0.5deg); }
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg) scale(1.02); 
+                border-color: rgba(34, 211, 238, 0.08); 
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 12px rgba(34, 211, 238, 0.12);
+            }
+            50% { 
+                transform: translateY(15px) translateX(-7px) rotate(-1.4deg) scale(0.985); 
+                border-color: rgba(192, 132, 252, 0.22); 
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 0 0 28px rgba(192, 132, 252, 0.35), 0 0 10px rgba(34, 211, 238, 0.15);
+            }
         }
 
         @keyframes drift-phase-3 {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            25% { transform: translateY(-9px) translateX(-2.5px) rotate(0.4deg); }
-            75% { transform: translateY(5px) translateX(3px) rotate(-0.4deg); }
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg) scale(0.99); 
+                border-color: rgba(192, 132, 252, 0.09); 
+                backdrop-filter: blur(19px);
+                -webkit-backdrop-filter: blur(19px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 14px rgba(192, 132, 252, 0.1);
+            }
+            50% { 
+                transform: translateY(-15px) translateX(-8px) rotate(1.6deg) scale(1.015); 
+                border-color: rgba(34, 211, 238, 0.23); 
+                backdrop-filter: blur(23px);
+                -webkit-backdrop-filter: blur(23px);
+                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), 0 0 32px rgba(34, 211, 238, 0.38), 0 0 12px rgba(192, 132, 252, 0.2);
+            }
         }
 
         @keyframes drift-phase-4 {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            30% { transform: translateY(6px) translateX(2.5px) rotate(-0.5deg); }
-            60% { transform: translateY(-7px) translateX(-2px) rotate(0.6deg); }
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg) scale(1.015); 
+                border-color: rgba(34, 211, 238, 0.09); 
+                backdrop-filter: blur(23px);
+                -webkit-backdrop-filter: blur(23px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 14px rgba(34, 211, 238, 0.12);
+            }
+            50% { 
+                transform: translateY(14px) translateX(6px) rotate(-1.5deg) scale(0.99); 
+                border-color: rgba(192, 132, 252, 0.23); 
+                backdrop-filter: blur(19px);
+                -webkit-backdrop-filter: blur(19px);
+                box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42), 0 0 28px rgba(192, 132, 252, 0.35), 0 0 12px rgba(34, 211, 238, 0.2);
+            }
         }
 
         /* Base Floating assignments to original elements without changing structures */
@@ -1656,7 +1711,7 @@ cubic-bezier.
         .conclusion-widget:hover,
         .clickable-stat-box:hover {
             animation: none !important; /* Temporarily kills CSS loop path on touch to let spring curve lift card */
-            transform: translateY(-10px) scale(1.03) !important;
+            transform: translateY(-12px) scale(1.03) !important;
             box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25) !important;
         }
 
@@ -1873,7 +1928,7 @@ cubic-bezier.
                                 Sáu dự án trong học phần không chỉ ghi lại những kiến thức và kỹ năng em đã tiếp thu, mà còn lưu giữ hành trình trưởng thành của một sinh viên sư phạm trên con đường khám phá công nghệ số và trí tuệ nhân tạo. Từ những kiến thức nền tảng đầu tiên đến việc ứng dụng AI và các công cụ số, từng dự án đều phản ánh quá trình không ngừng khám phá, thích nghi và hoàn thiện bản thân trong một thế giới công nghệ luôn đổi mới.</p>
                             <!-- Elegant glowing glassmorphic button perfectly matching the website design -->
                             <div style="margin-top: 1.5rem;">
-                                <a href="https://drive.google.com/drive/folders/1WxK5N13-DsHVcmxPzxaP6B_z1EcSHbcb" target="_blank" class="btn-drive-glass">
+                                <a href="https://drive.google.com/file/d/1WxK5N13-DsHVcmxPzxaP6B_z1EcSHbcb" target="_blank" class="btn-drive-glass">
                                     <span style="font-size: 1.1rem; vertical-align: middle;">📂</span> Xem báo cáo GG drive
                                 </a>
                             </div>
@@ -2471,9 +2526,9 @@ cubic-bezier.
                 const shadowX = -rotateY * 1.5;
                 const shadowY = rotateX * 1.5;
                 
-                // Áp dụng góc nghiêng 3D, tỉ lệ scale nhẹ (1.04) kết hợp giữ nguyên tư thế nhấc lên khi rê chuột
-                card.style.transform = `perspective(1000px) translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04, 1.04, 1.04)`;
-                card.style.boxShadow = `${shadowX}px ${shadowY}px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(192, 132, 252, 0.22)`;
+                // Áp dụng góc nghiêng 3D, tỉ lệ scale nhẹ (1.04) kết hợp giữ nguyên tư thế nhấc lên -12px khi rê chuột
+                card.style.transform = `perspective(1000px) translateY(-12px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04, 1.04, 1.04)`;
+                card.style.boxShadow = `${shadowX}px ${shadowY}px 45px rgba(0, 0, 0, 0.55), 0 0 35px rgba(192, 132, 252, 0.45), 0 0 50px rgba(34, 211, 238, 0.3)`;
                 
                 // Hiệu ứng Parallax cho các thành phần nội dung bên trong
                 const cardNum = card.querySelector('.card-num, .reflection-icon');
@@ -3055,7 +3110,7 @@ cubic-bezier.
                 </div>
 
                 <h4>Nhận Định Cá Nhân Về Chính Sách AI Của Đại Học Ngoại Ngữ</h4>
-                <p>Em hoàn toàn ủng hộ triết lý quản lý AI của nhà trường: coi AI là công cụ bổ trợ nâng cao hiệu suất học tập nhưng nghiên cấm đạo văn số (AI-Plagiarism). AI giống như kính hiển vi giúp phóng đại các lỗi sai ngữ pháp, mở rộng trường từ vựng nhưng không thể thay thế bộ não con người trong việc kiến tạo tư duy phản biện độc lập. Quy chuẩn nộp Tờ khai báo sử dụng AI (AI Disclosure Statement) giúp tụi em tự tin nghiên cứu trong ranh giới đạo đức cho phép.</p>
+                <p>Em hoàn toàn ủng hộ triết lý quản lý AI của nhà trường: coi AI là công cụ bổ trợ nâng cao hiệu suất học tập nhưng nghiêm cấm đạo văn số (AI-Plagiarism). AI giống như kính hiển vi giúp phóng đại các lỗi sai ngữ pháp, mở rộng trường từ vựng nhưng không thể thay thế bộ não con người trong việc kiến tạo tư duy phản biện độc lập. Quy chuẩn nộp Tờ khai báo sử dụng AI (AI Disclosure Statement) giúp tụi em tự tin nghiên cứu trong ranh giới đạo đức cho phép.</p>
 
                 <h4>Bài học rút ra</h4>
                 <p>Bản lĩnh ứng dụng công nghệ nằm ở khả năng kiểm soát đạo đức tự thân của người học. Đạo đức học thuật vững vàng giúp nhà giáo tương lai làm chủ tiến trình giảng dạy sáng tạo, liêm chính số.</p>
@@ -3288,7 +3343,7 @@ cubic-bezier.
             // Clear existing tasks
             const titleTodo = ` <strong style="color: #ef4444; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">📋 CẦN LÀM (TO DO)</strong> `;
             const titleProgress = ` <strong style="color: #3b82f6; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">⏳ ĐANG LÀM (IN PROGRESS)</strong> `;
-            const titleDone = ` <strong style="color: #10b981; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">✅ HOÀN TẤT (DONE)</strong> `;
+            const titleDone = ` <strong style="color: #10b981; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">✅ HOÀT TẤT (DONE)</strong> `;
 
             colTodo.innerHTML = titleTodo;
             colProgress.innerHTML = titleProgress;
