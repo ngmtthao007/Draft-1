@@ -1,4 +1,4 @@
- rê chuột:
+tác).
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -1533,7 +1533,6 @@
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.45), 0 0 16px rgba(255, 255, 255, 0.2); 
         }
 
-        /* Vùng nội dung ẩn mặc định - Tăng cực đại lên 800px đảm bảo không bao giờ bị cắt xén chữ */
         .conclusion-widget .widget-content-expand {
             max-height: 0;
             opacity: 0;
@@ -1577,7 +1576,7 @@
 
         /* =====================================================================
            Bioluminescent Gentle Drifting Keyframes (Floating System Only)
-           - ĐÃ SỬA: Thay đổi bóng xung quanh thành bóng tỏa mập mờ, chuyển màu
+           - Thay đổi bóng xung quanh thành bóng tỏa mập mờ, chuyển màu
              Lavender/Cyan ảo ảnh tự nhiên không dải vòng tròn đồng tâm sắc nét.
            ===================================================================== */
         @keyframes drift-phase-1 {
@@ -2108,13 +2107,8 @@
                 this.y = initial ? Math.random() * this.h : this.h + 10;
                 this.size = Math.random() * 3 + 1; // Kích thước hạt từ 1px đến 4px siêu nhỏ tinh tế
                 
-                // Bảng màu dưới nước: lavender, tím nhạt, cyan và trắng phát quang
-                this.color = [
-                    'rgba(192, 132, 252, ', // Lavender
-                    'rgba(216, 180, 254, ', // Pale Violet
-                    'rgba(34, 211, 238, ',  // Cyan
-                    'rgba(255, 255, 255, '  // Glowing White
-                ][Math.floor(Math.random() * 4)];
+                // Màu sắc: Đổi toàn bộ màu hạt sang trắng phát quang tinh khiết theo yêu cầu
+                this.color = 'rgba(255, 255, 255, ';
 
                 this.alpha = Math.random() * 0.35 + 0.15; // Opacity dao động từ 15%–70%
                 this.baseAlpha = this.alpha;
@@ -2139,7 +2133,7 @@
                 this.blur = Math.random() < 0.4 ? Math.random() * 2 + 1 : 0;
             }
 
-            update(isHovered, hoverFactor, speedMultiplier) {
+            update(isHovered, hoverFactor, speedMultiplier, gatherEnabled = true) {
                 // Nhịp thở opacity mượt từ 15% - 70%
                 this.pulsePhase += this.pulseSpeed;
                 let breath = Math.sin(this.pulsePhase) * 0.25;
@@ -2169,8 +2163,8 @@
                     this.swayPhase += this.swaySpeed * speedMultiplier;
                     this.x += (this.vx + Math.sin(this.swayPhase) * 0.04) * speedMultiplier;
 
-                    // Hover Interaction: Tập trung nhẹ quanh tâm nội dung widget
-                    if (isHovered && hoverFactor > 0) {
+                    // Hover Interaction: Tập trung nhẹ quanh tâm nội dung widget (nếu được kích hoạt)
+                    if (isHovered && hoverFactor > 0 && gatherEnabled) {
                         const targetX = this.w / 2;
                         const targetY = this.h / 2;
                         this.x += (targetX - this.x) * 0.005 * hoverFactor;
@@ -2191,16 +2185,16 @@
                 
                 if (this.blur > 0) {
                     ctx.shadowBlur = this.blur * 2;
-                    ctx.shadowColor = this.color + '0.8)';
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
                 } else {
                     ctx.shadowBlur = 3;
-                    ctx.shadowColor = this.color + '0.5)';
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
                 }
 
                 ctx.fillStyle = this.color + drawAlpha + ')';
 
                 if (this.type === 'sparkle') {
-                    // Vẽ tinh thể 4 cánh lóe sáng dịu nhẹ
+                    // Vẽ tinh thể 4 cánh lóe sáng dịu nhẹ màu trắng
                     ctx.beginPath();
                     ctx.moveTo(this.x, this.y - visualSize * 1.6);
                     ctx.quadraticCurveTo(this.x, this.y, this.x + visualSize * 1.6, this.y);
@@ -2210,7 +2204,7 @@
                     ctx.closePath();
                     ctx.fill();
                 } else {
-                    // Chấm phát quang cơ bản
+                    // Chấm phát quang cơ bản màu trắng
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, visualSize, 0, Math.PI * 2);
                     ctx.fill();
@@ -2232,6 +2226,9 @@
                 this.hoverFactor = 0; 
                 this.speedMultiplier = 1;
                 this.hoverStartTime = 0;
+                
+                // ĐÃ SỬA: Loại bỏ hiệu ứng tụ hạt đối với riêng các widget mang class "conclusion-widget"
+                this.gatherEnabled = !card.classList.contains('conclusion-widget');
                 
                 this.resize();
                 this.initParticles();
@@ -2289,7 +2286,8 @@
                 this.ctx.clearRect(0, 0, this.w, this.h);
 
                 this.particles.forEach(p => {
-                    const { visualSize, drawAlpha } = p.update(this.isHovered, this.hoverFactor, this.speedMultiplier);
+                    // Truyền tham số gatherEnabled vào quá trình update của từng hạt
+                    const { visualSize, drawAlpha } = p.update(this.isHovered, this.hoverFactor, this.speedMultiplier, this.gatherEnabled);
                     p.draw(this.ctx, visualSize, drawAlpha);
                 });
             }
@@ -3393,7 +3391,7 @@
                     },
                     advanced: {
                         prompt: "Bạn là một chuyên gia nghiên cứu Ngôn ngữ học ứng dụng (Applied Linguistics). Hãy đọc tài liệu dưới đây và thực hiện tóm tắt theo các bước logic sau: Bước 1: Trích xuất câu hỏi nghiên cứu cốt lõi. Bước 2: Tóm tắt phương pháp thực nghiệm (mẫu khảo sát, công cụ). Bước 3: Chỉ ra ý nghĩa thực tiễn đối với sinh viên ULIS. Định dạng kết quả dưới dạng bảng so sánh và các bullet points mạch lạc.",
-                        response: "• CÂU HỎI NGHIÊN CỨU CỐT LÕI: Làm cách nào mô hình AI hỗ trợ rèn luyện tư duy lập luận phản biện cho sinh viên ngoại ngữ?\n• PHƯƠNG PHÁP THỰC NGHIỆM: Nghiên cứu thực nghiệm đối chứng (mẫu n=80) kết hợp khảo sát bảng hỏi.\n• Ý NGHĨA THỰC TIỄN ULIS: Giúp sinh viên ULIS chủ động xây dựng lộ trình học tập tự chủ, hạn chế đạo văn số."
+                        response: "• CÂU HỎI NGHIÊN CỨU CỐT LÕI: Làm cách nào mô hình AI hỗ trợ rèn luyện tư duy lập luận phản biện cho sinh viên ngoại ngữ?\n• PHƯƠNG PHÁP THỰC NGHIỆM: Nghiên cứu thực nghiệm đối chứng (mẫu n=80) kết hợp khảo sát bảng hỏi.\n• Ý NGHÊN THỰC TIỄN ULIS: Giúp sinh viên ULIS chủ động xây dựng lộ trình học tập tự chủ, hạn chế đạo văn số."
                     }
                 },
                 2: {
