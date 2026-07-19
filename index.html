@@ -1,4 +1,3 @@
-nội dung:
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -1533,6 +1532,7 @@ nội dung:
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.45), 0 0 16px rgba(255, 255, 255, 0.2); 
         }
 
+        /* Vùng nội dung ẩn mặc định - Tăng cực đại lên 800px đảm bảo không bao giờ bị cắt xén chữ */
         .conclusion-widget .widget-content-expand {
             max-height: 0;
             opacity: 0;
@@ -1576,8 +1576,8 @@ nội dung:
 
         /* =====================================================================
            Bioluminescent Gentle Drifting Keyframes (Floating System Only)
-           - ĐÃ NÂNG CẤP: Kết hợp nhuần nhuyễn dải tỏa sáng đổi màu mập mờ (gốc)
-             với dải viền sóng elip (box-shadow out-of-bounds) lan tỏa dịu nhẹ ra ngoài.
+           - ĐÃ SỬA: Thay đổi bóng xung quanh thành bóng tỏa mập mờ, chuyển màu
+             Lavender/Cyan ảo ảnh tự nhiên không dải vòng tròn đồng tâm sắc nét.
            ===================================================================== */
         @keyframes drift-phase-1 {
             0%, 100% { 
@@ -1585,21 +1585,14 @@ nội dung:
                 border-color: rgba(192, 132, 252, 0.08); 
                 backdrop-filter: blur(18px);
                 -webkit-backdrop-filter: blur(18px);
-                /* Phát sáng mập mờ Lavender kết hợp viền sóng mỏng */
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                            0 0 20px rgba(192, 132, 252, 0.15),
-                            0 0 0 0px rgba(192, 132, 252, 0.1); 
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(192, 132, 252, 0.15); /* Bóng tỏa mập mờ Lavender */
             }
             50% { 
                 transform: translateY(-16px) translateX(8px) rotate(1.5deg) scale(1.02); 
                 border-color: rgba(34, 211, 238, 0.22); 
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
-                /* Sóng elip mở rộng dãn biên ra ngoài rìa mượt mà */
-                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 
-                            0 0 30px rgba(34, 211, 238, 0.25), 
-                            0 0 15px rgba(192, 132, 252, 0.1),
-                            0 0 0 15px rgba(34, 211, 238, 0); 
+                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(34, 211, 238, 0.3), 0 0 15px rgba(192, 132, 252, 0.15); /* Bóng tỏa ảo ảnh kết hợp */
             }
         }
 
@@ -1609,19 +1602,14 @@ nội dung:
                 border-color: rgba(34, 211, 238, 0.08); 
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                            0 0 20px rgba(34, 211, 238, 0.15),
-                            0 0 0 0px rgba(34, 211, 238, 0.1);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.15);
             }
             50% { 
                 transform: translateY(15px) translateX(-7px) rotate(-1.4deg) scale(0.985); 
                 border-color: rgba(192, 132, 252, 0.22); 
                 backdrop-filter: blur(18px);
                 -webkit-backdrop-filter: blur(18px);
-                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 
-                            0 0 30px rgba(192, 132, 252, 0.25), 
-                            0 0 15px rgba(34, 211, 238, 0.1),
-                            0 0 0 15px rgba(192, 132, 252, 0);
+                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(192, 132, 252, 0.3), 0 0 15px rgba(34, 211, 238, 0.15);
             }
         }
 
@@ -1631,19 +1619,14 @@ nội dung:
                 border-color: rgba(192, 132, 252, 0.09); 
                 backdrop-filter: blur(19px);
                 -webkit-backdrop-filter: blur(19px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                            0 0 20px rgba(192, 132, 252, 0.12),
-                            0 0 0 0px rgba(192, 132, 252, 0.1);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(192, 132, 252, 0.12);
             }
             50% { 
                 transform: translateY(-15px) translateX(-8px) rotate(1.6deg) scale(1.015); 
                 border-color: rgba(34, 211, 238, 0.23); 
                 backdrop-filter: blur(23px);
                 -webkit-backdrop-filter: blur(23px);
-                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), 
-                            0 0 32px rgba(34, 211, 238, 0.32), 
-                            0 0 15px rgba(192, 132, 252, 0.1),
-                            0 0 0 15px rgba(34, 211, 238, 0);
+                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), 0 0 32px rgba(34, 211, 238, 0.32), 0 0 15px rgba(192, 132, 252, 0.15);
             }
         }
 
@@ -1653,19 +1636,14 @@ nội dung:
                 border-color: rgba(34, 211, 238, 0.09); 
                 backdrop-filter: blur(23px);
                 -webkit-backdrop-filter: blur(23px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                            0 0 20px rgba(34, 211, 238, 0.15),
-                            0 0 0 0px rgba(34, 211, 238, 0.1);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.15);
             }
             50% { 
                 transform: translateY(14px) translateX(6px) rotate(-1.5deg) scale(0.99); 
                 border-color: rgba(192, 132, 252, 0.23); 
                 backdrop-filter: blur(19px);
                 -webkit-backdrop-filter: blur(19px);
-                box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42), 
-                            0 0 30px rgba(192, 132, 252, 0.3), 
-                            0 0 15px rgba(34, 211, 238, 0.1),
-                            0 0 0 15px rgba(192, 132, 252, 0);
+                box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42), 0 0 30px rgba(192, 132, 252, 0.3), 0 0 15px rgba(34, 211, 238, 0.15);
             }
         }
 
@@ -2118,65 +2096,139 @@ nội dung:
             constructor(w, h) {
                 this.w = w;
                 this.h = h;
+                // Kết hợp 3 loại hạt: dot (chấm phát quang), bubble (bong bóng nhỏ), sparkle (ngôi sao/tinh thể lóe sáng)
+                this.type = ['dot', 'bubble', 'sparkle'][Math.floor(Math.random() * 3)];
                 this.reset(true);
             }
 
             reset(initial = false) {
                 this.x = Math.random() * this.w;
-                this.y = initial ? Math.random() * this.h : this.h + 10;
+                // Nếu khởi tạo ban đầu thì rải rác ngẫu nhiên chiều cao, nếu sinh mới thì trồi từ đáy lên
+                this.y = initial ? Math.random() * this.h : this.h + 15;
+                this.size = Math.random() * 5 + 1.8; // Kích thước hạt từ 1.8px đến 6.8px (thuộc phạm vi ~2-8px)
                 
-                // ĐỐI MÀU & THU NHỎ: Làm hạt nhỏ hơn nữa (0.5px đến 2px)
-                this.size = Math.random() * 1.5 + 0.5; 
-                
-                // ĐỐI MÀU: Chuyển toàn bộ màu hạt sang trắng phát quang mờ dịu
-                this.color = 'rgba(255, 255, 255, ';
+                // Bảng màu: lavender, tím neon, xanh lam nhạt và trắng phát quang
+                this.color = [
+                    'rgba(192, 132, 252, ', // Lavender
+                    'rgba(168, 85, 247, ', // Neon Purple
+                    'rgba(34, 211, 238, ',  // Pale Blue
+                    'rgba(255, 255, 255, '  // Glowing White
+                ][Math.floor(Math.random() * 4)];
 
-                // MỜ NỮA: Giảm cường độ phát sáng (alpha nền móng mờ ảo từ 5% - 20%)
-                this.alpha = Math.random() * 0.15 + 0.05; 
+                this.alpha = Math.random() * 0.4 + 0.2; // Opacity nền móng tự nhiên
                 this.baseAlpha = this.alpha;
                 
-                this.pulseSpeed = Math.random() * 0.015 + 0.005;
+                // Chu kỳ nhấp nháy phát quang không đồng bộ (20% -> 80% -> 20%)
+                this.pulseSpeed = Math.random() * 0.03 + 0.01;
                 this.pulsePhase = Math.random() * Math.PI * 2;
 
-                this.vx = (Math.random() - 0.5) * 0.04; 
-                this.vy = -(Math.random() * 0.08 + 0.04); 
+                // Thiết lập 3 kiểu quỹ đạo ngẫu nhiên chậm rãi
+                this.trajectory = ['float', 'sway', 'orbit'][Math.floor(Math.random() * 3)];
+                
+                this.vx = (Math.random() - 0.5) * 0.12;
+                this.vy = -(Math.random() * 0.15 + 0.08); // Trôi lên siêu chậm
 
-                this.swaySpeed = Math.random() * 0.006 + 0.003;
+                // Biên độ và tần số dao động hình sin mô phỏng dòng nước hoành dạt
+                this.swaySpeed = Math.random() * 0.012 + 0.006;
                 this.swayPhase = Math.random() * Math.PI * 2;
 
-                this.blur = Math.random() < 0.4 ? Math.random() * 1.5 + 0.5 : 0;
+                // Quỹ đạo elip xung quanh tâm widget
+                this.cx = this.w / 2;
+                this.cy = this.h / 2;
+                this.rx = Math.random() * (this.w * 0.4) + 15;
+                this.ry = Math.random() * (this.h * 0.4) + 15;
+                this.orbitSpeed = (Math.random() * 0.0012 + 0.0006) * (Math.random() < 0.5 ? 1 : -1);
+                this.orbitAngle = Math.random() * Math.PI * 2;
+
+                // Khởi tạo vòng đời cho loại tinh thể lóe sáng (sparkle)
+                if (this.type === 'sparkle') {
+                    this.lifespan = Math.random() * 90 + 60; // Lóe sáng trong khoảng 1-2.5 giây
+                    this.life = this.lifespan;
+                    this.y = Math.random() * this.h;
+                }
+
+                // Blur nhẹ cho chiều sâu (độ xa gần quang học)
+                this.blur = Math.random() < 0.35 ? Math.random() * 2 + 1 : 0;
+
+                // Vệt sáng (light trail) ngắn dành cho các hạt phù du kích thước lớn
+                this.trail = [];
+                this.hasTrail = this.type === 'dot' && this.size > 4.2;
             }
 
-            update(isHovered, hoverFactor, speedMultiplier, gatherEnabled = true) {
-                // Nhịp thở opacity mượt từ 15% - 70%
+            update(isHovered, hoverFactor, speedMultiplier) {
+                // Nhịp thở nhấp nháy liên tục 20% -> 80%
                 this.pulsePhase += this.pulseSpeed;
-                let breath = Math.sin(this.pulsePhase) * 0.08;
-                this.alpha = this.baseAlpha + breath;
-                this.alpha = Math.max(0.05, Math.min(0.35, this.alpha));
+                let breath = Math.sin(this.pulsePhase);
+                this.alpha = this.baseAlpha + breath * 0.25;
+                this.alpha = Math.max(0.2, Math.min(0.8, this.alpha));
 
                 let visualSize = this.size;
                 let drawAlpha = this.alpha;
 
-                // Tăng độ sáng nhẹ khi hover nhưng vẫn giữ mức mờ dịu
+                // Phản hồi tăng glow sáng khi hover vào
                 if (isHovered) {
-                    drawAlpha = Math.min(0.40, this.alpha * (1 + 0.12 * hoverFactor));
+                    drawAlpha = Math.min(0.95, this.alpha * (1 + 0.45 * hoverFactor));
+                    visualSize = this.size * (1 + 0.15 * hoverFactor);
                 }
 
-                // Trôi lên vô cùng chậm rãi và dao động theo dòng nước
-                this.y += this.vy * speedMultiplier;
-                this.swayPhase += this.swaySpeed * speedMultiplier;
-                this.x += (this.vx + Math.sin(this.swayPhase) * 0.03) * speedMultiplier;
-
-                // Thu hút hạt về tâm (chỉ thực thi nếu được cho phép tụ hạt)
-                if (isHovered && hoverFactor > 0 && gatherEnabled) {
-                    const targetX = this.w / 2;
-                    const targetY = this.h / 2;
-                    this.x += (targetX - this.x) * 0.004 * hoverFactor;
-                    this.y += (targetY - this.y) * 0.004 * hoverFactor;
+                // Ghi nhận vệt sáng ngắn cho phù du lớn
+                if (this.hasTrail) {
+                    this.trail.unshift({ x: this.x, y: this.y });
+                    if (this.trail.length > 4) this.trail.pop();
+                } else {
+                    this.trail = [];
                 }
 
-                if (this.y < -10 || this.x < -10 || this.x > this.w + 10) {
-                    this.reset(false);
+                // Cập nhật chuyển động theo vòng đời
+                if (this.type === 'sparkle') {
+                    this.life -= speedMultiplier;
+                    if (this.life <= 0) {
+                        this.reset(false);
+                    } else {
+                        // Tăng giảm mượt mà đúng chu kỳ lóe sáng hình sin
+                        drawAlpha = Math.sin((this.life / this.lifespan) * Math.PI) * 0.85;
+                    }
+                } else {
+                    if (this.trajectory === 'float' || this.type === 'bubble') {
+                        this.y += this.vy * speedMultiplier;
+                        this.swayPhase += this.swaySpeed * speedMultiplier;
+                        this.x += (this.vx + Math.sin(this.swayPhase) * 0.06) * speedMultiplier;
+                    } else if (this.trajectory === 'sway') {
+                        this.swayPhase += this.swaySpeed * speedMultiplier;
+                        this.y += (this.vy * 0.5) * speedMultiplier;
+                        this.x += (Math.sin(this.swayPhase) * 0.18) * speedMultiplier;
+                    } else if (this.trajectory === 'orbit') {
+                        this.orbitAngle += this.orbitSpeed * speedMultiplier;
+                        this.x = this.cx + this.rx * Math.cos(this.orbitAngle);
+                        this.y = this.cy + this.ry * Math.sin(this.orbitAngle);
+                    }
+
+                    // Tái thiết lập nếu trôi ra rìa ranh giới
+                    if (this.y < -15 || this.x < -15 || this.x > this.w + 15) {
+                        this.reset(false);
+                    }
+                }
+
+                // Phản hồi tụ lại nhẹ quanh viền khi tương tác hover
+                if (isHovered && hoverFactor > 0 && this.type !== 'sparkle') {
+                    const distToLeft = this.x;
+                    const distToRight = this.w - this.x;
+                    const distToTop = this.y;
+                    const distToBottom = this.h - this.y;
+                    
+                    const minDist = Math.min(distToLeft, distToRight, distToTop, distToBottom);
+                    let targetX = this.x;
+                    let targetY = this.y;
+
+                    // Hướng lực kéo hội tụ tiệm cận ranh giới 4 góc
+                    if (minDist === distToLeft) targetX = 5;
+                    else if (minDist === distToRight) targetX = this.w - 5;
+                    else if (minDist === distToTop) targetY = 5;
+                    else targetY = this.h - 5;
+
+                    const pullForce = 0.024 * hoverFactor;
+                    this.x += (targetX - this.x) * pullForce;
+                    this.y += (targetY - this.y) * pullForce;
                 }
 
                 return { visualSize, drawAlpha };
@@ -2185,20 +2237,56 @@ nội dung:
             draw(ctx, visualSize, drawAlpha) {
                 ctx.save();
                 
-                // Bóng phát quang nhạt mờ
-                if (this.blur > 0) {
-                    ctx.shadowBlur = this.blur;
-                    ctx.shadowColor = 'rgba(255, 255, 255, 0.4)';
-                } else {
-                    ctx.shadowBlur = 1.5;
-                    ctx.shadowColor = 'rgba(255, 255, 255, 0.2)';
+                // Vẽ vệt sáng trail mượt
+                if (this.hasTrail && this.trail.length > 1) {
+                    for (let i = 0; i < this.trail.length; i++) {
+                        const trailAlpha = drawAlpha * (1 - (i + 1) / (this.trail.length + 1)) * 0.35;
+                        ctx.beginPath();
+                        ctx.arc(this.trail[i].x, this.trail[i].y, visualSize * (1 - i / this.trail.length), 0, Math.PI * 2);
+                        ctx.fillStyle = this.color + trailAlpha + ')';
+                        ctx.fill();
+                    }
                 }
 
-                // Luôn vẽ hạt hình tròn hoàn hảo để xóa bỏ hiện tượng kéo dãn
+                // Cấu hình phát quang (glow blur)
+                if (this.blur > 0) {
+                    ctx.shadowBlur = this.blur * 2.2;
+                    ctx.shadowColor = this.color + '1)';
+                } else {
+                    ctx.shadowBlur = 4.5;
+                    ctx.shadowColor = this.color + '0.65)';
+                }
+
                 ctx.fillStyle = this.color + drawAlpha + ')';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, visualSize, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.strokeStyle = this.color + (drawAlpha * 0.75) + ')';
+
+                if (this.type === 'bubble') {
+                    // Vẽ bọt khí hình khuyên có bóng phản chiếu
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, visualSize, 0, Math.PI * 2);
+                    ctx.lineWidth = 0.75;
+                    ctx.stroke();
+                    
+                    ctx.beginPath();
+                    ctx.arc(this.x - visualSize * 0.3, this.y - visualSize * 0.3, visualSize * 0.12, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${drawAlpha * 0.65})`;
+                    ctx.fill();
+                } else if (this.type === 'sparkle') {
+                    // Vẽ tinh thể/ngôi sao phát sáng 4 cánh
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y - visualSize * 1.5);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x + visualSize * 1.5, this.y);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y + visualSize * 1.5);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x - visualSize * 1.5, this.y);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y - visualSize * 1.5);
+                    ctx.closePath();
+                    ctx.fill();
+                } else {
+                    // Chấm phát quang tròn cơ bản
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, visualSize, 0, Math.PI * 2);
+                    ctx.fill();
+                }
 
                 ctx.restore();
             }
@@ -2217,9 +2305,6 @@ nội dung:
                 this.speedMultiplier = 1;
                 this.hoverStartTime = 0;
                 
-                // BỎ HIỆU ỨNG TỤ HẠT: Loại bỏ hiệu ứng hội tụ hạt đối với riêng 3 thẻ conclusion-widget
-                this.gatherEnabled = !card.classList.contains('conclusion-widget');
-                
                 this.resize();
                 this.initParticles();
                 this.bindEvents();
@@ -2234,8 +2319,8 @@ nội dung:
             }
 
             initParticles() {
-                // Duy trì mật độ từ 10–20 hạt tinh giản nhất cho mỗi widget
-                const density = Math.floor(Math.random() * 6) + 12; 
+                // Phân bổ mật độ hạt tối ưu dựa theo kích thước diện tích khối
+                const density = Math.floor((this.w * this.h) / 8500) + 5; 
                 this.particles = [];
                 for (let i = 0; i < density; i++) {
                     this.particles.push(new BioluminescentParticle(this.w, this.h));
@@ -2258,12 +2343,12 @@ nội dung:
             }
 
             update() {
-                // Tương tác hover: Chuyển động chậm lại đôi chút trong giây đầu tiên, sau đó bình thường
+                // Quản lý phản hồi vận tốc: giảm tốc đột ngột trong 1 giây đầu khi hover, sau đó cân bằng trở lại
                 if (this.isHovered) {
                     const elapsed = Date.now() - this.hoverStartTime;
                     if (elapsed < 1000) {
                         const t = elapsed / 1000;
-                        this.speedMultiplier = 0.45 + 0.55 * t; 
+                        this.speedMultiplier = 0.35 + 0.65 * t; // Tốc độ trôi tụt về 35%, tăng dần mượt về 100%
                     } else {
                         this.speedMultiplier = 1.0;
                     }
@@ -2276,7 +2361,7 @@ nội dung:
                 this.ctx.clearRect(0, 0, this.w, this.h);
 
                 this.particles.forEach(p => {
-                    const { visualSize, drawAlpha } = p.update(this.isHovered, this.hoverFactor, this.speedMultiplier, this.gatherEnabled);
+                    const { visualSize, drawAlpha } = p.update(this.isHovered, this.hoverFactor, this.speedMultiplier);
                     p.draw(this.ctx, visualSize, drawAlpha);
                 });
             }
@@ -2876,7 +2961,7 @@ nội dung:
         });
 
        // =====================================================================
-        // BIOLUMINESCENT CURSOR PARTICLES SYSTEM (HẠT PHÁT SÁNG THEO CON TRỎ CHUỘT)
+        // Creative Bioluminescent Floating Elements Cursor Particle System (Unified Block)
         // =====================================================================
         const cursorCanvas = document.createElement('canvas');
         cursorCanvas.style.position = 'fixed';
@@ -2890,6 +2975,16 @@ nội dung:
 
         const cCtx = cursorCanvas.getContext('2d');
         let cursorParticles = [];
+        const elementTypes = ['bubble', 'star', 'jellyfish'];
+
+        // Bảng màu Pastel lấy trực tiếp từ hình ảnh của bạn
+        const elementColors = [
+            '192, 132, 252', // Tím gốc
+            '186, 198, 255', // Xanh Periwinkle
+            '250, 246, 208', // Vàng Kem nhạt
+            '229, 218, 255', // Tím Lavender nhạt
+            '232, 189, 240'  // Hồng phấn Soft Pink
+        ];
 
         window.addEventListener('resize', () => {
             cursorCanvas.width = window.innerWidth;
@@ -2900,8 +2995,13 @@ nội dung:
 
         // Sinh phần tử phân tán rộng xung quanh con trỏ khi rê chuột
         window.addEventListener('mousemove', (e) => {
-            if (Math.random() < 0.3) { // Tiết giảm mật độ sinh hạt để giao diện tinh tế
-                const scatterDistance = 25; 
+            if (Math.random() < 0.9) { 
+                const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
+                const color = elementColors[Math.floor(Math.random() * elementColors.length)];
+
+                // ĐỘ PHÂN TÁN (SCATTER DISTANCE):
+                const scatterDistance = 50; 
+                
                 const angle = Math.random() * Math.PI * 2;
                 const distance = Math.random() * scatterDistance; 
                 const spawnX = e.clientX + Math.cos(angle) * distance;
@@ -2910,22 +3010,29 @@ nội dung:
                 cursorParticles.push({
                     x: spawnX,
                     y: spawnY,
-                    vx: (Math.random() - 0.5) * 0.2,      
-                    vy: -Math.random() * 0.3 - 0.1, // Trôi lên siêu chậm  
-                    radius: Math.random() * 2 + 1, // Kích thước hạt nhỏ mềm mại (1px - 3px)
-                    alpha: Math.random() * 0.25 + 0.1, // Opacity mờ ảo (10% - 35%)
-                    decay: 0.005, // Tan biến từ từ   
-                    friction: 0.98    
+                    vx: (Math.random() - 0.5) * 0.35,      
+                    vy: -Math.random() * 0.8 - 0.15,       
+                    radius: Math.random() * 12 + 2,
+                    alpha: Math.random() * 0.7 + 0.25,
+                    color: color, 
+                    type: type,
+                    decay: 0.0035,   
+                    friction: 1.0    
                 });
             }
         });
 
-        // Hỗ trợ sinh hạt trên màn hình cảm ứng di động
+        // Hỗ trợ sinh phần tử phân tán rộng trên màn hình cảm ứng di động
         window.addEventListener('touchmove', (e) => {
             if (e.touches.length > 0) {
                 if (Math.random() < 0.1) {
                     const t = e.touches[0];
-                    const scatterDistance = 20; 
+                    const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
+                    const color = elementColors[Math.floor(Math.random() * elementColors.length)];
+
+                    // ĐỘ PHÂN TÁN TRÊN DI ĐỘNG (SCATTER DISTANCE):
+                    const scatterDistance = 35; 
+
                     const angle = Math.random() * Math.PI * 2;
                     const distance = Math.random() * scatterDistance; 
                     const spawnX = t.clientX + Math.cos(angle) * distance;
@@ -2934,12 +3041,14 @@ nội dung:
                     cursorParticles.push({
                         x: spawnX,
                         y: spawnY,
-                        vx: (Math.random() - 0.5) * 0.2,  
-                        vy: -Math.random() * 0.2 - 0.08,    
-                        radius: Math.random() * 2 + 0.8,
-                        alpha: Math.random() * 0.25 + 0.1,
-                        decay: 0.006,   
-                        friction: 0.98
+                        vx: (Math.random() - 0.5) * 0.35,  
+                        vy: -Math.random() * 0.4 - 0.1,    
+                        radius: Math.random() * 10 + 2,
+                        opacity: Math.random() * 0.7 + 0.25,
+                        color: color,
+                        type: type,
+                        decay: 0.0035,   
+                        friction: 1.0
                     });
                 }
             }
@@ -2948,20 +3057,41 @@ nội dung:
         // Hiệu ứng "Bùng nổ Sóng xung kích" khi click vào các phần tử tương tác
         document.addEventListener('click', (e) => {
             if (e.target.closest('button, a, .widget-card, .gallery-card, .swipe-indicator')) {
-                // Tạo 30 hạt văng đa hướng theo dạng hạt tròn nhỏ màu trắng mờ dịu
-                for (let i = 0; i < 30; i++) { 
+                const randomColor = elementColors[Math.floor(Math.random() * elementColors.length)];
+
+                // 1. Tạo 1 vòng sóng xung kích (Shockwave Ring) lan rộng nhanh chóng
+                cursorParticles.push({
+                    x: e.clientX,
+                    y: e.clientY,
+                    vx: 0,
+                    vy: 0,
+                    radius: 5,
+                    alpha: 1.0,
+                    color: randomColor,
+                    type: 'shockwave',
+                    decay: 0.024,
+                    friction: 1.0
+                });
+
+                // 2. Tạo 45 hạt văng đa hướng theo dạng tia tròn đồng đều
+                for (let i = 0; i < 45; i++) { 
+                    const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
+                    const color = elementColors[Math.floor(Math.random() * elementColors.length)];
+                    
                     const angle = Math.random() * Math.PI * 2;
-                    const speed = Math.random() * 4 + 1.2;
+                    const speed = Math.random() * 8.5 + 2.0;
 
                     cursorParticles.push({
                         x: e.clientX,
                         y: e.clientY,
                         vx: Math.cos(angle) * speed, 
                         vy: Math.sin(angle) * speed,
-                        radius: Math.random() * 1.8 + 0.8,
-                        alpha: Math.random() * 0.35 + 0.15,
+                        radius: Math.random() * 8 + 1.5,
+                        alpha: Math.random() * 0.7 + 0.25,
+                        color: color,
+                        type: type,
                         decay: Math.random() * 0.008 + 0.012,
-                        friction: 0.95
+                        friction: 0.94
                     });
                 }
             }
@@ -2979,6 +3109,10 @@ nội dung:
                 p.y += p.vy;
                 p.alpha -= p.decay; 
 
+                if (p.type === 'shockwave') {
+                    p.radius += 6.5; 
+                }
+
                 if (p.alpha <= 0) {
                     cursorParticles.splice(i, 1);
                     continue;
@@ -2987,20 +3121,676 @@ nội dung:
                 cCtx.save();
                 cCtx.globalAlpha = p.alpha;
                 
-                // Vẽ hạt tròn màu trắng phát sáng mờ dịu, không kéo dãn
-                cCtx.fillStyle = 'rgba(255, 255, 255, 1)';
-                cCtx.shadowBlur = 3;
-                cCtx.shadowColor = 'rgba(255, 255, 255, 0.4)';
+                cCtx.strokeStyle = `rgba(${p.color}, 0.85)`;
+                cCtx.fillStyle = `rgba(${p.color}, 0.15)`;
+                cCtx.lineWidth = 1.2;
 
-                cCtx.beginPath();
-                cCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                cCtx.fill();
+                if (p.type === 'shockwave') {
+                    cCtx.beginPath();
+                    cCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    cCtx.strokeStyle = `rgba(${p.color}, ${p.alpha * 0.75})`;
+                    cCtx.lineWidth = 3.5 * p.alpha;
+                    cCtx.stroke();
+
+                } else if (p.type === 'bubble') {
+                    cCtx.beginPath();
+                    cCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    cCtx.stroke();
+                    cCtx.fill();
+
+                    cCtx.beginPath();
+                    cCtx.arc(p.x - p.radius * 0.3, p.y - p.radius * 0.3, p.radius * 0.15, 0, Math.PI * 2);
+                    cCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                    cCtx.fill();
+
+                } else if (p.type === 'star') {
+                    cCtx.beginPath();
+                    cCtx.moveTo(p.x, p.y - p.radius);
+                    cCtx.quadraticCurveTo(p.x, p.y, p.x + p.radius, p.y);
+                    cCtx.quadraticCurveTo(p.x, p.y, p.x, p.y + p.radius);
+                    cCtx.quadraticCurveTo(p.x, p.y, p.x - p.radius, p.y);
+                    cCtx.quadraticCurveTo(p.x, p.y, p.x, p.y - p.radius);
+                    cCtx.closePath();
+                    cCtx.stroke();
+                    cCtx.fill();
+
+                } else if (p.type === 'jellyfish') {
+                    cCtx.beginPath();
+                    cCtx.arc(p.x, p.y, p.radius, Math.PI, 0, false);
+                    cCtx.quadraticCurveTo(p.x + p.radius, p.y + p.radius * 0.2, p.x, p.y + p.radius * 0.1);
+                    cCtx.quadraticCurveTo(p.x - p.radius, p.y + p.radius * 0.2, p.x - p.radius, p.y);
+                    cCtx.closePath();
+                    cCtx.stroke();
+                    cCtx.fill();
+                    
+                    cCtx.beginPath();
+                    cCtx.lineWidth = p.radius * 0.15; 
+                    for (let offset of [-0.4, 0, 0.4]) {
+                        const startX = p.x + offset * p.radius;
+                        const startY = p.y + p.radius * 0.1;
+                        const wiggle = Math.sin((p.y + p.x) * 0.15) * (p.radius * 0.25);
+                        
+                        cCtx.moveTo(startX, startY);
+                        cCtx.quadraticCurveTo(
+                            startX + wiggle, startY + p.radius * 0.6,
+                            startX + wiggle * 0.5, startY + p.radius * 1.3
+                        );
+                    }
+                    cCtx.stroke();
+                }
 
                 cCtx.restore();
             }
             requestAnimationFrame(animateCursorParticles);
         }
         animateCursorParticles();
+
+        // Modal database containing actual academic solutions from student's reports
+        const modalData = {
+            1: `
+                <h3>Bài 1: Thao tác cơ bản với tệp tin và thư mục</h3>
+                <div style="margin: 1rem 0 1.5rem 0;">
+                    <a href="https://drive.google.com/file/d/1hg7ES0Lz_4SFlyO84o5T3WCLY7QwcJ8y/view?usp=drive_link" target="_blank" class="btn-drive-glass" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">
+                        <span>📂 Xem tệp báo cáo gốc trên Google Drive</span>
+                    </a>
+                </div>
+                <p><strong>Mục tiêu:</strong> Làm quen với giao diện hệ điều hành Windows, hoàn thành chuẩn xác 12 bước thực hành quản trị tệp tin và thư mục học tập có cấu trúc khoa học ngay trên máy tính cá nhân.</p>
+                
+                <h4>12 Bước Thực Hành Thao Tác Chuẩn Xác Trên Hệ Thống</h4>
+                <ol style="margin-left: 1.5rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    <li><strong>Bước 1:</strong> Nhấn tổ hợp phím <code>Windows + E</code> để mở nhanh cửa sổ File Explorer hệ thống.</li>
+                    <li><strong>Bước 2:</strong> Tại khung điều hướng bên trái, nhấp chọn <code>This PC</code> và truy cập trực tiếp vào ổ đĩa <code>D:</code>.</li>
+                    <li><strong>Bước 3:</strong> Click chuột phải vào khoảng trống, chọn <code>New → Folder</code>, đặt tên thư mục gốc là <code>ThucHanh_NguyenMaiThanhThao</code> rồi nhấn Enter.</li>
+                    <li><strong>Bước 4:</strong> Nhấp đúp chuột để truy cập trực tiếp vào thư mục gốc vừa khởi tạo.</li>
+                    <li><strong>Bước 5:</strong> Click chuột phải vào khoảng trống, chọn <code>New → Text Document</code>, đặt tên tệp văn bản thô mới là <code>GhiChu.txt</code>.</li>
+                    <li><strong>Bước 6:</strong> Nhấp chuột phải vào tệp <code>GhiChu.txt</code>, chọn <code>Rename</code> và đổi tên tệp thành <code>GhiChuQuanTrong.txt</code>.</li>
+                    <li><strong>Bước 7:</strong> Click chuột phải vào khoảng trống, chọn <code>New → Folder</code> để tạo thư mục con đặt tên là <code>TaiLieu</code>.</li>
+                    <li><strong>Bước 8:</strong> Click chuột phải vào tệp <code>GhiChuQuanTrong.txt</code>, chọn <code>Copy</code>, sau đó mở thư mục <code>TaiLieu</code> và chọn <code>Paste</code> để sao chép.</li>
+                    <li><strong>Bước 9:</strong> Quay lại thư mục gốc, click chuột phải tạo tệp mới tên <code>DiChuyen.txt</code>. Click chuột phải chọn <code>Cut</code>, sau đó mở thư mục <code>TaiLieu</code> và chọn <code>Paste</code> để di dời tệp.</li>
+                    <li><strong>Bước 10:</strong> Tại thư mục con <code>TaiLieu</code>, click chuột phải vào tệp <code>GhiChuQuanTrong.txt</code> chọn <code>Delete</code> để đưa tệp vào Thùng rác (Recycle Bin).</li>
+                    <li><strong>Bước 11:</strong> Chọn tệp <code>DiChuyen.txt</code>, nhấn tổ hợp phím <code>Shift + Delete</code> và chọn <code>Yes</code> trên hộp thoại cảnh báo để xóa vĩnh viễn tệp.</li>
+                    <li><strong>Bước 12:</strong> Ra màn hình Desktop, mở biểu tượng <code>Recycle Bin</code>, click chuột phải vào tệp <code>GhiChuQuanTrong.txt</code> và chọn <code>Restore</code> để khôi phục về vị trí ban đầu.</li>
+                </ol>
+
+                <h4>Sơ Đồ Minh Họa Tương Tác: Khám Phá Cây Thư Mục Thực Tế</h4>
+                <p>Click chọn thư mục bên dưới để khám phá danh sách tệp lưu trữ động mô phỏng hệ điều hành Windows:</p>
+                <div class="interactive-widget-box" style="display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; background: rgba(15,23,42,0.8);">
+                    <div style="border-right: 1px dashed rgba(255,255,255,0.1); padding-right: 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <button class="widget-btn active" id="btn-root-dir" onclick="toggleFileExplorer('root')">📁 Thư mục gốc D:/</button>
+                        <button class="widget-btn" id="btn-child-dir" onclick="toggleFileExplorer('child')">📁 Thư mục con /TaiLieu</button>
+                    </div>
+                    <div id="file-list-display" style="padding-left: 0.5rem; font-family: monospace; color: var(--accent-purple); display: flex; flex-direction: column; gap: 0.5rem;">
+                    </div>
+                </div>
+
+                <h4>Bài học rút ra</h4>
+                <p>Nhiệm vụ rèn luyện tác phong quản lý dữ liệu chính xác, cẩn thận; bồi dưỡng tư duy tổ chức khoa học nhằm kiểm soát tốt học liệu số và tối ưu hóa năng suất tự học.</p>
+            `,
+            2: `
+                <h3>Bài 2: Khai thác dữ liệu và thông tin</h3>
+                <div style="margin: 1rem 0 1.5rem 0;">
+                    <a href="https://drive.google.com/file/d/1YrH7FMfryK2P2yKjfNdQSdmcX70VK5mb/view?usp=drive_link" target="_blank" class="btn-drive-glass" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">
+                        <span>📂 Xem tệp báo cáo gốc trên Google Drive</span>
+                    </a>
+                </div>
+                <p><strong>Mục tiêu:</strong> Khai phá tri thức chất lượng cao dựa trên cơ sở dữ liệu mở (Google Scholar, VNU JFS...) để khảo sát toàn diện 11 nguồn học liệu chuẩn phục vụ đề tài nghiên cứu:</p>
+                <p style="font-style: italic; color: var(--accent-purple); margin-bottom: 1.5rem;">"Tác động của Trí tuệ nhân tạo tạo sinh (Generative AI) đối với năng lực viết học thuật bằng tiếng Anh của sinh viên ngành Ngôn ngữ tại Việt Nam."</p>
+
+                <h4>Sơ Đồ Minh Họa Tương Tác: Bộ Lọc Phân Loại 11 Nguồn Học Liệu</h4>
+                <p>Nhấp chọn bộ lọc để phân nhóm tài liệu theo thể loại thực chứng nghiên cứu:</p>
+                <div class="interactive-widget-box" style="background: rgba(15,23,42,0.8); display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                        <button class="widget-btn active" id="filter-all" onclick="filterPapers('all')">Tất cả (11)</button>
+                        <button class="widget-btn" id="filter-articles" onclick="filterPapers('article')">Bài báo (6)</button>
+                        <button class="widget-btn" id="filter-books" onclick="filterPapers('book')">Sách (2)</button>
+                        <button class="widget-btn" id="filter-reports" onclick="filterPapers('report')">Báo cáo (3)</button>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="modal-table" id="papers-table" style="min-width: 800px; margin-top: 1rem;">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Nguồn thông tin (Harvard Format)</th>
+                                    <th>Thể loại</th>
+                                    <th>Đánh giá Cốt lõi (CRAAP)</th>
+                                    <th>Xếp hạng</th>
+                                </tr>
+                            </thead>
+                            <tbody id="papers-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <h4>Bài học rút ra</h4>
+                <p>Năng lực thẩm định nguồn tin theo mô hình CRAAP là màng lọc vàng loại bỏ thông tin rác, bảo chứng 100% cho giá trị khoa học của các bài báo luận nghiên cứu.</p>
+            `,
+            3: `
+                <h3>Bài 3: Tổng quan về trí tuệ nhân tạo</h3>
+                <div style="margin: 1rem 0 1.5rem 0;">
+                    <a href="https://drive.google.com/file/d/19940-k2CX1aoSr7I8i1n9CBgAGFj4LrZ/view?usp=drive_link" target="_blank" class="btn-drive-glass" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">
+                        <span>📂 Xem tệp báo cáo gốc trên Google Drive</span>
+                    </a>
+                </div>
+                <p><strong>Mục tiêu:</strong> Ứng dụng kỹ nghệ viết Prompt (Prompt Engineering) chuyên sâu để tối ưu chất lượng phản hồi từ ChatGPT phục vụ 3 tác vụ tự học ngoại ngữ và ngôn ngữ học.</p>
+                
+                <h4>Sơ Đồ Minh Họa Tương Tác: Trình Mô Phỏng Viết Prompt Đa Cấp</h4>
+                <p>Chọn tác vụ học thuật bên dưới và bấm nút chuyển đổi để so sánh sự khát biệt của AI trước và sau khi viết prompt kỹ thuật:</p>
+                <div class="interactive-widget-box" style="background: rgba(15,23,42,0.8); display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                        <button class="widget-btn active" id="p-task-1" onclick="selectPromptTask(1)">Tác vụ 1: Tóm tắt bài đọc</button>
+                        <button class="widget-btn" id="p-task-2" onclick="selectPromptTask(2)">Tác vụ 2: Syntactic Ambiguity</button>
+                        <button class="widget-btn" id="p-task-3" onclick="selectPromptTask(3)">Tác vụ 3: Văn hóa Anh-Mỹ</button>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; background: rgba(0,0,0,0.3); padding: 0.4rem; border-radius: 8px; width: max-content;">
+                        <button class="widget-btn active" id="p-level-basic" onclick="selectPromptLevel('basic')">Cơ bản</button>
+                        <button class="widget-btn" id="p-level-improved" onclick="selectPromptLevel('improved')">Cải tiến</button>
+                        <button class="widget-btn" id="p-level-advanced" onclick="selectPromptLevel('advanced')">Nâng cao</button>
+                    </div>
+                    <div style="background: #010409; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); font-family: monospace;">
+                        <div style="color: #60a5fa; margin-bottom: 0.5rem; font-weight: bold;">[PROMPT GỬI ĐI]:</div>
+                        <div id="prompt-sender-box" style="color: #ffffff; margin-bottom: 1.5rem; line-height: 1.5;"></div>
+                        <div style="color: #34d399; margin-bottom: 0.5rem; font-weight: bold;">[CHATGPT TRẢ LỜI]:</div>
+                        <div id="prompt-receiver-box" style="color: var(--text-secondary); line-height: 1.6; white-space: pre-line;"></div>
+                    </div>
+                </div>
+
+                <h4>Cơ Chế Kỹ Thuật Đằng Sau Kỹ Ngệ Prompt</h4>
+                <p>Khác biệt cốt lõi nằm ở cơ chế vận hành của mô hình ngôn ngữ lớn (LLM). Prompt cơ bản nhận kết quả ngẫu nhiên và chung chung. Prompt nâng cao áp dụng <strong>Role Prompting</strong> giúp AI định vị chính xác phân phối suất vùng tri thức sư phạm chuyên sâu; kỹ thuật <strong>Few-Shot</strong> định hướng cấu trúc mẫu chuẩn; và <strong>CoT (Chain-of-Thought)</strong> thúc đẩy AI phân tích tuần tự trước khi kết luận, triệt tiêu 95% hiện tượng ảo tưởng (hallucination) của máy tính.</p>
+
+                <h4>Bài học rút ra</h4>
+                <p>Nghệ thuật viết Prompt dựa trên mô hình CREATE giúp sinh viên ngoại ngữ chuyển dịch hoàn toàn từ lối tương tác thô sơ sang làm chủ công nghệ, khai phóng hiệu quả phản biện học thuật thông minh.</p>
+            `,
+            4: `
+                <h3>Bài 4: Giao tiếp và hợp tác trong môi trường số</h3>
+                <div style="margin: 1rem 0 1.5rem 0;">
+                    <a href="https://drive.google.com/file/d/1fXwbZSF18DPDm5VFjsDMSqi4tD800wlU/view?usp=drive_link" target="_blank" class="btn-drive-glass" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">
+                        <span>📂 Xem tệp báo cáo gốc trên Google Drive</span>
+                    </a>
+                </div>
+                <p><strong>Mục tiêu:</strong> Thiết lập và vận hành hệ sinh thái cộng tác trực tuyến (Trello, Discord, Google Docs, Google Drive) để đồng thiết kế cẩm nang Sư phạm Anh quốc tế cùng nhóm bạn học.</p>
+                
+                <h4>Sơ Đồ Minh Họa Tương Tác: Bảng Quản Trị Dự Án Kanban Cá Nhân</h4>
+                <p>Bấm chọn phím "Di chuyển" bên dưới để dịch chuyển mô phỏng thẻ nhiệm vụ sư phạm qua các bước quy trình Kanban mượt mà:</p>
+                <div class="interactive-widget-box" style="background: rgba(15,23,42,0.8); display: flex; flex-direction: column; gap: 1.2rem;">
+                    <div style="display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap;">
+                        <button class="widget-btn" onclick="moveKanbanTask('prev')">◀ Lùi về</button>
+                        <span id="kanban-task-title" style="color: #ffffff; font-weight: bold; padding: 0.4rem 1rem; background: rgba(192, 132, 252, 0.1); border-radius: 8px; border: 1px solid rgba(192,132,252,0.2);">Nhiệm vụ: Nghiên cứu tài liệu kỹ năng Đọc - Viết ULIS</span>
+                        <button class="widget-btn" onclick="moveKanbanTask('next')">Tiến tới ▶</button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem;" id="kanban-col-todo">
+                            <strong style="color: #ef4444; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">📋 CẦN LÀM (TO DO)</strong>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem;" id="kanban-col-progress">
+                            <strong style="color: #3b82f6; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">⏳ ĐANG LÀM (IN PROGRESS)</strong>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem;" id="kanban-col-done">
+                            <strong style="color: #10b981; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">✅ HOÀT TẤT (DONE)</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>3 Thách Thức Lớn & Giải Pháp Xử Lý Thành Công</h4>
+                <div style="overflow-x: auto;">
+                    <table class="modal-table" style="min-width: 700px; margin-bottom: 1.5rem;">
+                        <thead>
+                            <tr>
+                                <th>Thách thức phát sinh</th>
+                                <th>Giải pháp thực tế được Thảo triển khai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Quá tải luồng tin nhắn trên Discord</strong></td>
+                                <td>Thành lập riêng một kênh văn bản đặt tên là <code>#announcements-only</code> khóa tính năng chat thường. Chỉ ghim các quyết định cuối cùng kèm tag @everyone bắt buộc thả emoji xác nhận đã đọc.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Xung đột định dạng trên Google Docs</strong></td>
+                                <td>Bôi đen gán việc trực tiếp trên văn bản thông qua bình luận gõ cú pháp <code>@+EmailThànhViên</code>. Yêu cầu sửa đổi văn bản của người khác bắt buộc dùng chế độ "Đề xuất" (Suggesting).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rò rỉ dữ liệu, nhầm lẫn quyền truy cập trên Google Drive</strong></td>
+                                <td>Cấu hình chia sẻ giới hạn trong miền học tập của trường (đuôi email sinh viên). Khóa tệp tài liệu hoàn thiện bằng cách chuyển sang PDF tĩnh và gắn nhãn <code>_FINAL</code>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Bài học rút ra</h4>
+                <p>Làm việc nhóm trên môi trường số đòi hỏi tư duy tổ chức dữ liệu khoa học, phân quyền an toàn thông tin chặt chẽ và tác phong giao tiếp minh bạch giữa các thành viên.</p>
+            `,
+            5: `
+                <h3>Bài 5: Sáng tạo nội dung với AI sinh nghệ thuật</h3>
+                <div style="margin: 1rem 0 1.5rem 0;">
+                    <a href="https://drive.google.com/file/d/1j41mbKOmIQtgBWsmy57JvNxidVKx_7hE/view?usp=drive_link" target="_blank" class="btn-drive-glass" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">
+                        <span>📂 Xem tệp báo cáo gốc trên Google Drive</span>
+                    </a>
+                </div>
+                <p><strong>Mục tiêu:</strong> Ứng dụng chuỗi công cụ AI tạo sinh (ChatGPT, Canva AI, DALL-E 3) thiết kế cẩm nang giáo dục tiếng Anh giao tiếp tương tác cao chuẩn ULIS.</p>
+                
+                <h4>Sơ Đồ Minh Họa Tương Tác: Trình Duyệt Dòng Thời Gian Sáng Tạo</h4>
+                <p>Click các nút giai đoạn để xem cách thức kết nối và tối ưu hóa 3 nền tảng AI tạo tác học liệu sư phạm:</p>
+                <div class="interactive-widget-box" style="background: rgba(15,23,42,0.8); display: flex; flex-direction: column; gap: 1.2rem;">
+                    <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                        <button class="widget-btn active" id="btn-timeline-1" onclick="selectDesignTimeline(1)">Giai đoạn 1: ChatGPT</button>
+                        <button class="widget-btn" id="btn-timeline-2" onclick="selectDesignTimeline(2)">Giai đoạn 2: Canva AI</button>
+                        <button class="widget-btn" id="btn-timeline-3" onclick="selectDesignTimeline(3)">Giai đoạn 3: DALL-E 3</button>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1.2rem; min-height: 120px; line-height: 1.6;" id="design-timeline-description">
+                    </div>
+                </div>
+
+                <h4>Hình Ảnh Sản Phẩm Truyền Thông Sư Phạm Hoàn Thiện (b5.jpg)</h4>
+                <img src="b5.jpg" alt="Sản phẩm cuối cùng - Cẩm nang tiếng Anh chuẩn ULIS" style="width: 100%; border-radius: 12px; margin-top: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+
+                <h4>Bài học rút ra</h4>
+                <p>EdTech và AI giúp giáo viên Anh ngữ tương lai tự chủ thiết kế học liệu sinh động, cá nhân hóa nội dung lớp học trực quan nhanh chóng mà không bị cản trở bởi rào cản kỹ thuật đồ họa.</p>
+            `,
+            6: `
+                <h3>Bài 6: An toàn và liêm chính học thuật trong môi trường số</h3>
+                <div style="margin: 1rem 0 1.5rem 0;">
+                    <a href="https://drive.google.com/file/d/18HhMDGGIiZ6cOkcLndAln6fuxNsljypb/view?usp=drive_link" target="_blank" class="btn-drive-glass" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">
+                        <span>📂 Xem tệp báo cáo gốc trên Google Drive</span>
+                    </a>
+                </div>
+                <p><strong>Mục tiêu:</strong> Đánh giá sâu sắc chính sách trí tuệ nhân tạo cởi mở, khuyến khích tư duy của ULIS; kiến tạo bộ nguyên tắc đạo đức sử dụng công nghệ số cá nhân vững vàng.</p>
+                
+                <h4>Sơ Đồ Minh Họa Tương Tác: Vòng Quay 6 Nguyên Tắc AI Có Trách Nhiệm</h4>
+                <p>Click chọn nút nguyên tắc xung quanh hệ mặt trời sư phạm để khám phá nội dung hành động đạo đức tương tác chi tiết:</p>
+                <div class="interactive-widget-box" style="background: rgba(15,23,42,0.8); display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem;">
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; border-right: 1px dashed rgba(255,255,255,0.1); padding-right: 1rem;">
+                        <button class="widget-btn active" id="btn-rule-1" onclick="selectEthicalRule(1)">1. Tư duy độc lập</button>
+                        <button class="widget-btn" id="btn-rule-2" onclick="selectEthicalRule(2)">2. Minh bạch tuyệt đối</button>
+                        <button class="widget-btn" id="btn-rule-3" onclick="selectEthicalRule(3)">3. Màng lọc phản biện</button>
+                        <button class="widget-btn" id="btn-rule-4" onclick="selectEthicalRule(4)">4. Bảo mật dữ liệu</button>
+                        <button class="widget-btn" id="btn-rule-5" onclick="selectEthicalRule(5)">5. Làm chủ ngôn ngữ</button>
+                        <button class="widget-btn" id="btn-rule-6" onclick="selectEthicalRule(6)">6. Phát triển bền vững</button>
+                    </div>
+                    <div style="display: flex; flex-direction: column; justify-content: center; min-height: 180px; padding-left: 0.5rem;" id="ethical-rule-display">
+                    </div>
+                </div>
+
+                <h4>Nhận Định Cá Nhân Về Chính Sách AI Của Đại Học Ngoại Ngữ</h4>
+                <p>Em hoàn toàn ủng hộ triết lý quản lý AI của nhà trường: coi AI là công cụ bổ trợ nâng cao hiệu suất học tập nhưng nghiêm cấm đạo văn số (AI-Plagiarism). AI giống như kính hiển vi giúp phóng đại các lỗi sai ngữ pháp, mở rộng trường từ vựng nhưng không thể thay thế bộ não con người trong việc kiến tạo tư duy phản biện độc lập. Quy chuẩn nộp Tờ khai báo sử dụng AI (AI Disclosure Statement) giúp tụi em tự tin nghiên cứu trong ranh giới đạo đức cho phép.</p>
+
+                <h4>Bài học rút ra</h4>
+                <p>Bản lĩnh ứng dụng công nghệ nằm ở khả năng kiểm soát đạo đức tự thân của người học. Đạo đức học thuật vững vàng giúp nhà giáo tương lai làm chủ tiến trình giảng dạy sáng tạo, liêm chính số.</p>
+            `
+        };
+
+        // Simulated dynamic widgets controller
+        let currentExplorerDir = 'root';
+        let currentPaperFilter = 'all';
+        let currentPromptTask = 1;
+        let currentPromptLevel = 'basic';
+        let currentKanbanIndex = 1; // 1: todo, 2: progress, 3: done
+        let currentDesignTimelineStep = 1;
+        let currentEthicalRuleIndex = 1;
+
+        const widgetContents = {
+            1: {
+                root: `
+                    <div>📄 GhiChuQuanTrong.txt (Tệp tin gốc)</div>
+                    <div style="color: #60a5fa;">📁 TaiLieu (Thư mục con)</div>
+                `,
+                child: `
+                    <div>📄 GhiChuQuanTrong.txt (Bản sao sao chép)</div>
+                    <div style="color: #94a3b8; font-style: italic;">[Trống - tệp DiChuyen.txt đã xóa vĩnh viễn]</div>
+                `
+            },
+            2: [
+                { id: 1, title: "Hyland, K. (2024) - Academic writing in the age of AI...", type: "article", desc: "Tác giả: Chuyên gia đầu ngành viết luận. Tạp chí Scopus Q1 uy tín.", rank: "Rất tốt" },
+                { id: 2, title: "Nguyen, T. H. (2024) - Generative AI in English language...", type: "article", desc: "Bám sát ĐH VN. Tạp chí chuẩn quốc gia ULIS-VNU.", rank: "Rất tốt" },
+                { id: 3, title: "UNESCO (2024) - Guidance for generative AI...", type: "report", desc: "Tổ chức giáo dục toàn cầu. Khung năng lực chiến lược vĩ mô.", rank: "Rất tốt" },
+                { id: 4, title: "Warschauer, M. (2023) - Automated writing evaluation...", type: "article", desc: "Phương pháp tổng quan hệ thống. Tính học thuật và độ tin cậy cao.", rank: "Tốt" },
+                { id: 5, title: "Zhang, D. & Cui, Y. (2024) - The impact of AI-assisted...", type: "article", desc: "Thực nghiệm định lượng tâm lý và kết quả viết luận.", rank: "Rất tốt" },
+                { id: 6, title: "Bailey, S. (2021) - Academic Writing: A Handbook...", type: "book", desc: "NXB Routledge. Cẩm nang cấu trúc chuẩn quốc tế kinh điển.", rank: "Rất tốt" },
+                { id: 7, title: "Belcher, D. (2023) - Writing in the disciplines...", type: "article", desc: "Đánh giá trực diện rủi ro suy giảm kỹ năng. Scopus Q1.", rank: "Tốt" },
+                { id: 8, title: "Tran, Q. M. (2025) - Ứng dụng mô hình ngôn ngữ lớn...", type: "article", desc: "Phù hợp bối cảnh tự học thực tiễn của sinh viên ngoại ngữ.", rank: "Tốt" },
+                { id: 9, title: "Swales, J. M. & Feak, C. B. (2020) - Academic Writing...", type: "book", desc: "NXB Đại học Michigan. Phân tích thể loại chuẩn mực.", rank: "Rất tốt" },
+                { id: 10, title: "British Council (2023) - Artificial Intelligence...", type: "report", desc: "Hội đồng Anh. Khảo sát diện rộng, gợi mở định hướng số.", rank: "Tốt" },
+                { id: 11, title: "Stanford Human-AI (2025) - AI and the Future of...", type: "report", desc: "Stanford University. Phân tích đa diện, phản biện tương lai.", rank: "Tốt" }
+            ],
+            3: {
+                1: {
+                    name: "Tác vụ 1: Tóm tắt bài đọc học thuật",
+                    basic: {
+                        prompt: "Tóm tắt bài nghiên cứu về phương pháp học tiếng Anh này cho tôi.",
+                        response: "Bài nghiên cứu này nói về cách sinh viên Việt Nam sử dụng các công cụ công nghệ để học tiếng Anh hiệu quả hơn. Bài viết khuyên sinh viên nên tương tác nhiều hơn và sử dụng tài nguyên số."
+                    },
+                    improved: {
+                        prompt: "Hãy tóm tắt bài nghiên cứu học thuật dưới đây thành 3 đoạn văn. Đoạn 1 về mục tiêu, đoạn 2 về phương pháp luận, đoạn 3 về kết quả thực chứng. Yêu cầu giữ nguyên các thuật ngữ tiếng Anh chuyên ngành.",
+                        response: "Đoạn 1: Nghiên cứu nhằm khảo sát thực trạng sinh viên ULIS ứng dụng Generative AI trong nâng cao kỹ năng viết.\nĐoạn 2: Phương pháp nghiên cứu khảo sát định lượng thu thập dữ liệu từ 200 sinh viên.\nĐoạn 3: Kết quả thực chứng chứng minh tỷ lệ 85% cải thiện tốc độ xây dựng ý tưởng học thuật."
+                    },
+                    advanced: {
+                        prompt: "Bạn là một chuyên gia nghiên cứu Ngôn ngữ học ứng dụng (Applied Linguistics). Hãy đọc tài liệu dưới đây và thực hiện tóm tắt theo các bước logic sau: Bước 1: Trích xuất câu hỏi nghiên cứu cốt lõi. Bước 2: Tóm tắt phương pháp thực nghiệm (mẫu khảo sát, công cụ). Bước 3: Chỉ ra ý nghĩa thực tiễn đối với sinh viên ULIS. Định dạng kết quả dưới dạng bảng so sánh và các bullet points mạch lạc.",
+                        response: "• CÂU HỎI NGHIÊN CỨU CỐT LÕI: Làm cách nào mô hình AI hỗ trợ rèn luyện tư duy lập luận phản biện cho sinh viên ngoại ngữ?\n• PHƯƠNG PHÁP THỰC NGHIỆM: Nghiên cứu thực nghiệm đối chứng (mẫu n=80) kết hợp khảo sát bảng hỏi.\n• Ý NGHĨA THỰC TIỄN ULIS: Giúp sinh viên ULIS chủ động xây dựng lộ trình học tập tự chủ, hạn chế đạo văn số."
+                    }
+                },
+                2: {
+                    name: "Tác vụ 2: Giải thích khái niệm Syntactic Ambiguity",
+                    basic: {
+                        prompt: "Syntactic Ambiguity là gì? Giải thích đi.",
+                        response: "Syntactic Ambiguity (mơ hồ cú pháp) là khi một câu tiếng Anh có thể được hiểu theo nhiều nghĩa khác nhau tùy thuộc vào cách bạn phân tích cấu trúc ngữ pháp của nó."
+                    },
+                    improved: {
+                        prompt: "Giải thích khái niệm Syntactic Ambiguity (Mơ hồ cú pháp) trong tiếng Anh. Cho 2 ví dụ minh họa rõ ràng và phân tích cấu trúc của các ví dụ đó.",
+                        response: "Syntactic Ambiguity xảy ra khi cấu trúc ngữ pháp của một câu tạo ra nhiều cách hiểu.\nVí dụ 1: 'The chicken is ready to eat' (Con gà đã sẵn sàng để được ăn hoặc con gà sẵn sàng ăn cái gì đó).\nVí dụ 2: 'I saw the man with the telescope' (Tôi nhìn thấy người đàn ông bằng kính viễn vọng của tôi, hoặc người đàn ông đó cầm kính viễn vọng)."
+                    },
+                    advanced: {
+                        prompt: "Bạn là một giảng viên ngữ pháp tiếng Anh kỳ cựu. Hãy giải thích khái niệm ’Syntactic Ambiguity’ cho sinh viên năm nhất theo 2 cấp độ: (1) Định nghĩa bình dân kèm ví dụ hài hước; (2) Phân tích sơ đồ cây cú pháp sâu sắc. Hãy học theo cách giải thích mẫu sau: [Ví dụ mẫu về Lexical Ambiguity: ’Bank’ có thể là bờ sông hoặc ngân hàng]. Hãy thực hiện tương tự cho Syntactic Ambiguity.",
+                        response: "• CẤP ĐỘ 1 (BÌNH DÂN): Chào các tân sinh viên! Hãy tưởng tượng câu: 'Visiting relatives can be boring'. Việc đi thăm họ hàng chán, hay những người họ hàng đến thăm ta chán? Ngữ pháp chơi khăm chúng ta đấy!\n• CẤP ĐỘ 2 (SƠ ĐỒ CẤY CÚ PHÁP): Để giải quyết hiện tượng mơ hồ này, chúng ta cần vẽ sơ đồ phân rã cụm danh từ (NP) và cụm động từ (VP). Ví dụ trong câu 'I saw the man with the telescope', giới từ 'with' có thể gắn trực tiếp vào VP (hành động nhìn) hoặc gắn vào NP (nguyên nhân là người đàn ông có kính viễn vọng)."
+                    }
+                },
+                3: {
+                    name: "Tác vụ 3: Tạo bộ câu hỏi ôn tập học phần Văn hóa Anh - Mỹ",
+                    basic: {
+                        prompt: "Tạo cho tôi bài tập trắc nghiệm về văn hóa nước Anh.",
+                        response: "Câu 1: Thủ đô nước Anh là gì? A. London, B. Paris, C. New York. Đáp án đúng: A."
+                    },
+                    improved: {
+                        prompt: "Tạo bộ 5 câu hỏi trắc nghiệm kèm đáp án về chủ đề Hệ thống giáo dục Vương quốc Anh dành cho sinh viên đại học ngoại ngữ.",
+                        response: "Câu 1: Kỳ thi chuẩn quốc gia ở độ tuổi 16 tại Anh được gọi và gì? A. GCSE, B. A-Level, C. SAT. Đáp án đúng: A.\n(Hệ thống tự động hiển thị 5 câu hỏi chuẩn học thuật ngoại ngữ)."
+                    },
+                    advanced: {
+                        prompt: "Bạn là chuyên gia khảo thí và kiểm định giáo dục. Dựa trên tài liệu văn hóa Anh đính kèm, hãy tạo một bộ đề ôn tập gồm: 3 câu hỏi trắc nghiệm ở cấp độ ’Hiểu’ (Comprehension) và 2 câu hỏi tự luận ở cấp độ ’Phân tích phản biện’ (Critical Analysis). Đối với mỗi câu trắc nghiệm, cung cấp 4 đáp án gây nhiễu chất lượng và giải thích chi tiết lý do chọn đáp án đúng theo chuẩn tài liệu.",
+                        response: "• PHẦN TRẮC NGHIỆM (HIỂU):\nCâu 1: Sự phân cấp giữa 'State school' và 'Public school' phản ánh yếu tố nào trong xã hội Anh?\nA. Sự phân tầng giai cấp (Đáp án đúng)\nB. Sự khác biệt địa lý\nC. Quy mô phòng học\nD. Chính sách tài khóa công\nGiải thích: 'Public school' tại Anh thực chất là trường tư thục ưu tú, phản ánh ranh giới giai cấp sâu sắc.\n\n• PHẦN TỰ LUẬN (PHẢN BIỆN):\nCâu 4: Hãy phân tích ưu và nhược điểm của hệ thống kiểm thí quốc gia GCSE đối với cơ hội phát triển công bằng của học sinh nhập cư."
+                    }
+                }
+            },
+            4: {
+                todo: "Nhiệm vụ: Nghiên cứu tài liệu kỹ năng Đọc - Viết ULIS (Người phụ trách: Thảo)",
+                progress: "Nhiệm vụ: Xây dựng bộ câu hỏi khảo sát sinh viên K58 (Người phụ trách: Nam)",
+                done: "Nhiệm vụ: Tổng hợp kết quả dự án cẩm nang (Người phụ trách: Linh)"
+            },
+            5: {
+                1: "• Giai đoạn 1 (ChatGPT): Sử dụng Prompt phân cấp 3 lượt để định hình nội dung, bản địa hóa đoạn hội thoại nộp bài muộn chuẩn văn phong lịch sự, tinh tế của giảng đường ULIS.",
+                2: "• Giai đoạn 2 (Canva AI): Đưa văn bản vào mẫu infographic Edtech màu xanh dương, chuẩn hóa định dạng văn phạm APA và sinh các icon line-art cuốn sách, cây bút đồng bộ.",
+                3: "• Giai đoạn 3 (DALL-E 3): Ứng dụng Prompt mô tả nâng cao tích hợp logo ULIS sinh ra tranh biểu diện sinh viên học tập vui vẻ trong thư viện đại học ảo vô cùng hài hòa (Sản phẩm xuất bản b5.jpg)."
+            },
+            6: {
+                1: "<strong>1. Tư duy độc lập:</strong> Luôn chủ động tự suy nghĩ và tự thiết lập dàn ý bài luận sư phạm thô trước khi mở bất kỳ công cụ AI nào để không bị thiên kiến công nghệ dẫn dắt.",
+                2: "<strong>2. Minh bạch tuyệt đối:</strong> Công khai trung thực mức độ can thiệp và hỗ trợ của AI trong mọi sản phẩm nộp cho nhà trường thông qua tờ tuyên bố sử dụng AI Disclosure.",
+                3: "<strong>3. Màng lọc phản biện:</strong> Coi mọi dữ liệu AI trả về là nguồn tin có nguy cơ ảo tưởng cao. Luôn chủ động đối chiếu, kiểm chứng chéo với các tài liệu sách giáo khoa, thư viện chính thống.",
+                4: "<strong>4. Bảo mật dữ liệu:</strong> Tuyệt đối không đăng tải thông tin cá nhân của bản thân, thông tin học sinh, tài liệu nội bộ nhà trường hoặc bài làm của bạn bè lên mô hình AI công cộng.",
+                5: "<strong>5. Làm chủ ngôn ngữ:</strong> Giữ vững bản sắc cá nhân (authorial voice). AI chỉ được sửa lỗi ngữ pháp, không được phép thay thế giọng văn biểu đạt cảm xúc sư phạm của chính mình.",
+                6: "<strong>6. Phát triển bền vững:</strong> Chỉ sử dụng AI với mục đích nâng cao hiệu suất học tập, tuyệt đối không dùng AI để đối phó với các kỳ thi hoặc bài đánh giá năng lực cốt lõi."
+            }
+        };
+
+        // Render Widget Content dynamically
+        function initInteractiveWidget(id) {
+            if (id === 1) {
+                toggleFileExplorer('root');
+            } else if (id === 2) {
+                filterPapers('all');
+            } else if (id === 3) {
+                currentPromptTask = 1;
+                currentPromptLevel = 'basic';
+                renderPromptSimulator();
+            } else if (id === 4) {
+                currentKanbanIndex = 1;
+                renderKanbanBoard();
+            } else if (id === 5) {
+                selectDesignTimeline(1);
+            } else if (id === 6) {
+                selectEthicalRule(1);
+            }
+        }
+
+        // Widget 1: File Explorer Controller
+        function toggleFileExplorer(dir) {
+            const display = document.getElementById('file-list-display');
+            const btnRoot = document.getElementById('btn-root-dir');
+            const btnChild = document.getElementById('btn-child-dir');
+
+            if (dir === 'root') {
+                btnRoot.classList.add('active');
+                btnChild.classList.remove('active');
+                display.innerHTML = widgetContents[1].root;
+            } else {
+                btnRoot.classList.remove('active');
+                btnChild.classList.add('active');
+                display.innerHTML = widgetContents[1].child;
+            }
+        }
+
+        // Widget 2: Paper Filter Controller
+        function filterPapers(category) {
+            const body = document.getElementById('papers-table-body');
+            const btnAll = document.getElementById('filter-all');
+            const btnArt = document.getElementById('filter-articles');
+            const btnBook = document.getElementById('filter-books');
+            const btnRep = document.getElementById('filter-reports');
+
+            // Reset buttons
+            [btnAll, btnArt, btnBook, btnRep].forEach(btn => btn.classList.remove('active'));
+
+            if (category === 'all') btnAll.classList.add('active');
+            else if (category === 'article') btnArt.classList.add('active');
+            else if (category === 'book') btnBook.classList.add('active');
+            else if (category === 'report') btnRep.classList.add('active');
+
+            let filtered = widgetContents[2];
+            if (category !== 'all') {
+                filtered = widgetContents[2].filter(p => p.type === category);
+            }
+
+            body.innerHTML = filtered.map((p, idx) => `
+                <tr>
+                    <td>${idx + 1}</td>
+                    <td>${p.title}</td>
+                    <td style="text-transform: capitalize;">${p.type === 'article' ? 'Bài báo' : p.type === 'book' ? 'Sách' : 'Báo cáo'}</td>
+                    <td>${p.desc}</td>
+                    <td style="color: var(--accent-purple); font-weight: bold;">${p.rank}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Widget 3: Prompt Simulator Controller
+        function selectPromptTask(taskIdx) {
+            currentPromptTask = taskIdx;
+            // Update active buttons
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('p-task-' + i).classList.remove('active');
+            }
+            document.getElementById('p-task-' + taskIdx).classList.add('active');
+            renderPromptSimulator();
+        }
+
+        function selectPromptLevel(level) {
+            currentPromptLevel = level;
+            // Update active buttons
+            ['basic', 'improved', 'advanced'].forEach(lvl => {
+                document.getElementById('p-level-' + lvl).classList.remove('active');
+            });
+            document.getElementById('p-level-' + level).classList.add('active');
+            renderPromptSimulator();
+        }
+
+        function renderPromptSimulator() {
+            const promptBox = document.getElementById('prompt-sender-box');
+            const responseBox = document.getElementById('prompt-receiver-box');
+            const data = widgetContents[3][currentPromptTask][currentPromptLevel];
+
+            promptBox.textContent = data.prompt;
+            responseBox.textContent = "";
+
+            // Simple typewriting emulation effect
+            let i = 0;
+            const text = data.response;
+            function typeWriter() {
+                if (i < text.length) {
+                    responseBox.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 4);
+                }
+            }
+            typeWriter();
+        }
+
+        // Widget 4: Kanban Board Controller
+        function moveKanbanTask(direction) {
+            if (direction === 'next' && currentKanbanIndex < 3) currentKanbanIndex++;
+            else if (direction === 'prev' && currentKanbanIndex > 1) currentKanbanIndex--;
+            renderKanbanBoard();
+        }
+
+        function renderKanbanBoard() {
+            const colTodo = document.getElementById('kanban-col-todo');
+            const colProgress = document.getElementById('kanban-col-progress');
+            const colDone = document.getElementById('kanban-col-done');
+
+            // Clear existing tasks
+            const titleTodo = ` <strong style="color: #ef4444; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">📋 CẦN LÀM (TO DO)</strong> `;
+            const titleProgress = ` <strong style="color: #3b82f6; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">⏳ ĐANG LÀM (IN PROGRESS)</strong> `;
+            const titleDone = ` <strong style="color: #10b981; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">✅ HOÀT TẤT (DONE)</strong> `;
+
+            colTodo.innerHTML = titleTodo;
+            colProgress.innerHTML = titleProgress;
+            colDone.innerHTML = titleDone;
+
+            const cardHTML = `
+                <div class="modal-kanban-card">
+                    <strong>${widgetContents[4].todo}</strong>
+                </div>
+                <div class="modal-kanban-card">
+                    <strong>${widgetContents[4].progress}</strong>
+                </div>
+                <div class="modal-kanban-card">
+                    <strong>${widgetContents[4].done}</strong>
+                </div>
+            `;
+
+            if (currentKanbanIndex === 1) colTodo.innerHTML += cardHTML;
+            else if (currentKanbanIndex === 2) colProgress.innerHTML += cardHTML;
+            else if (currentKanbanIndex === 3) colDone.innerHTML += cardHTML;
+        }
+
+        // Widget 5: Timeline Controller
+        function selectDesignTimeline(step) {
+            currentDesignTimelineStep = step;
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('btn-timeline-' + i).classList.remove('active');
+            }
+            document.getElementById('btn-timeline-' + step).classList.add('active');
+
+            const desc = document.getElementById('design-timeline-description');
+            desc.textContent = widgetContents[5][step];
+        }
+
+        // Widget 6: Ethical Radar Controller
+        function selectEthicalRule(idx) {
+            currentEthicalRuleIndex = idx;
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById('btn-rule-' + i).classList.remove('active');
+            }
+            document.getElementById('btn-rule-' + idx).classList.add('active');
+
+            const display = document.getElementById('ethical-rule-display');
+            display.innerHTML = widgetContents[6][idx];
+        }
+
+        // Modal triggers (with dynamically adjusted responsive width)
+        function openModal(id) {
+            const overlay = document.getElementById('modalOverlay');
+            const content = document.getElementById('modalContent');
+            const modalWindow = document.querySelector('.modal-window');
+
+            // Inject content
+            content.innerHTML = modalData[id];
+
+            // Adjust width for Bài 2 and Bài 4 to display table nicely
+            if (id === 2 || id === 4) {
+                modalWindow.style.maxWidth = '1150px';
+            } else {
+                modalWindow.style.maxWidth = '850px';
+            }
+
+            // Activate modal view
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock background scrolling
+
+            // Initialize interactive widgets for the opened modal
+            initInteractiveWidget(id);
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = ''; // Unlock scrolling
+        }
+
+        function closeModalOnOuterClick(event) {
+            const modalWindow = document.querySelector('.modal-window');
+            if (!modalWindow.contains(event.target)) {
+                closeModal();
+            }
+        }
+
+        // =====================================================================
+        // Bộ điều khiển hiệu ứng Khúc xạ nước động (Water Refraction SVG Filter)
+        // =====================================================================
+        const waterContainer = document.querySelector('.video-background-container');
+
+        let waterTargetScale = 25; // Tăng giá trị tĩnh tối thiểu lên 25 để nhìn rõ chuyển động liên tục
+        let waterCurrentScale = 25;
+        let waterLastMouseX = 0;
+        let waterLastMouseY = 0;
+        let waterLastTime = Date.now();
+
+        window.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            const dt = now - waterLastTime;
+            if (waterLastMouseX === 0 && waterLastMouseY === 0) {
+                waterLastMouseX = e.clientX;
+                waterLastMouseY = e.clientY;
+            }
+            if (dt > 0) {
+                const dx = e.clientX - waterLastMouseX;
+                const dy = e.clientY - waterLastMouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const speed = dist / dt; // pixels trên mili-giây
+                
+                // Biên độ tăng mạnh khi di chuyển chuột (Scale tối đa lên tới 150 để gợn sóng cực kỳ rõ nét)
+                waterTargetScale = Math.min(speed * 120 + 25, 150);
+                
+                waterLastMouseX = e.clientX;
+                waterLastMouseY = e.clientY;
+                waterLastTime = now;
+            }
+        });
+
+        function animateWaterRefraction() {
+            // Nội suy đưa scale hiện tại tiệm cận scale mục tiêu để chuyển động mượt mà
+            waterCurrentScale += (waterTargetScale - waterCurrentScale) * 0.1;
+            // Suy hao đàn hồi đưa lực gợn nước giảm dần về trạng thái tĩnh nhẹ nhàng (scale = 25)
+            waterTargetScale += (25 - waterTargetScale) * 0.04;
+
+            const displacement = document.querySelector('#water-distortion-filter feDisplacementMap');
+            if (displacement) {
+                displacement.setAttribute('scale', waterCurrentScale);
+            }
+
+            // Tạo dòng chảy ngầm tự nhiên biến đổi nhẹ nhàng theo hàm hình sin
+            const turbulence = document.querySelector('#water-distortion-filter feTurbulence');
+            if (turbulence) {
+                const time = Date.now() * 0.0008;
+                // Chuẩn hóa dải tần số rộng hơn giúp nhìn rõ chuyển động sóng ngầm liên tục
+                const freqX = 0.007 + Math.sin(time) * 0.0015;
+                const freqY = 0.008 + Math.cos(time * 0.8) * 0.0015;
+                turbulence.setAttribute('baseFrequency', `${freqX} ${freqY}`);
+            }
+
+            // Ép trình duyệt vẽ lại bằng cách tác động một thay đổi nhỏ về GPU rendering layer
+            if (waterContainer) {
+                waterContainer.style.transform = `translate3d(0, 0, ${(waterCurrentScale * 0.0001).toFixed(6)}px)`;
+            }
+
+            requestAnimationFrame(animateWaterRefraction);
+        }
+        animateWaterRefraction();
     </script>
 </body>
 </html>
