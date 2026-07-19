@@ -1,3 +1,4 @@
+nhàng hơn.
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -738,7 +739,7 @@
                         opacity 0.45s ease;
         }
 
-        /* Thiết kế nổi bật đặc biệt cho Đơn vị đào tạo */
+        /* Thiết lập nổi bật đặc biệt cho Đơn vị đào tạo */
         .widget-card.highlight-card {
             padding: 1.8rem 2.2rem;
             border-color: rgba(192, 132, 252, 0.3);
@@ -2105,15 +2106,10 @@
                 this.x = Math.random() * this.w;
                 // Nếu khởi tạo ban đầu thì rải rác ngẫu nhiên chiều cao, nếu sinh mới thì trồi từ đáy lên
                 this.y = initial ? Math.random() * this.h : this.h + 15;
-                this.size = Math.random() * 5 + 1.8; // Kích thước hạt từ 1.8px đến 6.8px (thuộc phạm vi ~2-8px)
+                this.size = Math.random() * 2.0 + 0.5; // Đã giảm kích thước hạt xuống còn khoảng 0.5px - 2.5px
                 
-                // Bảng màu: lavender, tím neon, xanh lam nhạt và trắng phát quang
-                this.color = [
-                    'rgba(192, 132, 252, ', // Lavender
-                    'rgba(168, 85, 247, ', // Neon Purple
-                    'rgba(34, 211, 238, ',  // Pale Blue
-                    'rgba(255, 255, 255, '  // Glowing White
-                ][Math.floor(Math.random() * 4)];
+                // Đã chuyển toàn bộ màu hạt sang màu trắng phát quang
+                this.color = 'rgba(255, 255, 255, ';
 
                 this.alpha = Math.random() * 0.4 + 0.2; // Opacity nền móng tự nhiên
                 this.baseAlpha = this.alpha;
@@ -2152,7 +2148,7 @@
 
                 // Vệt sáng (light trail) ngắn dành cho các hạt phù du kích thước lớn
                 this.trail = [];
-                this.hasTrail = this.type === 'dot' && this.size > 4.2;
+                this.hasTrail = this.type === 'dot' && this.size > 2.0;
             }
 
             update(isHovered, hoverFactor, speedMultiplier) {
