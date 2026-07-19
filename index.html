@@ -1,4 +1,4 @@
-idget:
+nguyên bản:
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -20,7 +20,7 @@ idget:
             --accent-purple: #c084fc; /* Sắc tím oải hương phát sáng nhẹ */
             --accent-soft: rgba(192, 132, 252, 0.15);
             --accent-warm: rgba(255, 255, 255, 0.05);
-            --glass-bg: rgba(10, 15, 30, 0.35); /* ĐÃ ĐIỀU CHỈNH: Hạ nhẹ độ mờ kính giúp gợn sóng và bong bóng nổi hình */
+            --glass-bg: rgba(10, 15, 30, 0.35); /* Hạ nhẹ độ mờ kính giúp các hạt phát sáng hiện rõ */
             --glass-border: rgba(255, 255, 255, 0.08);
             --transition-gentle: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -697,7 +697,7 @@ idget:
             display: flex;
             flex-direction: column;
             justify-content: center; /* Đưa các thẻ về tâm */
-            gap: 2.2rem; /* ĐÃ ĐIỀU CHỈNH: Tăng khoảng cách các thẻ giới thiệu xa nhau một chút */
+            gap: 2.2rem; /* Tăng khoảng cách các thẻ giới thiệu xa nhau một chút */
             transform: translateY(-40px); /* Nâng toàn bộ cụm ô thông tin lên cao hơn để cân đối */
         }
 
@@ -718,7 +718,7 @@ idget:
 
         /* Enlarged and Spaced Out Profile Widget Cards */
         .widget-card {
-            background: rgba(10, 15, 30, 0.45); /* ĐÃ ĐIỀU CHỈNH: Giảm nhẹ sắc mờ giúp dải gợn sóng nổi hình khối */
+            background: rgba(10, 15, 30, 0.45); /* Giảm nhẹ sắc mờ giúp các hạt phát sáng nổi hình khối */
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(24px); /* Tăng độ mờ viền kính cho thẻ thêm sắc nét */
             border-radius: 20px; /* Bo góc tròn lớn hơn hiện đại */
@@ -804,7 +804,7 @@ idget:
         .widgets-vertical-stack {
             display: flex;
             flex-direction: column;
-            gap: 1.8rem; /* ĐÃ ĐIỀU CHỈNH: Tăng khoảng cách xếp dọc xa nhau một chút */
+            gap: 1.8rem; /* Tăng khoảng cách xếp dọc xa nhau một chút */
             width: 100%;
         }
 
@@ -875,7 +875,7 @@ idget:
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3.2rem; /* ĐÃ ĐIỀU CHỈNH: Tăng khoảng cách các thẻ bài tập xa nhau một chút */
+            gap: 3.2rem; /* Tăng khoảng cách các thẻ bài tập xa nhau một chút */
         }
 
         /* Khi rê chuột vào 1 thẻ trong danh sách bài tập, các thẻ còn lại tự động thu nhỏ và mờ nhẹ */
@@ -1288,7 +1288,7 @@ idget:
             backdrop-filter: blur(20px);
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 5.5rem; /* ĐÃ ĐIỀU CHỈNH: Tăng khoảng cách các bảng tổng kết xa nhau một chút */
+            gap: 5.5rem; /* Tăng khoảng cách các bảng tổng kết xa nhau một chút */
             align-items: center;
             box-sizing: border-box;
             max-width: 100%;
@@ -1342,7 +1342,7 @@ idget:
             color: var(--text-muted);
         } 
 
-        /* Hiệu ứng tương tác cho ô Bài tập chuyển hướng (DÁN VÀO ĐÂY) & Sibling Focus-Scale */
+        /* Hiệu ứng tương tác cho ô Bài tập chuyển hướng & Sibling Focus-Scale */
         .clickable-stat-box {
             cursor: pointer;
             position: relative;
@@ -1484,13 +1484,13 @@ idget:
         .conclusion-widgets-container {
             display: flex;
             flex-direction: column;
-            gap: 2.0rem; /* ĐÃ ĐIỀU CHỈNH: Tăng gap giữa 3 widget tổng kết một chút */
+            gap: 2.0rem; /* Tăng gap giữa 3 widget tổng kết một chút */
             margin-top: 1rem; /* Đưa các widget đến gần tiêu đề Tổng kết hơn */
             width: 100%;
         }
 
         .conclusion-widget {
-            background: rgba(10, 15, 30, 0.45); /* ĐÃ ĐIỀU CHỈNH: Giảm nhẹ sắc mờ giúp dải gợn sóng nổi hình khối */
+            background: rgba(10, 15, 30, 0.45); /* Giảm nhẹ sắc mờ giúp các hạt phát sáng nổi hình khối */
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
@@ -1577,39 +1577,23 @@ idget:
 
         /* =====================================================================
            Bioluminescent Gentle Drifting Keyframes (Floating System Only)
-           - Vertical displacement: ±12-16px
-           - Horizontal displacement: ±6-8px
-           - Slight Rotation angle: ±1.5°
-           - Scale dynamic breathing: 0.985 - 1.02
-           - Border opacity fluctuation: 8% - 22%
-           - Glass blur fluctuation: 18px - 24px
-           - Glowing color shift: Tím Lavender và xanh Cyan biển sâu thay đổi tinh tế
-           - Multi-phase asynchronous rate cycles: 10s - 16s
-           - ĐÃ NÂNG CẤP: Thêm dải gợn sóng đồng tâm (concentric shadows) phát tán nhẹ,
-             tạo cảm giác sóng nước tỏa ra mềm mại mà không bị cấu trúc thẻ cắt xén.
+           - ĐÃ SỬA: Thay đổi bóng xung quanh thành bóng tỏa mập mờ, chuyển màu
+             Lavender/Cyan ảo ảnh tự nhiên không dải vòng tròn đồng tâm sắc nét.
            ===================================================================== */
         @keyframes drift-phase-1 {
             0%, 100% { 
                 transform: translateY(0px) translateX(0px) rotate(0deg) scale(0.985); 
-                border-color: rgba(192, 132, 252, 0.08); /* 8% border opacity */
+                border-color: rgba(192, 132, 252, 0.08); 
                 backdrop-filter: blur(18px);
                 -webkit-backdrop-filter: blur(18px);
-                /* Gợn sóng đồng tâm ở trạng thái tĩnh */
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                            0 0 0 0px rgba(192, 132, 252, 0.25),
-                            0 0 0 6px rgba(192, 132, 252, 0.12),
-                            0 0 0 12px rgba(192, 132, 252, 0.05); 
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(192, 132, 252, 0.15); /* Bóng tỏa mập mờ Lavender */
             }
             50% { 
                 transform: translateY(-16px) translateX(8px) rotate(1.5deg) scale(1.02); 
-                border-color: rgba(34, 211, 238, 0.22); /* 22% border opacity (dao động ~14%) */
+                border-color: rgba(34, 211, 238, 0.22); 
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
-                /* Dải gợn sóng mở rộng dãn biên ra ngoài rìa mượt mà */
-                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 
-                            0 0 0 12px rgba(34, 211, 238, 0),
-                            0 0 0 24px rgba(192, 132, 252, 0),
-                            0 0 0 36px rgba(34, 211, 238, 0); 
+                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(34, 211, 238, 0.3), 0 0 15px rgba(192, 132, 252, 0.15); /* Bóng tỏa ảo ảnh kết hợp */
             }
         }
 
@@ -1619,20 +1603,14 @@ idget:
                 border-color: rgba(34, 211, 238, 0.08); 
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                            0 0 0 0px rgba(34, 211, 238, 0.25),
-                            0 0 0 6px rgba(34, 211, 238, 0.12),
-                            0 0 0 12px rgba(34, 211, 238, 0.05);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.15);
             }
             50% { 
                 transform: translateY(15px) translateX(-7px) rotate(-1.4deg) scale(0.985); 
                 border-color: rgba(192, 132, 252, 0.22); 
                 backdrop-filter: blur(18px);
                 -webkit-backdrop-filter: blur(18px);
-                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 
-                            0 0 0 12px rgba(192, 132, 252, 0),
-                            0 0 0 24px rgba(34, 211, 238, 0),
-                            0 0 0 36px rgba(192, 132, 252, 0);
+                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 0 0 30px rgba(192, 132, 252, 0.3), 0 0 15px rgba(34, 211, 238, 0.15);
             }
         }
 
@@ -1642,20 +1620,14 @@ idget:
                 border-color: rgba(192, 132, 252, 0.09); 
                 backdrop-filter: blur(19px);
                 -webkit-backdrop-filter: blur(19px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                            0 0 0 0px rgba(192, 132, 252, 0.25),
-                            0 0 0 6px rgba(192, 132, 252, 0.12),
-                            0 0 0 12px rgba(192, 132, 252, 0.05);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(192, 132, 252, 0.12);
             }
             50% { 
                 transform: translateY(-15px) translateX(-8px) rotate(1.6deg) scale(1.015); 
                 border-color: rgba(34, 211, 238, 0.23); 
                 backdrop-filter: blur(23px);
                 -webkit-backdrop-filter: blur(23px);
-                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), 
-                            0 0 0 12px rgba(34, 211, 238, 0),
-                            0 0 0 24px rgba(192, 132, 252, 0),
-                            0 0 0 36px rgba(34, 211, 238, 0);
+                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), 0 0 32px rgba(34, 211, 238, 0.32), 0 0 15px rgba(192, 132, 252, 0.15);
             }
         }
 
@@ -1665,20 +1637,14 @@ idget:
                 border-color: rgba(34, 211, 238, 0.09); 
                 backdrop-filter: blur(23px);
                 -webkit-backdrop-filter: blur(23px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
-                            0 0 0 0px rgba(34, 211, 238, 0.25),
-                            0 0 0 6px rgba(34, 211, 238, 0.12),
-                            0 0 0 12px rgba(34, 211, 238, 0.05);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.15);
             }
             50% { 
                 transform: translateY(14px) translateX(6px) rotate(-1.5deg) scale(0.99); 
                 border-color: rgba(192, 132, 252, 0.23); 
                 backdrop-filter: blur(19px);
                 -webkit-backdrop-filter: blur(19px);
-                box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42), 
-                            0 0 0 12px rgba(192, 132, 252, 0),
-                            0 0 0 24px rgba(34, 211, 238, 0),
-                            0 0 0 36px rgba(192, 132, 252, 0);
+                box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42), 0 0 30px rgba(192, 132, 252, 0.3), 0 0 15px rgba(34, 211, 238, 0.15);
             }
         }
 
@@ -1742,17 +1708,9 @@ idget:
             box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25) !important;
             z-index: 15 !important; /* Đẩy lớp thẻ tương tác lên trên cùng để gợn sóng không bị đè khuất */
         }
-        /* Căn lề đều hai bên (justify) cho các phân đoạn văn bản mô tả chính */
-        .card-desc, 
-        .modal-content-area p, 
-        .conclusion-widget .widget-content-expand p, 
-        .intro-content-expand p,
-        .section-intro-text {
-            text-align: justify;
-        }
 
         /* =====================================================================
-           HỆ THỐNG HẠT BONG BÓNG SINH VẬT BIỂN SÂU (MICRO BUBBLE ECOSYSTEM)
+           HỆ THỐNG PHÂN PHỐI HẠT PHÙ DU PHÁT QUANG (CANVAS BIOLUMINESCENT PLANKTON)
            ===================================================================== */
         /* Đảm bảo toàn bộ nội dung tĩnh của thẻ luôn nổi lên phía trước lớp bong bóng */
         .widget-card > *, .gallery-card > *, .conclusion-widget > *, .clickable-stat-box > * {
@@ -1760,50 +1718,15 @@ idget:
             z-index: 2;
         }
 
-        /* Thiết lập lớp chứa bong bóng nằm ở trung gian phía sau văn bản nhưng trên nền thẻ */
-        .gallery-card > .card-bubble-container, 
-        .widget-card > .card-bubble-container, 
-        .conclusion-widget > .card-bubble-container, 
-        .clickable-stat-box > .card-bubble-container {
+        /* Thiết lập canvas hạt phát sáng nằm trung gian phía sau văn bản */
+        .widget-particle-canvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
             pointer-events: none;
-            z-index: 0; /* Đẩy lớp bong bóng xuống dưới nội dung */
-        }
-
-        .card-bubble {
-            position: absolute;
-            bottom: -20px;
-            /* Tạo hình dạng bong bóng 3D bóng bẩy ánh tím nhạt */
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.65), rgba(192, 132, 252, 0.2) 50%, rgba(34, 211, 238, 0.05) 80%);
-            border: 0.5px solid rgba(192, 132, 252, 0.3);
-            box-shadow: 0 0 4px rgba(192, 132, 252, 0.2);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float-bubble linear infinite;
-        }
-
-        /* Hoạt ảnh bong bóng trồi lên và dạt nhẹ sang ngang theo biến luồng nước */
-        @keyframes float-bubble {
-            0% {
-                transform: translateY(10%) translateX(0) scale(0.5);
-                opacity: 0;
-            }
-            15% {
-                opacity: 0.55; /* Hiện rõ trong nước */
-            }
-            85% {
-                opacity: 0.55;
-            }
-            100% {
-                /* Float lên quá mép trên thẻ và dạt nhẹ theo trục hoành dầm sương */
-                transform: translateY(-120%) translateX(var(--drift-x, 20px)) scale(1.15);
-                opacity: 0; /* Hòa tan/tan biến ở mép trên */
-            }
+            z-index: 1; /* Dưới nội dung, trên lớp nền */
         }
     </style>
 </head>
@@ -2167,7 +2090,286 @@ idget:
         const progressBarFill = document.querySelector('.progress-bar-fill');
         const viewportWrapper = document.querySelector('.viewport-wrapper');
 
-        // Slow down background video playback speed smoothly
+        // =====================================================================
+        // BIOLUMINESCENT PLANKTON ENGINE (HỆ SINH THÁI HẠT PHÙ DU PHÁT QUANG)
+        // =====================================================================
+        class BioluminescentParticle {
+            constructor(w, h) {
+                this.w = w;
+                this.h = h;
+                // Kết hợp 3 loại hạt: dot (chấm phát quang), bubble (bong bóng nhỏ), sparkle (ngôi sao/tinh thể lóe sáng)
+                this.type = ['dot', 'bubble', 'sparkle'][Math.floor(Math.random() * 3)];
+                this.reset(true);
+            }
+
+            reset(initial = false) {
+                this.x = Math.random() * this.w;
+                // Nếu khởi tạo ban đầu thì rải rác ngẫu nhiên chiều cao, nếu sinh mới thì trồi từ đáy lên
+                this.y = initial ? Math.random() * this.h : this.h + 15;
+                this.size = Math.random() * 5 + 1.8; // Kích thước hạt từ 1.8px đến 6.8px (thuộc phạm vi ~2-8px)
+                
+                // Bảng màu: lavender, tím neon, xanh lam nhạt và trắng phát quang
+                this.color = [
+                    'rgba(192, 132, 252, ', // Lavender
+                    'rgba(168, 85, 247, ', // Neon Purple
+                    'rgba(34, 211, 238, ',  // Pale Blue
+                    'rgba(255, 255, 255, '  // Glowing White
+                ][Math.floor(Math.random() * 4)];
+
+                this.alpha = Math.random() * 0.4 + 0.2; // Opacity nền móng tự nhiên
+                this.baseAlpha = this.alpha;
+                
+                // Chu kỳ nhấp nháy phát quang không đồng bộ (20% -> 80% -> 20%)
+                this.pulseSpeed = Math.random() * 0.03 + 0.01;
+                this.pulsePhase = Math.random() * Math.PI * 2;
+
+                // Thiết lập 3 kiểu quỹ đạo ngẫu nhiên chậm rãi
+                this.trajectory = ['float', 'sway', 'orbit'][Math.floor(Math.random() * 3)];
+                
+                this.vx = (Math.random() - 0.5) * 0.12;
+                this.vy = -(Math.random() * 0.15 + 0.08); // Trôi lên siêu chậm
+
+                // Biên độ và tần số dao động hình sin mô phỏng dòng nước hoành dạt
+                this.swaySpeed = Math.random() * 0.012 + 0.006;
+                this.swayPhase = Math.random() * Math.PI * 2;
+
+                // Quỹ đạo elip xung quanh tâm widget
+                this.cx = this.w / 2;
+                this.cy = this.h / 2;
+                this.rx = Math.random() * (this.w * 0.4) + 15;
+                this.ry = Math.random() * (this.h * 0.4) + 15;
+                this.orbitSpeed = (Math.random() * 0.0012 + 0.0006) * (Math.random() < 0.5 ? 1 : -1);
+                this.orbitAngle = Math.random() * Math.PI * 2;
+
+                // Khởi tạo vòng đời cho loại tinh thể lóe sáng (sparkle)
+                if (this.type === 'sparkle') {
+                    this.lifespan = Math.random() * 90 + 60; // Lóe sáng trong khoảng 1-2.5 giây
+                    this.life = this.lifespan;
+                    this.y = Math.random() * this.h;
+                }
+
+                // Blur nhẹ cho chiều sâu (độ xa gần quang học)
+                this.blur = Math.random() < 0.35 ? Math.random() * 2 + 1 : 0;
+
+                // Vệt sáng (light trail) ngắn dành cho các hạt phù du kích thước lớn
+                this.trail = [];
+                this.hasTrail = this.type === 'dot' && this.size > 4.2;
+            }
+
+            update(isHovered, hoverFactor, speedMultiplier) {
+                // Nhịp thở nhấp nháy liên tục 20% -> 80%
+                this.pulsePhase += this.pulseSpeed;
+                let breath = Math.sin(this.pulsePhase);
+                this.alpha = this.baseAlpha + breath * 0.25;
+                this.alpha = Math.max(0.2, Math.min(0.8, this.alpha));
+
+                let visualSize = this.size;
+                let drawAlpha = this.alpha;
+
+                // Phản hồi tăng glow sáng khi hover vào
+                if (isHovered) {
+                    drawAlpha = Math.min(0.95, this.alpha * (1 + 0.45 * hoverFactor));
+                    visualSize = this.size * (1 + 0.15 * hoverFactor);
+                }
+
+                // Ghi nhận vệt sáng ngắn cho phù du lớn
+                if (this.hasTrail) {
+                    this.trail.unshift({ x: this.x, y: this.y });
+                    if (this.trail.length > 4) this.trail.pop();
+                } else {
+                    this.trail = [];
+                }
+
+                // Cập nhật chuyển động theo vòng đời
+                if (this.type === 'sparkle') {
+                    this.life -= speedMultiplier;
+                    if (this.life <= 0) {
+                        this.reset(false);
+                    } else {
+                        // Tăng giảm mượt mà đúng chu kỳ lóe sáng hình sin
+                        drawAlpha = Math.sin((this.life / this.lifespan) * Math.PI) * 0.85;
+                    }
+                } else {
+                    if (this.trajectory === 'float' || this.type === 'bubble') {
+                        this.y += this.vy * speedMultiplier;
+                        this.swayPhase += this.swaySpeed * speedMultiplier;
+                        this.x += (this.vx + Math.sin(this.swayPhase) * 0.06) * speedMultiplier;
+                    } else if (this.trajectory === 'sway') {
+                        this.swayPhase += this.swaySpeed * speedMultiplier;
+                        this.y += (this.vy * 0.5) * speedMultiplier;
+                        this.x += (Math.sin(this.swayPhase) * 0.18) * speedMultiplier;
+                    } else if (this.trajectory === 'orbit') {
+                        this.orbitAngle += this.orbitSpeed * speedMultiplier;
+                        this.x = this.cx + this.rx * Math.cos(this.orbitAngle);
+                        this.y = this.cy + this.ry * Math.sin(this.orbitAngle);
+                    }
+
+                    // Tái thiết lập nếu trôi ra rìa ranh giới
+                    if (this.y < -15 || this.x < -15 || this.x > this.w + 15) {
+                        this.reset(false);
+                    }
+                }
+
+                // Phản hồi tụ lại nhẹ quanh viền khi tương tác hover
+                if (isHovered && hoverFactor > 0 && this.type !== 'sparkle') {
+                    const distToLeft = this.x;
+                    const distToRight = this.w - this.x;
+                    const distToTop = this.y;
+                    const distToBottom = this.h - this.y;
+                    
+                    const minDist = Math.min(distToLeft, distToRight, distToTop, distToBottom);
+                    let targetX = this.x;
+                    let targetY = this.y;
+
+                    // Hướng lực kéo hội tụ tiệm cận ranh giới 4 góc
+                    if (minDist === distToLeft) targetX = 5;
+                    else if (minDist === distToRight) targetX = this.w - 5;
+                    else if (minDist === distToTop) targetY = 5;
+                    else targetY = this.h - 5;
+
+                    const pullForce = 0.024 * hoverFactor;
+                    this.x += (targetX - this.x) * pullForce;
+                    this.y += (targetY - this.y) * pullForce;
+                }
+
+                return { visualSize, drawAlpha };
+            }
+
+            draw(ctx, visualSize, drawAlpha) {
+                ctx.save();
+                
+                // Vẽ vệt sáng trail mượt
+                if (this.hasTrail && this.trail.length > 1) {
+                    for (let i = 0; i < this.trail.length; i++) {
+                        const trailAlpha = drawAlpha * (1 - (i + 1) / (this.trail.length + 1)) * 0.35;
+                        ctx.beginPath();
+                        ctx.arc(this.trail[i].x, this.trail[i].y, visualSize * (1 - i / this.trail.length), 0, Math.PI * 2);
+                        ctx.fillStyle = this.color + trailAlpha + ')';
+                        ctx.fill();
+                    }
+                }
+
+                // Cấu hình phát quang (glow blur)
+                if (this.blur > 0) {
+                    ctx.shadowBlur = this.blur * 2.2;
+                    ctx.shadowColor = this.color + '1)';
+                } else {
+                    ctx.shadowBlur = 4.5;
+                    ctx.shadowColor = this.color + '0.65)';
+                }
+
+                ctx.fillStyle = this.color + drawAlpha + ')';
+                ctx.strokeStyle = this.color + (drawAlpha * 0.75) + ')';
+
+                if (this.type === 'bubble') {
+                    // Vẽ bọt khí hình khuyên có bóng phản chiếu
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, visualSize, 0, Math.PI * 2);
+                    ctx.lineWidth = 0.75;
+                    ctx.stroke();
+                    
+                    ctx.beginPath();
+                    ctx.arc(this.x - visualSize * 0.3, this.y - visualSize * 0.3, visualSize * 0.12, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${drawAlpha * 0.65})`;
+                    ctx.fill();
+                } else if (this.type === 'sparkle') {
+                    // Vẽ tinh thể/ngôi sao phát sáng 4 cánh
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y - visualSize * 1.5);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x + visualSize * 1.5, this.y);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y + visualSize * 1.5);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x - visualSize * 1.5, this.y);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y - visualSize * 1.5);
+                    ctx.closePath();
+                    ctx.fill();
+                } else {
+                    // Chấm phát quang tròn cơ bản
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, visualSize, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        class CardParticleManager {
+            constructor(card) {
+                this.card = card;
+                this.canvas = document.createElement('canvas');
+                this.canvas.className = 'widget-particle-canvas';
+                card.appendChild(this.canvas);
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.isHovered = false;
+                this.hoverFactor = 0; 
+                this.speedMultiplier = 1;
+                this.hoverStartTime = 0;
+                
+                this.resize();
+                this.initParticles();
+                this.bindEvents();
+            }
+
+            resize() {
+                const rect = this.card.getBoundingClientRect();
+                this.w = rect.width;
+                this.h = rect.height;
+                this.canvas.width = this.w;
+                this.canvas.height = this.h;
+            }
+
+            initParticles() {
+                // Phân bổ mật độ hạt tối ưu dựa theo kích thước diện tích khối
+                const density = Math.floor((this.w * this.h) / 8500) + 5; 
+                this.particles = [];
+                for (let i = 0; i < density; i++) {
+                    this.particles.push(new BioluminescentParticle(this.w, this.h));
+                }
+            }
+
+            bindEvents() {
+                this.card.addEventListener('mouseenter', () => {
+                    this.isHovered = true;
+                    this.hoverStartTime = Date.now();
+                });
+                this.card.addEventListener('mouseleave', () => {
+                    this.isHovered = false;
+                });
+                
+                window.addEventListener('resize', () => {
+                    this.resize();
+                    this.initParticles();
+                });
+            }
+
+            update() {
+                // Quản lý phản hồi vận tốc: giảm tốc đột ngột trong 1 giây đầu khi hover, sau đó cân bằng trở lại
+                if (this.isHovered) {
+                    const elapsed = Date.now() - this.hoverStartTime;
+                    if (elapsed < 1000) {
+                        const t = elapsed / 1000;
+                        this.speedMultiplier = 0.35 + 0.65 * t; // Tốc độ trôi tụt về 35%, tăng dần mượt về 100%
+                    } else {
+                        this.speedMultiplier = 1.0;
+                    }
+                    this.hoverFactor += (1 - this.hoverFactor) * 0.1;
+                } else {
+                    this.speedMultiplier = 1.0;
+                    this.hoverFactor += (0 - this.hoverFactor) * 0.08;
+                }
+
+                this.ctx.clearRect(0, 0, this.w, this.h);
+
+                this.particles.forEach(p => {
+                    const { visualSize, drawAlpha } = p.update(this.isHovered, this.hoverFactor, this.speedMultiplier);
+                    p.draw(this.ctx, visualSize, drawAlpha);
+                });
+            }
+        }
+
+        const activeManagers = [];
+
         window.addEventListener('DOMContentLoaded', () => {
             const bgVideo = document.querySelector('.video-background');
             if (bgVideo) {
@@ -2177,56 +2379,22 @@ idget:
             setTimeout(updateNavIndicator, 200);
             setTimeout(updateNavIndicator, 600); // Kích hoạt dự phòng khi phông chữ đã render xong
 
-            // Khởi tạo hệ sinh thái bong bóng mini cho mỗi thẻ widget
-            initCardBubbles();
+            // Khởi động Hệ sinh thái hạt phát quang (Bioluminescent Plankton Ecosystem) cho toàn bộ widget
+            initCardEcosystem();
         });
 
-        // Khởi tạo các dải hạt bong bóng sinh vật biển sâu bên trong mỗi thẻ widget
-        function initCardBubbles() {
+        function initCardEcosystem() {
             const cards = document.querySelectorAll('.widget-card, .gallery-card, .conclusion-widget, .clickable-stat-box');
             cards.forEach(card => {
-                const container = document.createElement('div');
-                container.className = 'card-bubble-container';
-                card.appendChild(container);
-
-                // Điền trước một số bong bóng ở các độ cao ngẫu nhiên khác nhau để thẻ không bị trống lúc tải trang
-                const initialCount = Math.floor(Math.random() * 3) + 3; // 3 đến 5 hạt ban đầu
-                for (let i = 0; i < initialCount; i++) {
-                    createBubble(container, true);
-                }
-
-                // Liên tục sinh thêm hạt bong bóng mới theo tần suất
-                setInterval(() => {
-                    if (container.children.length < 6) {
-                        createBubble(container, false);
-                    }
-                }, 1600);
+                const manager = new CardParticleManager(card);
+                activeManagers.push(manager);
             });
-        }
-
-        function createBubble(container, isInitial) {
-            const bubble = document.createElement('div');
-            bubble.className = 'card-bubble';
             
-            const size = Math.random() * 6 + 2; // Kích thước bong bóng từ 2px đến 8px cực kỳ tinh tế
-            const left = Math.random() * 90 + 5; // Độ giãn dòng hoành: tránh sát mép viền (5% đến 95%)
-            const duration = Math.random() * 5 + 6; // Thời gian chuyển động chậm lững lờ từ 6s đến 11s
-            const delay = isInitial ? Math.random() * -10 : 0; // Trì hoãn âm để bong bóng xuất hiện ngay lơ lửng mid-air
-            const driftX = (Math.random() - 0.5) * 25; // Độ xê dịch trục hoành nhẹ nhàng khi trồi lên
-
-            bubble.style.width = `${size}px`;
-            bubble.style.height = `${size}px`;
-            bubble.style.left = `${left}%`;
-            bubble.style.animationDuration = `${duration}s`;
-            bubble.style.animationDelay = `${delay}s`;
-            bubble.style.setProperty('--drift-x', `${driftX}px`);
-
-            container.appendChild(bubble);
-
-            // Tự động dọn dẹp phần tử khi hoạt ảnh kết thúc để tối ưu tài nguyên trình duyệt
-            bubble.addEventListener('animationend', () => {
-                bubble.remove();
-            });
+            function tick() {
+                activeManagers.forEach(m => m.update());
+                requestAnimationFrame(tick);
+            }
+            tick();
         }
 
         // Dynamic Active Tab Sliding Liquid Indicator Logic
