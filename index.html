@@ -1,4 +1,5 @@
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Toàn bộ mã nguồn HTML hoàn chỉnh:
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -72,8 +73,11 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             overflow: hidden;
             pointer-events: none;
             background-color: var(--bg-canvas); /* Màu tối dự phòng ở đây để làm nền lót cho video */
-            filter: saturate(0.9) url(#water-distortion-filter); 
+            
+            /* ĐÃ SỬA: Áp dụng hiệu ứng bộ lọc khúc xạ lên khung container và tạo layer GPU riêng biệt */
+            filter: saturate(0.9) url(#water-distortion-filter);
             will-change: transform, filter;
+            transform: translateZ(0); 
         }
 
         .video-background {
@@ -87,6 +91,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             object-fit: cover;
             transform: translate(-50%, -50%) rotate(90deg);
             opacity: 0.45;
+            /* Lược bỏ thuộc tính filter cũ trực tiếp trên video để tránh xung đột trình duyệt */
         }
 
         /* Dark Vignette Overlay for High Contrast Legibility */
@@ -2058,16 +2063,17 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             </div>
         </div>
     </div>
-<!-- SVG Filter tạo hiệu ứng Khúc xạ nước động -->
-<svg style="display: block; position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
-    <defs>
-        <filter id="water-distortion-filter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.012" numOctaves="1" result="wave" />
-            <feDisplacementMap in="SourceGraphic" in2="wave" scale="2" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-    </defs>
-</svg>
-        
+
+    <!-- SVG Filter tạo hiệu ứng Khúc xạ nước động (Đã nâng cấp thông số rõ rệt) -->
+    <svg style="display: block; position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+        <defs>
+            <filter id="water-distortion-filter" x="-10%" y="-10%" width="120%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.007" numOctaves="1" result="wave" />
+                <feDisplacementMap in="SourceGraphic" in2="wave" scale="25" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
     <!-- JS for Interactive Systems & Slow Motion Background Video -->
     <script {nonce}>
         let currentPane = 'left'; // 'left' hoặc 'right'
@@ -2696,13 +2702,11 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
         // Sinh phần tử phân tán rộng xung quanh con trỏ khi rê chuột
         window.addEventListener('mousemove', (e) => {
-            // Tỷ lệ sinh sản (0.3 = 30%). Bạn có thể giảm xuống 0.15 hoặc 0.1 để sinh ít hơn nữa.
             if (Math.random() < 0.9) { 
                 const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
                 const color = elementColors[Math.floor(Math.random() * elementColors.length)];
 
                 // ĐỘ PHÂN TÁN (SCATTER DISTANCE):
-                // Tăng số này (ví dụ: 60) để vùng xuất hiện rộng hơn, giảm xuống (ví dụ: 20) để gom sát lại.
                 const scatterDistance = 50; 
                 
                 const angle = Math.random() * Math.PI * 2;
@@ -2728,7 +2732,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         // Hỗ trợ sinh phần tử phân tán rộng trên màn hình cảm ứng di động
         window.addEventListener('touchmove', (e) => {
             if (e.touches.length > 0) {
-                // Tỷ lệ sinh sản trên di động (0.2 = 20%)
                 if (Math.random() < 0.1) {
                     const t = e.touches[0];
                     const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
@@ -2758,7 +2761,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             }
         }, { passive: true });
 
-        // Hiệu ứng "Bùng nổ Sóng xung kích" cực mạnh khi click vào các phần tử tương tác
+        // Hiệu ứng "Bùng nổ Sóng xung kích" khi click vào các phần tử tương tác
         document.addEventListener('click', (e) => {
             if (e.target.closest('button, a, .widget-card, .gallery-card, .swipe-indicator')) {
                 const randomColor = elementColors[Math.floor(Math.random() * elementColors.length)];
@@ -2773,7 +2776,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                     alpha: 1.0,
                     color: randomColor,
                     type: 'shockwave',
-                    decay: 0.024, // Tan biến nhanh chóng sau khi nở rộng
+                    decay: 0.024,
                     friction: 1.0
                 });
 
@@ -2782,9 +2785,8 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                     const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
                     const color = elementColors[Math.floor(Math.random() * elementColors.length)];
                     
-                    // Tính góc văng tròn đối xứng
                     const angle = Math.random() * Math.PI * 2;
-                    const speed = Math.random() * 8.5 + 2.0; // Vận tốc nổ cực lớn
+                    const speed = Math.random() * 8.5 + 2.0;
 
                     cursorParticles.push({
                         x: e.clientX,
@@ -2795,8 +2797,8 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                         alpha: Math.random() * 0.7 + 0.25,
                         color: color,
                         type: type,
-                        decay: Math.random() * 0.008 + 0.012, // Các mảnh nổ tan rã với thời gian ngẫu nhiên
-                        friction: 0.94 // Giảm tốc độ mượt mà từ nhanh về chậm
+                        decay: Math.random() * 0.008 + 0.012,
+                        friction: 0.94
                     });
                 }
             }
@@ -2814,7 +2816,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 p.y += p.vy;
                 p.alpha -= p.decay; 
 
-                // Tăng nhanh bán kính nếu là hạt sóng kích nổ [1]
                 if (p.type === 'shockwave') {
                     p.radius += 6.5; 
                 }
@@ -2832,28 +2833,24 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 cCtx.lineWidth = 1.2;
 
                 if (p.type === 'shockwave') {
-                    // Vẽ vòng sóng kích nổ nở rộng
                     cCtx.beginPath();
                     cCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                     cCtx.strokeStyle = `rgba(${p.color}, ${p.alpha * 0.75})`;
-                    cCtx.lineWidth = 3.5 * p.alpha; // Mỏng dần khi tan biến
+                    cCtx.lineWidth = 3.5 * p.alpha;
                     cCtx.stroke();
 
                 } else if (p.type === 'bubble') {
-                    // Vẽ bong bóng
                     cCtx.beginPath();
                     cCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                     cCtx.stroke();
                     cCtx.fill();
 
-                    // Điểm sáng phản quang nhỏ bên trong bong bóng
                     cCtx.beginPath();
                     cCtx.arc(p.x - p.radius * 0.3, p.y - p.radius * 0.3, p.radius * 0.15, 0, Math.PI * 2);
                     cCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
                     cCtx.fill();
 
                 } else if (p.type === 'star') {
-                    // Vẽ ngôi sao 4 cánh lấp lánh (dùng quadratic curves)
                     cCtx.beginPath();
                     cCtx.moveTo(p.x, p.y - p.radius);
                     cCtx.quadraticCurveTo(p.x, p.y, p.x + p.radius, p.y);
@@ -2865,8 +2862,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                     cCtx.fill();
 
                 } else if (p.type === 'jellyfish') {
-                    // Vẽ sứa nhỏ dễ thương (Tự động co giãn theo bán kính ngẫu nhiên)
-                    // Mũ sứa
                     cCtx.beginPath();
                     cCtx.arc(p.x, p.y, p.radius, Math.PI, 0, false);
                     cCtx.quadraticCurveTo(p.x + p.radius, p.y + p.radius * 0.2, p.x, p.y + p.radius * 0.1);
@@ -2875,7 +2870,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                     cCtx.stroke();
                     cCtx.fill();
                     
-                    // Các xúc tu uốn lượn nhẹ theo chuyển động tọa độ Y
                     cCtx.beginPath();
                     cCtx.lineWidth = p.radius * 0.15; 
                     for (let offset of [-0.4, 0, 0.4]) {
@@ -2933,7 +2927,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                         <button class="widget-btn" id="btn-child-dir" onclick="toggleFileExplorer('child')">📁 Thư mục con /TaiLieu</button>
                     </div>
                     <div id="file-list-display" style="padding-left: 0.5rem; font-family: monospace; color: var(--accent-purple); display: flex; flex-direction: column; gap: 0.5rem;">
-                        <!-- Files injected dynamically by JS -->
                     </div>
                 </div>
 
@@ -2971,7 +2964,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                                 </tr>
                             </thead>
                             <tbody id="papers-table-body">
-                                <!-- Data rows injected by JS -->
                             </tbody>
                         </table>
                     </div>
@@ -3011,7 +3003,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 </div>
 
                 <h4>Cơ Chế Kỹ Thuật Đằng Sau Kỹ Ngệ Prompt</h4>
-                <p>Khác biệt cốt lõi nằm ở cơ chế vận hành của mô hình ngôn ngữ lớn (LLM). Prompt cơ bản nhận kết quả ngẫu nhiên và chung chung. Prompt nâng cao áp dụng <strong>Role Prompting</strong> giúp AI định vị chính xác phân phối xác suất vùng tri thức sư phạm chuyên sâu; kỹ thuật <strong>Few-Shot</strong> định hướng cấu trúc mẫu chuẩn; và <strong>CoT (Chain-of-Thought)</strong> thúc đẩy AI phân tích tuần tự trước khi kết luận, triệt tiêu 95% hiện tượng ảo tưởng (hallucination) của máy tính.</p>
+                <p>Khác biệt cốt lõi nằm ở cơ chế vận hành của mô hình ngôn ngữ lớn (LLM). Prompt cơ bản nhận kết quả ngẫu nhiên và chung chung. Prompt nâng cao áp dụng <strong>Role Prompting</strong> giúp AI định vị chính xác phân phối suất vùng tri thức sư phạm chuyên sâu; kỹ thuật <strong>Few-Shot</strong> định hướng cấu trúc mẫu chuẩn; và <strong>CoT (Chain-of-Thought)</strong> thúc đẩy AI phân tích tuần tự trước khi kết luận, triệt tiêu 95% hiện tượng ảo tưởng (hallucination) của máy tính.</p>
 
                 <h4>Bài học rút ra</h4>
                 <p>Nghệ thuật viết Prompt dựa trên mô hình CREATE giúp sinh viên ngoại ngữ chuyển dịch hoàn toàn từ lối tương tác thô sơ sang làm chủ công nghệ, khai phóng hiệu quả phản biện học thuật thông minh.</p>
@@ -3058,7 +3050,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                         <tbody>
                             <tr>
                                 <td><strong>Quá tải luồng tin nhắn trên Discord</strong></td>
-                                <td>Thành lập riêng một kệnh văn bản đặt tên là <code>#announcements-only</code> khóa tính năng chat thường. Chỉ ghim các quyết định cuối cùng kèm tag @everyone bắt buộc thả emoji xác nhận đã đọc.</td>
+                                <td>Thành lập riêng một kênh văn bản đặt tên là <code>#announcements-only</code> khóa tính năng chat thường. Chỉ ghim các quyết định cuối cùng kèm tag @everyone bắt buộc thả emoji xác nhận đã đọc.</td>
                             </tr>
                             <tr>
                                 <td><strong>Xung đột định dạng trên Google Docs</strong></td>
@@ -3093,7 +3085,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                         <button class="widget-btn" id="btn-timeline-3" onclick="selectDesignTimeline(3)">Giai đoạn 3: DALL-E 3</button>
                     </div>
                     <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1.2rem; min-height: 120px; line-height: 1.6;" id="design-timeline-description">
-                        <!-- Content injected by JS -->
                     </div>
                 </div>
 
@@ -3124,7 +3115,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                         <button class="widget-btn" id="btn-rule-6" onclick="selectEthicalRule(6)">6. Phát triển bền vững</button>
                     </div>
                     <div style="display: flex; flex-direction: column; justify-content: center; min-height: 180px; padding-left: 0.5rem;" id="ethical-rule-display">
-                        <!-- Rule content injected by JS -->
                     </div>
                 </div>
 
@@ -3197,7 +3187,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                     },
                     advanced: {
                         prompt: "Bạn là một giảng viên ngữ pháp tiếng Anh kỳ cựu. Hãy giải thích khái niệm ’Syntactic Ambiguity’ cho sinh viên năm nhất theo 2 cấp độ: (1) Định nghĩa bình dân kèm ví dụ hài hước; (2) Phân tích sơ đồ cây cú pháp sâu sắc. Hãy học theo cách giải thích mẫu sau: [Ví dụ mẫu về Lexical Ambiguity: ’Bank’ có thể là bờ sông hoặc ngân hàng]. Hãy thực hiện tương tự cho Syntactic Ambiguity.",
-                        response: "• CẤP ĐỘ 1 (BÌNH DÂN): Chào các tân sinh viên! Hãy tưởng tượng câu: 'Visiting relatives can be boring'. Việc đi thăm họ hàng chán, hay những người họ hàng đến thăm ta chán? Ngữ pháp chơi khăm chúng ta đấy!\n• CẤP ĐỘ 2 (SƠ ĐỒ CÂY CÚ PHÁP): Để giải quyết hiện tượng mơ hồ này, chúng ta cần vẽ sơ đồ phân rã cụm danh từ (NP) và cụm động từ (VP). Ví dụ trong câu 'I saw the man with the telescope', giới từ 'with' có thể gắn trực tiếp vào VP (hành động nhìn) hoặc gắn vào NP (nguyên nhân là người đàn ông có kính viễn vọng)."
+                        response: "• CẤP ĐỘ 1 (BÌNH DÂN): Chào các tân sinh viên! Hãy tưởng tượng câu: 'Visiting relatives can be boring'. Việc đi thăm họ hàng chán, hay những người họ hàng đến thăm ta chán? Ngữ pháp chơi khăm chúng ta đấy!\n• CẤP ĐỘ 2 (SƠ ĐỒ CẤY CÚ PHÁP): Để giải quyết hiện tượng mơ hồ này, chúng ta cần vẽ sơ đồ phân rã cụm danh từ (NP) và cụm động từ (VP). Ví dụ trong câu 'I saw the man with the telescope', giới từ 'with' có thể gắn trực tiếp vào VP (hành động nhìn) hoặc gắn vào NP (nguyên nhân là người đàn ông có kính viễn vọng)."
                     }
                 },
                 3: {
@@ -3445,16 +3435,14 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 closeModal();
             }
         }
-        // =====================================================================
-        // Bộ điều khiển hiệu ứng Khúc xạ nước động (Water Refraction SVG Filter)
-        // =====================================================================
+
         // =====================================================================
         // Bộ điều khiển hiệu ứng Khúc xạ nước động (Water Refraction SVG Filter)
         // =====================================================================
         const waterContainer = document.querySelector('.video-background-container');
 
-        let waterTargetScale = 2;
-        let waterCurrentScale = 2;
+        let waterTargetScale = 25; // Tăng giá trị tĩnh tối thiểu lên 25 để nhìn rõ chuyển động liên tục
+        let waterCurrentScale = 25;
         let waterLastMouseX = 0;
         let waterLastMouseY = 0;
         let waterLastTime = Date.now();
@@ -3472,8 +3460,8 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 const speed = dist / dt; // pixels trên mili-giây
                 
-                // Lực gợn nước tăng dựa theo vận tốc chuột (giới hạn tối đa là 28)
-                waterTargetScale = Math.min(speed * 18 + 2, 28);
+                // Biên độ tăng mạnh khi di chuyển chuột (Scale tối đa lên tới 150 để gợn sóng cực kỳ rõ nét)
+                waterTargetScale = Math.min(speed * 120 + 25, 150);
                 
                 waterLastMouseX = e.clientX;
                 waterLastMouseY = e.clientY;
@@ -3484,8 +3472,8 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         function animateWaterRefraction() {
             // Nội suy đưa scale hiện tại tiệm cận scale mục tiêu để chuyển động mượt mà
             waterCurrentScale += (waterTargetScale - waterCurrentScale) * 0.1;
-            // Suy hao đàn hồi đưa lực gợn nước giảm dần về trạng thái tĩnh nhẹ nhàng (scale = 2)
-            waterTargetScale += (2 - waterTargetScale) * 0.04;
+            // Suy hao đàn hồi đưa lực gợn nước giảm dần về trạng thái tĩnh nhẹ nhàng (scale = 25)
+            waterTargetScale += (25 - waterTargetScale) * 0.04;
 
             const displacement = document.querySelector('#water-distortion-filter feDisplacementMap');
             if (displacement) {
@@ -3496,12 +3484,13 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             const turbulence = document.querySelector('#water-distortion-filter feTurbulence');
             if (turbulence) {
                 const time = Date.now() * 0.0008;
-                const freqX = 0.012 + Math.sin(time) * 0.002;
-                const freqY = 0.014 + Math.cos(time * 0.8) * 0.002;
+                // Chuẩn hóa dải tần số rộng hơn giúp nhìn rõ chuyển động sóng ngầm liên tục
+                const freqX = 0.007 + Math.sin(time) * 0.0015;
+                const freqY = 0.008 + Math.cos(time * 0.8) * 0.0015;
                 turbulence.setAttribute('baseFrequency', `${freqX} ${freqY}`);
             }
 
-            // Ép trình duyệt cập nhật lại (repaint) bộ lọc bằng cách thay đổi nhẹ giá trị 3D transform
+            // Ép trình duyệt vẽ lại bằng cách tác động một thay đổi nhỏ về GPU rendering layer
             if (waterContainer) {
                 waterContainer.style.transform = `translate3d(0, 0, ${(waterCurrentScale * 0.0001).toFixed(6)}px)`;
             }
