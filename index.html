@@ -1,3 +1,12 @@
+Tôi xin lỗi vì sơ suất trong lượt tối ưu trước đó đã làm tệp tin bị cắt bớt
+(truncate) ở đoạn mã JavaScript cuối trang, dẫn đến việc các hàm điều hướng, mở
+hộp thoại chi tiết và tính năng tương tác của trang bài tập bị lỗi không hoạt
+động được.
+
+Dưới đây là toàn bộ tệp mã nguồn HTML hoàn chỉnh 100% không bị cắt bớt. Bạn chỉ
+cần sao chép toàn bộ khối mã này, dán đè thay thế hoàn toàn tệp cũ là mọi tính
+năng sẽ hoạt động bình thường, ổn định:
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -3305,4 +3314,135 @@
             renderPromptSimulator();
         }
 
-        // ... [Rest of file exactly as provided above] ...
+        function selectPromptLevel(level) {
+            currentPromptLevel = level;
+            // Update active buttons
+            ['basic', 'improved', 'advanced'].forEach(lvl => {
+                document.getElementById('p-level-' + lvl).classList.remove('active');
+            });
+            document.getElementById('p-level-' + level).classList.add('active');
+            renderPromptSimulator();
+        }
+
+        function renderPromptSimulator() {
+            const promptBox = document.getElementById('prompt-sender-box');
+            const responseBox = document.getElementById('prompt-receiver-box');
+            const data = widgetContents[3][currentPromptTask][currentPromptLevel];
+
+            promptBox.textContent = data.prompt;
+            responseBox.textContent = "";
+
+            // Simple typewriting emulation effect
+            let i = 0;
+            const text = data.response;
+            function typeWriter() {
+                if (i < text.length) {
+                    responseBox.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 4);
+                }
+            }
+            typeWriter();
+        }
+
+        // Widget 4: Kanban Board Controller
+        function moveKanbanTask(direction) {
+            if (direction === 'next' && currentKanbanIndex < 3) currentKanbanIndex++;
+            else if (direction === 'prev' && currentKanbanIndex > 1) currentKanbanIndex--;
+            renderKanbanBoard();
+        }
+
+        function renderKanbanBoard() {
+            const colTodo = document.getElementById('kanban-col-todo');
+            const colProgress = document.getElementById('kanban-col-progress');
+            const colDone = document.getElementById('kanban-col-done');
+
+            // Clear existing tasks
+            const titleTodo = ` <strong style="color: #ef4444; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">📋 CẦN LÀM (TO DO)</strong> `;
+            const titleProgress = ` <strong style="color: #3b82f6; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">⏳ ĐANG LÀM (IN PROGRESS)</strong> `;
+            const titleDone = ` <strong style="color: #10b981; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">✅ HOÀT TẤT (DONE)</strong> `;
+
+            colTodo.innerHTML = titleTodo;
+            colProgress.innerHTML = titleProgress;
+            colDone.innerHTML = titleDone;
+
+            const cardHTML = `
+                <div class="modal-kanban-card">
+                    <strong>${widgetContents[4].todo}</strong>
+                </div>
+                <div class="modal-kanban-card">
+                    <strong>${widgetContents[4].progress}</strong>
+                </div>
+                <div class="modal-kanban-card">
+                    <strong>${widgetContents[4].done}</strong>
+                </div>
+            `;
+
+            if (currentKanbanIndex === 1) colTodo.innerHTML += cardHTML;
+            else if (currentKanbanIndex === 2) colProgress.innerHTML += cardHTML;
+            else if (currentKanbanIndex === 3) colDone.innerHTML += cardHTML;
+        }
+
+        // Widget 5: Timeline Controller
+        function selectDesignTimeline(step) {
+            currentDesignTimelineStep = step;
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('btn-timeline-' + i).classList.remove('active');
+            }
+            document.getElementById('btn-timeline-' + step).classList.add('active');
+
+            const desc = document.getElementById('design-timeline-description');
+            desc.textContent = widgetContents[5][step];
+        }
+
+        // Widget 6: Ethical Radar Controller
+        function selectEthicalRule(idx) {
+            currentEthicalRuleIndex = idx;
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById('btn-rule-' + i).classList.remove('active');
+            }
+            document.getElementById('btn-rule-' + idx).classList.add('active');
+
+            const display = document.getElementById('ethical-rule-display');
+            display.innerHTML = widgetContents[6][idx];
+        }
+
+        // Modal triggers (with dynamically adjusted responsive width)
+        function openModal(id) {
+            const overlay = document.getElementById('modalOverlay');
+            const content = document.getElementById('modalContent');
+            const modalWindow = document.querySelector('.modal-window');
+
+            // Inject content
+            content.innerHTML = modalData[id];
+
+            // Adjust width for Bài 2 and Bài 4 to display table nicely
+            if (id === 2 || id === 4) {
+                modalWindow.style.maxWidth = '1150px';
+            } else {
+                modalWindow.style.maxWidth = '850px';
+            }
+
+            // Activate modal view
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock background scrolling
+
+            // Initialize interactive widgets for the opened modal
+            initInteractiveWidget(id);
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = ''; // Unlock scrolling
+        }
+
+        function closeModalOnOuterClick(event) {
+            const modalWindow = document.querySelector('.modal-window');
+            if (!modalWindow.contains(event.target)) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
