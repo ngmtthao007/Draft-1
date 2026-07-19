@@ -84,7 +84,7 @@
             object-fit: cover;
             transform: translate(-50%, -50%) rotate(90deg);
             opacity: 0.45;
-            filter: saturate(0.9); /* Loại bỏ hoàn toàn hiệu ứng mờ kính gốc */
+           filter: saturate(0.9) url(#water-distortion-filter); 
         }
 
         /* Dark Vignette Overlay for High Contrast Legibility */
@@ -2056,7 +2056,15 @@
             </div>
         </div>
     </div>
-
+<!-- SVG Filter tạo hiệu ứng Khúc xạ nước động -->
+    <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" width="0" height="0">
+        <defs>
+            <filter id="water-distortion-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.012" numOctaves="1" result="wave" />
+                <feDisplacementMap in="SourceGraphic" in2="wave" scale="2" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
     <!-- JS for Interactive Systems & Slow Motion Background Video -->
     <script {nonce}>
         let currentPane = 'left'; // 'left' hoặc 'right'
@@ -3434,6 +3442,60 @@
                 closeModal();
             }
         }
+        // =====================================================================
+        // Bộ điều khiển hiệu ứng Khúc xạ nước động (Water Refraction SVG Filter)
+        // =====================================================================
+        let waterTargetScale = 2;
+        let waterCurrentScale = 2;
+        let waterLastMouseX = 0;
+        let waterLastMouseY = 0;
+        let waterLastTime = Date.now();
+
+        window.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            const dt = now - waterLastTime;
+            if (waterLastMouseX === 0 && waterLastMouseY === 0) {
+                waterLastMouseX = e.clientX;
+                waterLastMouseY = e.clientY;
+            }
+            if (dt > 0) {
+                const dx = e.clientX - waterLastMouseX;
+                const dy = e.clientY - waterLastMouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const speed = dist / dt; // pixels trên mili-giây
+                
+                // Lực gợn nước tăng dựa theo vận tốc chuột (giới hạn tối đa là 28)
+                waterTargetScale = Math.min(speed * 18 + 2, 28);
+                
+                waterLastMouseX = e.clientX;
+                waterLastMouseY = e.clientY;
+                waterLastTime = now;
+            }
+        });
+
+        function animateWaterRefraction() {
+            // Nội suy đưa scale hiện tại tiệm cận scale mục tiêu để chuyển động mượt mà
+            waterCurrentScale += (waterTargetScale - waterCurrentScale) * 0.1;
+            // Suy hao đàn hồi đưa lực gợn nước giảm dần về trạng thái tĩnh nhẹ nhàng (scale = 2)
+            waterTargetScale += (2 - waterTargetScale) * 0.04;
+
+            const displacement = document.querySelector('#water-distortion-filter feDisplacementMap');
+            if (displacement) {
+                displacement.setAttribute('scale', waterCurrentScale);
+            }
+
+            // Tạo dòng chảy ngầm tự nhiên biến đổi nhẹ nhàng theo hàm hình sin
+            const turbulence = document.querySelector('#water-distortion-filter feTurbulence');
+            if (turbulence) {
+                const time = Date.now() * 0.0008;
+                const freqX = 0.012 + Math.sin(time) * 0.002;
+                const freqY = 0.014 + Math.cos(time * 0.8) * 0.002;
+                turbulence.setAttribute('baseFrequency', `${freqX} ${freqY}`);
+            }
+
+            requestAnimationFrame(animateWaterRefraction);
+        }
+        animateWaterRefraction();
     </script>
 </body>
 </html>
