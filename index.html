@@ -1,5 +1,6 @@
-ích hợp các chỉnh sửa
-trên:
+
+
+Toàn bộ mã nguồn HTML hoàn chỉnh:
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -63,42 +64,31 @@ trên:
             background: var(--accent-purple);
         }
 
-        /* Fullscreen Video Background Container (Đóng vai trò cắt rìa lỗi bên ngoài viewport) */
+        /* Fullscreen Video Background (Đóng vai trò bọc ngoài và giữ nguyên tỷ lệ cũ) */
         .video-background-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -2;
+            z-index: 2; /* Đrose z-index lên 2 để gợn sóng video nổi trên bề mặt các widget */
             overflow: hidden;
-            pointer-events: none;
+            pointer-events: none; /* Rất quan trọng: cho phép click xuyên qua lớp sóng để tương tác với chữ/nút bấm */
             background-color: var(--bg-canvas); /* Màu tối dự phòng ở đây để làm nền lót cho video */
-        }
-
-        /* ĐÃ THÊM: Lớp wrapper trung gian bọc ngoài có kích thước lớn hơn 10% so với khung nhìn thực tế.
-           Bộ lọc khúc xạ nước (filter) được áp dụng tại đây giúp đẩy toàn bộ phần rìa răng cưa trắng bị biến dạng 
-           ra ngoài phạm vi viewport và bị container chính cắt bỏ hoàn toàn. */
-        .video-filtered-wrap {
-            position: absolute;
-            top: -5%;
-            left: -5%;
-            width: 110%;
-            height: 110%;
-            filter: saturate(0.9) url(#water-distortion-filter);
-            will-change: transform, filter;
-            transform: translateZ(0);
         }
 
         .video-background {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 100%;
-            height: 100%;
+            width: 100vh;
+            height: 100vw;
+            min-width: 100vh;
+            min-height: 100vw;
             object-fit: cover;
-            transform: translate(-50%, -50%) rotate(90deg);
-            opacity: 0.45;
+            transform: translate(-50%, -50%) rotate(90deg); /* Giữ nguyên góc xoay gốc */
+            opacity: 0.15; /* ĐÃ CHỈNH: Giảm sâu từ 0.45 xuống 0.15 để gợn sóng trắng dịu mắt và mượt mà hơn */
+            filter: saturate(0.9) url(#water-distortion-filter); 
         }
 
         /* Dark Vignette Overlay for High Contrast Legibility */
@@ -119,6 +109,7 @@ trên:
             height: 100vh;
             overflow: hidden;
             position: relative;
+            z-index: 1; /* Thấp hơn z-index của video để gợn sóng nổi lên phía trên */
             overscroll-behavior-x: none;
             transition: filter 0.45s cubic-bezier(0.25, 1, 0.2, 1);
         }
@@ -1739,7 +1730,7 @@ trên:
             left: 0;
             width: 100%;
             height: 120px; /* Chiều cao dải sóng nâng lên 120px */
-            z-index: 5; /* ĐÃ SỬA: Đưa z-index lên 5 để sóng hiển thị phía TRÊN các widget */
+            z-index: 3; /* Nổi trên bề mặt các widget */
             pointer-events: none; /* Giữ nguyên để người dùng vẫn click xuyên qua sóng bấm nút được */
             overflow: hidden;
         }
@@ -1752,20 +1743,20 @@ trên:
             min-height: 80px;
         }
 
-        /* ĐÃ SỬA: Giảm sâu opacity của các tầng sóng để chúng dịu nhẹ và sang trọng hơn */
+        /* ĐÃ SỬA: Giảm sâu opacity của các tầng sóng để chúng mượt mà, dịu nhẹ và sang trọng hơn */
         .wave-layer {
             animation: wave-slide-fast 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-            fill: rgba(192, 132, 252, 0.05); /* Giảm xuống 0.05 */
+            fill: rgba(192, 132, 252, 0.05); /* Giảm từ 0.14 xuống 0.05 */
         }
 
         .wave-layer-2 {
             animation: wave-slide-medium 16s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-            fill: rgba(34, 211, 238, 0.03); /* Giảm xuống 0.03 */
+            fill: rgba(34, 211, 238, 0.03); /* Giảm từ 0.08 xuống 0.03 */
         }
 
         .wave-layer-3 {
             animation: wave-slide-slow 24s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-            fill: rgba(192, 132, 252, 0.015); /* Giảm xuống 0.015 */
+            fill: rgba(192, 132, 252, 0.015); /* Giảm từ 0.05 xuống 0.015 */
         }
 
         /* Các Keyframes di chuyển uốn lượn mượt mà cho hệ thống sóng Parallax */
@@ -1792,16 +1783,11 @@ trên:
         <div class="progress-bar-fill"></div>
     </div>
 
-    <!-- Fullscreen Video Background Container (Clips everything) -->
+    <!-- Fullscreen Video Background (Đã khôi phục hoàn toàn cấu trúc gốc, không thêm div ảo) -->
     <div class="video-background-container">
-        <!-- ĐÃ THÊM: Lớp wrapper trung gian bọc ngoài có kích thước lớn hơn 10% so với khung nhìn thực tế.
-           Bộ lọc khúc xạ nước (filter) được áp dụng tại đây giúp đẩy toàn bộ phần rìa răng cưa trắng bị biến dạng 
-           ra ngoài phạm vi viewport và bị container chính cắt bỏ hoàn toàn. -->
-        <div class="video-filtered-wrap">
-            <video autoplay muted loop playsinline class="video-background">
-                <source src="Video 1.mp4" type="video/mp4">
-            </video>
-        </div>
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="Video 1.mp4" type="video/mp4">
+        </video>
         <div class="video-overlay"></div>
     </div>
 
@@ -2135,7 +2121,7 @@ trên:
         <defs>
             <filter id="water-distortion-filter" x="-10%" y="-10%" width="120%" height="120%">
                 <feTurbulence type="fractalNoise" baseFrequency="0.007" numOctaves="1" result="wave" />
-                <feDisplacementMap in="SourceGraphic" in2="wave" scale="25" xChannelSelector="R" yChannelSelector="G" />
+                <feDisplacementMap in="SourceGraphic" in2="wave" scale="12" xChannelSelector="R" yChannelSelector="G" />
             </filter>
         </defs>
     </svg>
@@ -2921,7 +2907,7 @@ trên:
                     cCtx.moveTo(p.x, p.y - p.radius);
                     cCtx.quadraticCurveTo(p.x, p.y, p.x + p.radius, p.y);
                     cCtx.quadraticCurveTo(p.x, p.y, p.x, p.y + p.radius);
-                    cCtx.quadraticCurveTo(p.x, y, p.x - p.radius, p.y);
+                    cCtx.quadraticCurveTo(p.x, p.y, p.x - p.radius, p.y);
                     cCtx.quadraticCurveTo(p.x, p.y, p.x, p.y - p.radius);
                     cCtx.closePath();
                     cCtx.stroke();
@@ -2931,7 +2917,7 @@ trên:
                     cCtx.beginPath();
                     cCtx.arc(p.x, p.y, p.radius, Math.PI, 0, false);
                     cCtx.quadraticCurveTo(p.x + p.radius, p.y + p.radius * 0.2, p.x, p.y + p.radius * 0.1);
-                    cCtx.quadraticCurveTo(p.x - p.radius, p.y + p.radius * 0.2, p.x - p.radius, p.y);
+                    cCtx.quadraticCurveTo(p.x - p.radius, y, p.x - p.radius, p.y);
                     cCtx.closePath();
                     cCtx.stroke();
                     cCtx.fill();
@@ -3505,10 +3491,10 @@ trên:
         // =====================================================================
         // Bộ điều khiển hiệu ứng Khúc xạ nước động (Water Refraction SVG Filter)
         // =====================================================================
-        const waterContainer = document.querySelector('.video-filtered-wrap');
+        const waterContainer = document.querySelector('.video-background'); // Trả lại phần tử video gốc
 
-        let waterTargetScale = 25; // Tăng giá trị tĩnh tối thiểu lên 25 để nhìn rõ chuyển động liên tục
-        let waterCurrentScale = 25;
+        let waterTargetScale = 12; // Mức tĩnh dịu nhẹ
+        let waterCurrentScale = 12;
         let waterLastMouseX = 0;
         let waterLastMouseY = 0;
         let waterLastTime = Date.now();
@@ -3526,8 +3512,8 @@ trên:
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 const speed = dist / dt; // pixels trên mili-giây
                 
-                // Biên độ tăng mạnh khi di chuyển chuột (Scale tối đa lên tới 150 để gợn sóng cực kỳ rõ nét)
-                waterTargetScale = Math.min(speed * 120 + 25, 150);
+                // Giới hạn biên độ biến dạng tối đa 60 để sóng nước uốn lượn mượt mà tự nhiên
+                waterTargetScale = Math.min(speed * 40 + 12, 60);
                 
                 waterLastMouseX = e.clientX;
                 waterLastMouseY = e.clientY;
@@ -3538,8 +3524,8 @@ trên:
         function animateWaterRefraction() {
             // Nội suy đưa scale hiện tại tiệm cận scale mục tiêu để chuyển động mượt mà
             waterCurrentScale += (waterTargetScale - waterCurrentScale) * 0.1;
-            // Suy hao đàn hồi đưa lực gợn nước giảm dần về trạng thái tĩnh nhẹ nhàng (scale = 25)
-            waterTargetScale += (25 - waterTargetScale) * 0.04;
+            // Suy hao đàn hồi đưa lực gợn nước giảm dần về trạng thái tĩnh nhẹ nhàng (scale = 12)
+            waterTargetScale += (12 - waterTargetScale) * 0.04;
 
             const displacement = document.querySelector('#water-distortion-filter feDisplacementMap');
             if (displacement) {
@@ -3550,15 +3536,10 @@ trên:
             const turbulence = document.querySelector('#water-distortion-filter feTurbulence');
             if (turbulence) {
                 const time = Date.now() * 0.0008;
-                // Chuẩn hóa dải tần số rộng hơn giúp nhìn rõ chuyển động sóng ngầm liên tục
+                // Sóng uốn lượn mượt và vừa phải
                 const freqX = 0.007 + Math.sin(time) * 0.0015;
                 const freqY = 0.008 + Math.cos(time * 0.8) * 0.0015;
                 turbulence.setAttribute('baseFrequency', `${freqX} ${freqY}`);
-            }
-
-            // Ép trình duyệt vẽ lại bằng cách tác động một thay đổi nhỏ về GPU rendering layer
-            if (waterContainer) {
-                waterContainer.style.transform = `translate3d(0, 0, ${(waterCurrentScale * 0.0001).toFixed(6)}px)`;
             }
 
             requestAnimationFrame(animateWaterRefraction);
