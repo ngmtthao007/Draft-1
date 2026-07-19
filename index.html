@@ -1,4 +1,4 @@
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -72,6 +72,8 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             overflow: hidden;
             pointer-events: none;
             background-color: var(--bg-canvas); /* Màu tối dự phòng ở đây để làm nền lót cho video */
+            filter: saturate(0.9) url(#water-distortion-filter); 
+            will-change: transform, filter;
         }
 
         .video-background {
@@ -85,7 +87,6 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             object-fit: cover;
             transform: translate(-50%, -50%) rotate(90deg);
             opacity: 0.45;
-           filter: saturate(0.9) url(#water-distortion-filter); 
         }
 
         /* Dark Vignette Overlay for High Contrast Legibility */
@@ -2058,14 +2059,15 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         </div>
     </div>
 <!-- SVG Filter tạo hiệu ứng Khúc xạ nước động -->
-    <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" width="0" height="0">
-        <defs>
-            <filter id="water-distortion-filter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.012" numOctaves="1" result="wave" />
-                <feDisplacementMap in="SourceGraphic" in2="wave" scale="2" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-        </defs>
-    </svg>
+<svg style="display: block; position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+    <defs>
+        <filter id="water-distortion-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.012" numOctaves="1" result="wave" />
+            <feDisplacementMap in="SourceGraphic" in2="wave" scale="2" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </defs>
+</svg>
+        
     <!-- JS for Interactive Systems & Slow Motion Background Video -->
     <script {nonce}>
         let currentPane = 'left'; // 'left' hoặc 'right'
@@ -3446,6 +3448,11 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         // =====================================================================
         // Bộ điều khiển hiệu ứng Khúc xạ nước động (Water Refraction SVG Filter)
         // =====================================================================
+        // =====================================================================
+        // Bộ điều khiển hiệu ứng Khúc xạ nước động (Water Refraction SVG Filter)
+        // =====================================================================
+        const waterContainer = document.querySelector('.video-background-container');
+
         let waterTargetScale = 2;
         let waterCurrentScale = 2;
         let waterLastMouseX = 0;
@@ -3492,6 +3499,11 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 const freqX = 0.012 + Math.sin(time) * 0.002;
                 const freqY = 0.014 + Math.cos(time * 0.8) * 0.002;
                 turbulence.setAttribute('baseFrequency', `${freqX} ${freqY}`);
+            }
+
+            // Ép trình duyệt cập nhật lại (repaint) bộ lọc bằng cách thay đổi nhẹ giá trị 3D transform
+            if (waterContainer) {
+                waterContainer.style.transform = `translate3d(0, 0, ${(waterCurrentScale * 0.0001).toFixed(6)}px)`;
             }
 
             requestAnimationFrame(animateWaterRefraction);
