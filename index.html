@@ -1,4 +1,4 @@
-Toàn bộ mã nguồn HTML hoàn chỉnh:
+ mềm mại ở đáy trang:
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -74,7 +74,7 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             pointer-events: none;
             background-color: var(--bg-canvas); /* Màu tối dự phòng ở đây để làm nền lót cho video */
             
-            /* ĐÃ SỬA: Áp dụng hiệu ứng bộ lọc khúc xạ lên khung container và tạo layer GPU riêng biệt */
+            /* Áp dụng hiệu ứng bộ lọc khúc xạ lên khung container và tạo layer GPU riêng biệt */
             filter: saturate(0.9) url(#water-distortion-filter);
             will-change: transform, filter;
             transform: translateZ(0); 
@@ -84,14 +84,14 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 100vh;
-            height: 100vw;
-            min-width: 100vh;
-            min-height: 100vw;
+            /* ĐÃ SỬA: Tăng nhẹ kích thước lên 108% để giấu rìa răng cưa lỗi ra ngoài khung hình */
+            width: 108vw;
+            height: 108vh;
+            min-width: 108vh;
+            min-height: 108vw;
             object-fit: cover;
             transform: translate(-50%, -50%) rotate(90deg);
             opacity: 0.45;
-            /* Lược bỏ thuộc tính filter cũ trực tiếp trên video để tránh xung đột trình duyệt */
         }
 
         /* Dark Vignette Overlay for High Contrast Legibility */
@@ -241,14 +241,6 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             pointer-events: none;
             z-index: -1;
             opacity: 0.4;
-        }
-
-        .decor-jellyfish {
-            top: 35%;
-            left: 4%;
-            width: 90px;
-            animation: floatUpDown 8s infinite alternate ease-in-out;
-            filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.2));
         }
 
         .decor-starfish {
@@ -1730,6 +1722,62 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
         .section-intro-text {
             text-align: justify;
         }
+
+        /* =====================================================================
+           --- HỆ THỐNG SÓNG NƯỚC ĐA TẦNG PARALLAX (Dưới đáy màn hình) ---
+           ===================================================================== */
+        .wave-divider-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 95px; /* Chiều cao dải sóng */
+            z-index: -1; /* Nằm trên video nền, dưới nội dung chính */
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .waves-svg {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 80px;
+        }
+
+        /* Tầng 1: Chuyển động nhanh, sắc tím Lavender dịu và trong suốt */
+        .wave-layer {
+            animation: wave-slide-fast 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+            fill: rgba(192, 132, 252, 0.14); 
+        }
+
+        /* Tầng 2: Chuyển động tầm trung, di chuyển ngược chiều để tạo độ giao thoa đẹp mắt, sắc Cyan nhạt */
+        .wave-layer-2 {
+            animation: wave-slide-medium 16s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+            fill: rgba(34, 211, 238, 0.08); 
+        }
+
+        /* Tầng 3: Chuyển động rất chậm dưới đáy sâu, tạo cảm giác về tầng nước sâu */
+        .wave-layer-3 {
+            animation: wave-slide-slow 24s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+            fill: rgba(192, 132, 252, 0.05); 
+        }
+
+        /* Các Keyframes di chuyển uốn lượn mượt mà cho hệ thống sóng Parallax */
+        @keyframes wave-slide-fast {
+            0% { transform: translate3d(-90px, 0, 0); }
+            100% { transform: translate3d(85px, 0, 0); }
+        }
+
+        @keyframes wave-slide-medium {
+            0% { transform: translate3d(85px, 0, 0); }
+            100% { transform: translate3d(-90px, 0, 0); }
+        }
+
+        @keyframes wave-slide-slow {
+            0% { transform: translate3d(-90px, 0, 0); }
+            100% { transform: translate3d(85px, 0, 0); }
+        }
     </style>
 </head>
 <body>
@@ -1750,19 +1798,27 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
     <!-- Diagonal Art Path Accent -->
     <div class="art-path"></div>
 
+    <!-- HỆ THỐNG SÓNG NƯỚC ĐA TẦNG PARALLAX (Tầng sóng óng ánh thực thụ, chồng lớp mượt mà ở đáy trang) -->
+    <div class="wave-divider-container">
+        <svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="wave-parallax">
+                <!-- Tầng 3 (Dưới cùng, chậm, tím nhạt mờ) -->
+                <use href="#gentle-wave" x="48" y="0" class="wave-layer wave-layer-3" />
+                <!-- Tầng 2 (Giữa, chuyển động ngược chiều, xanh cyan) -->
+                <use href="#gentle-wave" x="48" y="3" class="wave-layer wave-layer-2" />
+                <!-- Tầng 1 (Trên cùng, nhanh, tím lavender) -->
+                <use href="#gentle-wave" x="48" y="5" class="wave-layer" />
+            </g>
+        </svg>
+    </div>
+
     <!-- Decorative Floating Elements (SVGs with glow effect) -->
     <!-- STARFISH -->
     <svg class="decor-element decor-starfish decor-vector" viewBox="0 0 100 100">
         <path d="M50,5 L63,35 L95,38 L70,60 L78,92 L50,75 L22,92 L30,60 L5,38 L37,35 Z" fill="rgba(192, 132, 252, 0.02)"/>
-    </svg>
-
-    <!-- JELLYFISH -->
-    <svg class="decor-element decor-jellyfish decor-vector" viewBox="0 0 100 150">
-        <path d="M20,60 C20,30 80,30 80,60 C80,68 70,68 65,64 C60,60 50,68 45,64 C40,60 30,68 20,60 Z" fill="rgba(192, 132, 252, 0.02)"/>
-        <path d="M30,65 Q25,95 35,120 T28,148" />
-        <path d="M42,65 Q48,100 40,125 T45,148" />
-        <path d="M58,65 Q52,100 60,125 T52,148" />
-        <path d="M70,65 Q75,95 65,120 T72,148" />
     </svg>
 
     <!-- RAY 1 -->
@@ -2064,7 +2120,7 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
         </div>
     </div>
 
-    <!-- SVG Filter tạo hiệu ứng Khúc xạ nước động (Đã nâng cấp thông số rõ rệt) -->
+    <!-- SVG Filter tạo hiệu ứng Khúc xạ nước động (Đã tinh chỉnh thông số rìa) -->
     <svg style="display: block; position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
         <defs>
             <filter id="water-distortion-filter" x="-10%" y="-10%" width="120%" height="120%">
@@ -3003,7 +3059,7 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
                 </div>
 
                 <h4>Cơ Chế Kỹ Thuật Đằng Sau Kỹ Ngệ Prompt</h4>
-                <p>Khác biệt cốt lõi nằm ở cơ chế vận hành của mô hình ngôn ngữ lớn (LLM). Prompt cơ bản nhận kết quả ngẫu nhiên và chung chung. Prompt nâng cao áp dụng <strong>Role Prompting</strong> giúp AI định vị chính xác phân phối suất vùng tri thức sư phạm chuyên sâu; kỹ thuật <strong>Few-Shot</strong> định hướng cấu trúc mẫu chuẩn; và <strong>CoT (Chain-of-Thought)</strong> thúc đẩy AI phân tích tuần tự trước khi kết luận, triệt tiêu 95% hiện tượng ảo tưởng (hallucination) của máy tính.</p>
+                <p>Khác biệt cốt lõi nằm ở cơ chế vận hành của mô hình ngôn ngữ lớn (LLM). Prompt cơ bản nhận kết quả ngẫu nhiên và chung chung. Prompt nâng cao áp dụng <strong>Role Prompting</strong> giúp AI định vị chính xác phân phối xác suất vùng tri thức sư phạm chuyên sâu; kỹ thuật <strong>Few-Shot</strong> định hướng cấu trúc mẫu chuẩn; và <strong>CoT (Chain-of-Thought)</strong> thúc đẩy AI phân tích tuần tự trước khi kết luận, triệt tiêu 95% hiện tượng ảo tưởng (hallucination) của máy tính.</p>
 
                 <h4>Bài học rút ra</h4>
                 <p>Nghệ thuật viết Prompt dựa trên mô hình CREATE giúp sinh viên ngoại ngữ chuyển dịch hoàn toàn từ lối tương tác thô sơ sang làm chủ công nghệ, khai phóng hiệu quả phản biện học thuật thông minh.</p>
