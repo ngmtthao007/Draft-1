@@ -1,4 +1,4 @@
-nguyên bản:
+ rê chuột:
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -2097,139 +2097,90 @@ nguyên bản:
             constructor(w, h) {
                 this.w = w;
                 this.h = h;
-                // Kết hợp 3 loại hạt: dot (chấm phát quang), bubble (bong bóng nhỏ), sparkle (ngôi sao/tinh thể lóe sáng)
-                this.type = ['dot', 'bubble', 'sparkle'][Math.floor(Math.random() * 3)];
+                // Thỉnh thoảng xuất hiện tinh thể lấp lánh (sparkle), còn lại là hạt trôi nổi tròn (dot)
+                this.type = Math.random() < 0.15 ? 'sparkle' : 'dot';
                 this.reset(true);
             }
 
             reset(initial = false) {
                 this.x = Math.random() * this.w;
-                // Nếu khởi tạo ban đầu thì rải rác ngẫu nhiên chiều cao, nếu sinh mới thì trồi từ đáy lên
-                this.y = initial ? Math.random() * this.h : this.h + 15;
-                this.size = Math.random() * 5 + 1.8; // Kích thước hạt từ 1.8px đến 6.8px (thuộc phạm vi ~2-8px)
+                // Phát tán ngẫu nhiên chiều cao lúc nạp, trồi từ đáy lên khi tái tạo
+                this.y = initial ? Math.random() * this.h : this.h + 10;
+                this.size = Math.random() * 3 + 1; // Kích thước hạt từ 1px đến 4px siêu nhỏ tinh tế
                 
-                // Bảng màu: lavender, tím neon, xanh lam nhạt và trắng phát quang
+                // Bảng màu dưới nước: lavender, tím nhạt, cyan và trắng phát quang
                 this.color = [
                     'rgba(192, 132, 252, ', // Lavender
-                    'rgba(168, 85, 247, ', // Neon Purple
-                    'rgba(34, 211, 238, ',  // Pale Blue
+                    'rgba(216, 180, 254, ', // Pale Violet
+                    'rgba(34, 211, 238, ',  // Cyan
                     'rgba(255, 255, 255, '  // Glowing White
                 ][Math.floor(Math.random() * 4)];
 
-                this.alpha = Math.random() * 0.4 + 0.2; // Opacity nền móng tự nhiên
+                this.alpha = Math.random() * 0.35 + 0.15; // Opacity dao động từ 15%–70%
                 this.baseAlpha = this.alpha;
                 
-                // Chu kỳ nhấp nháy phát quang không đồng bộ (20% -> 80% -> 20%)
-                this.pulseSpeed = Math.random() * 0.03 + 0.01;
+                // Nhịp thở nhấp nháy phát quang mượt không đồng bộ
+                this.pulseSpeed = Math.random() * 0.02 + 0.01;
                 this.pulsePhase = Math.random() * Math.PI * 2;
 
-                // Thiết lập 3 kiểu quỹ đạo ngẫu nhiên chậm rãi
-                this.trajectory = ['float', 'sway', 'orbit'][Math.floor(Math.random() * 3)];
-                
-                this.vx = (Math.random() - 0.5) * 0.12;
-                this.vy = -(Math.random() * 0.15 + 0.08); // Trôi lên siêu chậm
+                this.vx = (Math.random() - 0.5) * 0.06; // Di chuyển ngang siêu chậm
+                this.vy = -(Math.random() * 0.1 + 0.04); // Trôi lên vô cùng chậm rãi
 
-                // Biên độ và tần số dao động hình sin mô phỏng dòng nước hoành dạt
-                this.swaySpeed = Math.random() * 0.012 + 0.006;
+                this.swaySpeed = Math.random() * 0.008 + 0.004;
                 this.swayPhase = Math.random() * Math.PI * 2;
 
-                // Quỹ đạo elip xung quanh tâm widget
-                this.cx = this.w / 2;
-                this.cy = this.h / 2;
-                this.rx = Math.random() * (this.w * 0.4) + 15;
-                this.ry = Math.random() * (this.h * 0.4) + 15;
-                this.orbitSpeed = (Math.random() * 0.0012 + 0.0006) * (Math.random() < 0.5 ? 1 : -1);
-                this.orbitAngle = Math.random() * Math.PI * 2;
-
-                // Khởi tạo vòng đời cho loại tinh thể lóe sáng (sparkle)
                 if (this.type === 'sparkle') {
-                    this.lifespan = Math.random() * 90 + 60; // Lóe sáng trong khoảng 1-2.5 giây
+                    this.lifespan = Math.random() * 60 + 60; // Tinh thể lóe sáng rồi biến mất sau 1–2 giây
                     this.life = this.lifespan;
                     this.y = Math.random() * this.h;
                 }
 
-                // Blur nhẹ cho chiều sâu (độ xa gần quang học)
-                this.blur = Math.random() < 0.35 ? Math.random() * 2 + 1 : 0;
-
-                // Vệt sáng (light trail) ngắn dành cho các hạt phù du kích thước lớn
-                this.trail = [];
-                this.hasTrail = this.type === 'dot' && this.size > 4.2;
+                // Blur mờ nhẹ ngẫu nhiên tạo độ sâu quang trường 3D
+                this.blur = Math.random() < 0.4 ? Math.random() * 2 + 1 : 0;
             }
 
             update(isHovered, hoverFactor, speedMultiplier) {
-                // Nhịp thở nhấp nháy liên tục 20% -> 80%
+                // Nhịp thở opacity mượt từ 15% - 70%
                 this.pulsePhase += this.pulseSpeed;
-                let breath = Math.sin(this.pulsePhase);
-                this.alpha = this.baseAlpha + breath * 0.25;
-                this.alpha = Math.max(0.2, Math.min(0.8, this.alpha));
+                let breath = Math.sin(this.pulsePhase) * 0.25;
+                this.alpha = this.baseAlpha + breath;
+                this.alpha = Math.max(0.15, Math.min(0.70, this.alpha));
 
                 let visualSize = this.size;
                 let drawAlpha = this.alpha;
 
-                // Phản hồi tăng glow sáng khi hover vào
+                // Khi hover: Các hạt phát sáng hơn khoảng 10–15%
                 if (isHovered) {
-                    drawAlpha = Math.min(0.95, this.alpha * (1 + 0.45 * hoverFactor));
-                    visualSize = this.size * (1 + 0.15 * hoverFactor);
+                    drawAlpha = Math.min(0.70, this.alpha * (1 + 0.15 * hoverFactor));
                 }
 
-                // Ghi nhận vệt sáng ngắn cho phù du lớn
-                if (this.hasTrail) {
-                    this.trail.unshift({ x: this.x, y: this.y });
-                    if (this.trail.length > 4) this.trail.pop();
-                } else {
-                    this.trail = [];
-                }
-
-                // Cập nhật chuyển động theo vòng đời
                 if (this.type === 'sparkle') {
                     this.life -= speedMultiplier;
                     if (this.life <= 0) {
                         this.reset(false);
                     } else {
-                        // Tăng giảm mượt mà đúng chu kỳ lóe sáng hình sin
-                        drawAlpha = Math.sin((this.life / this.lifespan) * Math.PI) * 0.85;
+                        // Tinh thể lóe sáng hình sin và hòa tan
+                        drawAlpha = Math.sin((this.life / this.lifespan) * Math.PI) * 0.70;
+                        drawAlpha = Math.max(0.15, Math.min(0.70, drawAlpha));
                     }
                 } else {
-                    if (this.trajectory === 'float' || this.type === 'bubble') {
-                        this.y += this.vy * speedMultiplier;
-                        this.swayPhase += this.swaySpeed * speedMultiplier;
-                        this.x += (this.vx + Math.sin(this.swayPhase) * 0.06) * speedMultiplier;
-                    } else if (this.trajectory === 'sway') {
-                        this.swayPhase += this.swaySpeed * speedMultiplier;
-                        this.y += (this.vy * 0.5) * speedMultiplier;
-                        this.x += (Math.sin(this.swayPhase) * 0.18) * speedMultiplier;
-                    } else if (this.trajectory === 'orbit') {
-                        this.orbitAngle += this.orbitSpeed * speedMultiplier;
-                        this.x = this.cx + this.rx * Math.cos(this.orbitAngle);
-                        this.y = this.cy + this.ry * Math.sin(this.orbitAngle);
+                    // Trôi lên ưu tiên và dao động hoành dạt như hải lưu
+                    this.y += this.vy * speedMultiplier;
+                    this.swayPhase += this.swaySpeed * speedMultiplier;
+                    this.x += (this.vx + Math.sin(this.swayPhase) * 0.04) * speedMultiplier;
+
+                    // Hover Interaction: Tập trung nhẹ quanh tâm nội dung widget
+                    if (isHovered && hoverFactor > 0) {
+                        const targetX = this.w / 2;
+                        const targetY = this.h / 2;
+                        this.x += (targetX - this.x) * 0.005 * hoverFactor;
+                        this.y += (targetY - this.y) * 0.005 * hoverFactor;
                     }
 
-                    // Tái thiết lập nếu trôi ra rìa ranh giới
-                    if (this.y < -15 || this.x < -15 || this.x > this.w + 15) {
+                    // Tái thiết lập hạt trôi ra rìa ranh giới
+                    if (this.y < -10 || this.x < -10 || this.x > this.w + 10) {
                         this.reset(false);
                     }
-                }
-
-                // Phản hồi tụ lại nhẹ quanh viền khi tương tác hover
-                if (isHovered && hoverFactor > 0 && this.type !== 'sparkle') {
-                    const distToLeft = this.x;
-                    const distToRight = this.w - this.x;
-                    const distToTop = this.y;
-                    const distToBottom = this.h - this.y;
-                    
-                    const minDist = Math.min(distToLeft, distToRight, distToTop, distToBottom);
-                    let targetX = this.x;
-                    let targetY = this.y;
-
-                    // Hướng lực kéo hội tụ tiệm cận ranh giới 4 góc
-                    if (minDist === distToLeft) targetX = 5;
-                    else if (minDist === distToRight) targetX = this.w - 5;
-                    else if (minDist === distToTop) targetY = 5;
-                    else targetY = this.h - 5;
-
-                    const pullForce = 0.024 * hoverFactor;
-                    this.x += (targetX - this.x) * pullForce;
-                    this.y += (targetY - this.y) * pullForce;
                 }
 
                 return { visualSize, drawAlpha };
@@ -2238,52 +2189,28 @@ nguyên bản:
             draw(ctx, visualSize, drawAlpha) {
                 ctx.save();
                 
-                // Vẽ vệt sáng trail mượt
-                if (this.hasTrail && this.trail.length > 1) {
-                    for (let i = 0; i < this.trail.length; i++) {
-                        const trailAlpha = drawAlpha * (1 - (i + 1) / (this.trail.length + 1)) * 0.35;
-                        ctx.beginPath();
-                        ctx.arc(this.trail[i].x, this.trail[i].y, visualSize * (1 - i / this.trail.length), 0, Math.PI * 2);
-                        ctx.fillStyle = this.color + trailAlpha + ')';
-                        ctx.fill();
-                    }
-                }
-
-                // Cấu hình phát quang (glow blur)
                 if (this.blur > 0) {
-                    ctx.shadowBlur = this.blur * 2.2;
-                    ctx.shadowColor = this.color + '1)';
+                    ctx.shadowBlur = this.blur * 2;
+                    ctx.shadowColor = this.color + '0.8)';
                 } else {
-                    ctx.shadowBlur = 4.5;
-                    ctx.shadowColor = this.color + '0.65)';
+                    ctx.shadowBlur = 3;
+                    ctx.shadowColor = this.color + '0.5)';
                 }
 
                 ctx.fillStyle = this.color + drawAlpha + ')';
-                ctx.strokeStyle = this.color + (drawAlpha * 0.75) + ')';
 
-                if (this.type === 'bubble') {
-                    // Vẽ bọt khí hình khuyên có bóng phản chiếu
+                if (this.type === 'sparkle') {
+                    // Vẽ tinh thể 4 cánh lóe sáng dịu nhẹ
                     ctx.beginPath();
-                    ctx.arc(this.x, this.y, visualSize, 0, Math.PI * 2);
-                    ctx.lineWidth = 0.75;
-                    ctx.stroke();
-                    
-                    ctx.beginPath();
-                    ctx.arc(this.x - visualSize * 0.3, this.y - visualSize * 0.3, visualSize * 0.12, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${drawAlpha * 0.65})`;
-                    ctx.fill();
-                } else if (this.type === 'sparkle') {
-                    // Vẽ tinh thể/ngôi sao phát sáng 4 cánh
-                    ctx.beginPath();
-                    ctx.moveTo(this.x, this.y - visualSize * 1.5);
-                    ctx.quadraticCurveTo(this.x, this.y, this.x + visualSize * 1.5, this.y);
-                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y + visualSize * 1.5);
-                    ctx.quadraticCurveTo(this.x, this.y, this.x - visualSize * 1.5, this.y);
-                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y - visualSize * 1.5);
+                    ctx.moveTo(this.x, this.y - visualSize * 1.6);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x + visualSize * 1.6, this.y);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y + visualSize * 1.6);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x - visualSize * 1.6, this.y);
+                    ctx.quadraticCurveTo(this.x, this.y, this.x, this.y - visualSize * 1.6);
                     ctx.closePath();
                     ctx.fill();
                 } else {
-                    // Chấm phát quang tròn cơ bản
+                    // Chấm phát quang cơ bản
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, visualSize, 0, Math.PI * 2);
                     ctx.fill();
@@ -2320,8 +2247,8 @@ nguyên bản:
             }
 
             initParticles() {
-                // Phân bổ mật độ hạt tối ưu dựa theo kích thước diện tích khối
-                const density = Math.floor((this.w * this.h) / 8500) + 5; 
+                // Duy trì mật độ từ 10–20 hạt tinh giản nhất cho mỗi widget
+                const density = Math.floor(Math.random() * 6) + 12; 
                 this.particles = [];
                 for (let i = 0; i < density; i++) {
                     this.particles.push(new BioluminescentParticle(this.w, this.h));
@@ -2344,12 +2271,12 @@ nguyên bản:
             }
 
             update() {
-                // Quản lý phản hồi vận tốc: giảm tốc đột ngột trong 1 giây đầu khi hover, sau đó cân bằng trở lại
+                // Tương tác hover: Chuyển động chậm lại đôi chút trong giây đầu tiên, sau đó bình thường
                 if (this.isHovered) {
                     const elapsed = Date.now() - this.hoverStartTime;
                     if (elapsed < 1000) {
                         const t = elapsed / 1000;
-                        this.speedMultiplier = 0.35 + 0.65 * t; // Tốc độ trôi tụt về 35%, tăng dần mượt về 100%
+                        this.speedMultiplier = 0.45 + 0.55 * t; // Chậm lại còn 45%, phục hồi tuyến tính mượt mà lên 100%
                     } else {
                         this.speedMultiplier = 1.0;
                     }
