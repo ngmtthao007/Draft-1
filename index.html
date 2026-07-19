@@ -1,3 +1,5 @@
+sinh viên.
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -694,103 +696,7 @@
             transform: translateY(-40px); /* Nâng toàn bộ cụm ô thông tin lên cao hơn để cân đối */
         }
 
-        /* Khi rê chuột vào 1 thẻ giới thiệu, các thẻ khác co lại và mờ đi */
-        .profile-widgets-overlay:hover .widget-card {
-            opacity: 0.55;
-            transform: scale3d(0.95, 0.95, 0.95);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        /* Thẻ giới thiệu đang hover sẽ nở to rực rỡ */
-        .profile-widgets-overlay:hover .widget-card:hover {
-            opacity: 1;
-            transform: scale3d(1.05, 1.05, 1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25);
-        }
-
-        /* Enlarged and Spaced Out Profile Widget Cards */
-        .widget-card {
-            background: rgba(15, 23, 42, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(24px); /* Tăng độ mờ viền kính cho thẻ thêm sắc nét */
-            border-radius: 20px; /* Bo góc tròn lớn hơn hiện đại */
-            padding: 1.4rem 1.8rem; /* Tăng padding giúp ô to ra và sang trọng hơn */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem; /* Tăng khoảng cách giữa nhãn và giá trị */
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            /* Phản hồi mượt mà khi di chuột ra khỏi thẻ */
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.45s ease;
-        }
-
-        /* Thiết kế nổi bật đặc biệt cho Đơn vị đào tạo */
-        .widget-card.highlight-card {
-            padding: 1.8rem 2.2rem;
-            border-color: rgba(192, 132, 252, 0.3);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(192, 132, 252, 0.15);
-        }
-        .widget-card.highlight-card .widget-value {
-            font-size: 1.55rem;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(192, 132, 252, 0.4);
-        }
-
-        /* Đồng bộ hiệu ứng vệt sáng tự động quét qua mỗi 9 giây cho các widget giới thiệu */
-        .widget-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.02) 20%,
-                rgba(255, 255, 255, 0.12) 50%,
-                rgba(255, 255, 255, 0.02) 80%,
-                transparent
-            );
-            transform: skewX(-25deg) translateZ(0);
-            pointer-events: none;
-            animation: shineSweep 9s infinite cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 5;
-        }
-
-        .widget-label {
-            font-size: 0.83rem; /* Tăng 15% kích thước phông chữ nhãn phụ */
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--text-muted);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .widget-value {
-            font-family: 'Lexend', sans-serif; /* Sử dụng phông chữ Lexend đồng bộ nội dung */
-            font-size: 1.35rem; /* Tăng 15% chữ giá trị giúp hiển thị vô cùng sắc nét */
-            font-weight: 700;
-            color: var(--text-primary);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.4s ease;
-        }
-
-        /* Phát sáng rực rỡ cho ô đơn vị đào tạo ĐHQGHN */
-        .wide-card .widget-value {
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.45), 0 0 30px rgba(192, 132, 252, 0.2);
-        }
-
-        /* 1. Profile (Top wide capsule) */
-        .wide-card {
-            width: 100%;
-            align-self: center;
-        }
-
-        /* widgets-vertical-stack: Xếp dọc 3 widget giới thiệu còn lại */
+        /* Xếp dọc 3 widget giới thiệu còn lại */
         .widgets-vertical-stack {
             display: flex;
             flex-direction: column;
@@ -856,174 +762,12 @@
             min-height: 100vh;
         }
 
-        /* Projects Section Gallery & Hover Siblings focus effect */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+        /* Thin Top Swipe Progress Bar */
+        .progress-bar-container {
+            z-index: 105;
         }
 
-        /* Khi rê chuột vào 1 thẻ trong danh sách bài tập, các thẻ còn lại tự động thu nhỏ và mờ nhẹ */
-        .gallery-grid:hover .gallery-card {
-            opacity: 0.55;
-            transform: scale3d(0.95, 0.95, 0.95);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        /* Thẻ đang được chọn sẽ nở to và rõ nét (JS mousemove sẽ kiểm soát transform góc nghiêng tiếp theo) */
-        .gallery-grid:hover .gallery-card:hover {
-            opacity: 1;
-            transform: scale3d(1.04, 1.04, 1.04); /* Base hover scale, JS will multiply on top of this */
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25);
-        }
-
-        /* Giao diện 6 bài tập (6 exercise cards / widgets) với hiệu ứng vệt sáng và 3D Parallax */
-        .gallery-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2rem;
-            backdrop-filter: blur(20px);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 320px;
-            position: relative; /* Chứa hiệu ứng vệt sáng tuyệt đối */
-            overflow: hidden; /* Ngăn chặn vệt sáng tràn ra ngoài thẻ */
-            transform-style: preserve-3d; /* Cho phép các thành phần bên trong hiển thị hiệu ứng Parallax 3D thực thụ */
-            /* Phản hồi mượt mà khi di chuột ra khỏi thẻ */
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.45s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.05);
-        }
-
-        /* Hiệu ứng vệt sáng tinh tế (Subtle Light Streak Sweep) quét qua mỗi 9 giây cho cả Bài tập và Widgets tổng kết */
-        @keyframes shineSweep {
-            0% { left: -150%; opacity: 0; }
-            12% { opacity: 1; }
-            24% { left: 150%; opacity: 0; }
-            100% { left: 150%; opacity: 0; }
-        }
-
-        .gallery-card::after, .conclusion-widget::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.02) 20%,
-                rgba(255, 255, 255, 0.12) 50%,
-                rgba(255, 255, 255, 0.02) 80%,
-                transparent
-            );
-            transform: skewX(-25deg) translateZ(0);
-            pointer-events: none;
-            animation: shineSweep 9s infinite cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 5;
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            transform-style: preserve-3d;
-        }
-
-        .card-num {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: var(--accent-purple);
-            color: #120d24; /* Tạo màu tương phản mạnh với số */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.03rem; /* Tăng 15% kích thước số */
-            box-shadow: 0 4px 10px rgba(192, 132, 252, 0.3);
-            /* Chuyển động đàn hồi cho các lớp Parallax bên trong thẻ */
-            transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card-status {
-            font-size: 0.86rem; /* Tăng 15% kích thước trạng thái */
-            font-weight: 600;
-            color: var(--accent-purple);
-            background: rgba(192, 132, 252, 0.12);
-            border: 1px solid rgba(192, 132, 252, 0.2);
-            padding: 0.35rem 0.9rem;
-            border-radius: 50px;
-            transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem; /* Tăng kích cỡ chữ tiêu đề */
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card-desc {
-            font-size: 1.03rem; /* Tăng 15% kích thước mô tả bài tập */
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Split-button action row for gallery cards */
-        .card-btn-group {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr; /* Sửa tỷ lệ chiều rộng chia đều tinh tế */
-            gap: 0.65rem;
-            width: 100%;
-            transform-style: preserve-3d;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card-action {
-            width: 100%;
-            background: #ffffff; /* Nút chính nền trắng chữ tối chuẩn đồng bộ thiết kế */
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            color: #120d24;
-            padding: 0.75rem 1rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.95rem; /* Tăng 15% kích thước */
-            cursor: pointer;
-            text-align: center;
-            /* Đàn hồi mượt kiểu nam châm khi chuột di chuyển ra ngoài */
-            transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card-action-link {
-            text-decoration: none;
-            text-align: center;
-            border: 1.5px solid rgba(192, 132, 252, 0.35); /* Tách biệt dạng outline sắc nét */
-            color: var(--accent-purple);
-            padding: 0.75rem 0.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.95rem; /* Tăng 15% kích thước */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            /* Đàn hồi mượt kiểu nam châm khi chuột di chuyển ra ngoài */
-            transition: background 0.4s ease, border-color 0.4s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-        }
-
-        /* Vector lines style */
+        /* Decorative Vector lines style */
         svg.decor-vector {
             stroke: var(--accent-purple);
             stroke-width: 1.5;
@@ -1316,11 +1060,6 @@
             margin-bottom: 0.4rem;
         }
 
-        .stat-num-percent {
-            font-size: 3rem;
-            vertical-align: super;
-        }
-
         .stat-label {
             font-size: 0.92rem; /* Tăng 15% kích thước */
             font-weight: 700;
@@ -1329,7 +1068,7 @@
             color: var(--text-muted);
         } 
 
-        /* Hiệu ứng tương tác cho ô Bài tập chuyển hướng (DÁN VÀO ĐÂY) & Sibling Focus-Scale */
+        /* Hiệu ứng tương tác cho ô Bài tập chuyển hướng & Sibling Focus-Scale */
         .clickable-stat-box {
             cursor: pointer;
             position: relative;
@@ -1339,22 +1078,6 @@
                         background 0.4s ease, 
                         box-shadow 0.4s ease,
                         opacity 0.45s ease;
-        }
-
-        /* Hiệu ứng tập trung ô (Sibling Focus-Scale) cho TOÀN BỘ khung Tổng kết (conclusion-panel) */
-        .conclusion-panel:hover .conclusion-widget,
-        .conclusion-panel:hover .clickable-stat-box {
-            opacity: 0.55;
-            transform: scale3d(0.95, 0.95, 0.95);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Thẻ đang được hover trực tiếp sẽ nở to và rõ nét */
-        .conclusion-panel .conclusion-widget:hover,
-        .conclusion-panel .clickable-stat-box:hover {
-            opacity: 1;
-            transform: scale3d(1.05, 1.05, 1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25);
         }
 
         .clickable-stat-box:hover .stat-num {
@@ -1386,9 +1109,6 @@
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .meta-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 768px) {
@@ -1402,18 +1122,12 @@
                 margin-left: auto;
                 margin-right: auto;
             }
-            .intro-glass-box {
+            .expandable-intro-card {
                 margin-left: auto;
                 margin-right: auto;
             }
             .hero-right-spatial-container {
                 height: auto;
-            }
-            .widgets-grid-2x2 {
-                grid-template-columns: 1fr; /* Stack vertically on small screens */
-            }
-            .widget-card {
-                padding: 1.1rem 1.4rem; /* Giảm nhẹ size trên tablet để cân đối */
             }
             .section-header-panel {
                 flex-direction: column;
@@ -1421,9 +1135,6 @@
                 gap: 1rem;
             }
             .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .meta-grid {
                 grid-template-columns: 1fr;
             }
             .conclusion-panel {
@@ -1458,10 +1169,6 @@
             .dropdown-menu {
                 display: none !important;
             }
-            .widgets-grid-2x2 {
-                grid-template-columns: 1fr;
-                gap: 0.8rem;
-            }
             .hero-right-spatial-container {
                 height: auto;
                 gap: 1rem;
@@ -1472,13 +1179,10 @@
                 gap: 1rem;
                 transform: none; /* Reset transform nâng lên ở mobile */
             }
-            .widget-card {
-                padding: 1rem 1.2rem;
-            }
         }
 
         
-/* --- WIDGETS TỔNG KẾT MỞ RỘNG (EXPANDABLE) --- */
+        /* --- WIDGETS TỔNG KẾT MỞ RỘNG (EXPANDABLE) --- */
         .conclusion-widgets-container {
             display: flex;
             flex-direction: column;
@@ -1530,15 +1234,6 @@
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.45), 0 0 16px rgba(255, 255, 255, 0.2); 
         }
 
-        /* Khi di chuột vào: Đổi sang màu tím oải hương và hiệu ứng phát sáng mạnh lên */
-        .conclusion-widget:hover .widget-value {
-            color: var(--accent-purple); /* Chuyển sắc chữ sang tím */
-            /* Phát sáng đa tầng màu tím rực rỡ và sắc nét */
-            text-shadow: 0 0 12px rgba(192, 132, 252, 1), 
-                         0 0 24px rgba(192, 132, 252, 0.65), 
-                         0 0 36px rgba(192, 132, 252, 0.35);
-        }
-
         /* Vùng nội dung ẩn mặc định - Tăng cực đại lên 800px đảm bảo không bao giờ bị cắt xén chữ */
         .conclusion-widget .widget-content-expand {
             max-height: 0;
@@ -1556,51 +1251,282 @@
             border-top: 1px dashed rgba(255, 255, 255, 0.1);
         }
 
-        /* --- Hiệu ứng di chuột (Chỉ nâng nhẹ và phát sáng nhẹ, KHÔNG RUNG LẮC) --- */
-        .conclusion-widget:hover {
-            background: rgba(15, 23, 42, 0.85);
-            border-color: var(--accent-purple);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
+
+        /* =====================================================================
+           Bioluminescent Floating & Breathing Engine (Oceanic Organisms Concept)
+           ===================================================================== */
+        
+        /* Master Floating Structural Wrapper */
+        .biolum-float-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
         }
 
-        .conclusion-widget:hover .widget-label {
-            color: var(--accent-purple);
+        /* Glow reflection overlapping with neighboring elements to blend them together */
+        .biolum-float-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            background: radial-gradient(circle, rgba(192, 132, 252, 0.12) 0%, rgba(34, 211, 238, 0.05) 50%, transparent 100%);
+            filter: blur(40px);
+            z-index: -1;
+            pointer-events: none;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.85;
         }
 
-        .conclusion-widget:hover .widget-content-expand {
-            max-height: 800px; /* Đặt 800px đảm bảo show hết 100% chữ */
+        .biolum-float-wrapper:hover::before {
+            background: radial-gradient(circle, rgba(192, 132, 252, 0.25) 0%, rgba(34, 211, 238, 0.15) 50%, transparent 100%);
+            transform: scale(1.22);
             opacity: 1;
         }
-        /* Phản hồi rung lắc Jiggle tự nhiên */
-        @keyframes elegantJiggle {
-            0% { transform: scale(1.02) translate(0, 0) rotate(0deg); }
-            20% { transform: scale(1.02) translate(-1px, 1px) rotate(-0.25deg); }
-            40% { transform: scale(1.02) translate(1px, -1px) rotate(0.25deg); }
-            60% { transform: scale(1.02) translate(-1px, -1px) rotate(-0.1deg); }
-            80% { transform: scale(1.02) translate(1px, 1px) rotate(0.1deg); }
-            100% { transform: scale(1.02) translate(0, 0) rotate(0deg); }
-        }
-        /* Thiết lập chữ in hoa và độ phát sáng mặc định nhẹ màu TRẮNG trùng màu chữ khi tĩnh */
-        .conclusion-widget .widget-value {
-            font-family: 'Lexend', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-transform: uppercase; /* Chuyển chữ in hoa */
-            transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            letter-spacing: 1px;
-            /* Phát sáng nhẹ màu trắng đồng bộ sắc độ chữ */
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.45), 0 0 16px rgba(255, 255, 255, 0.2); 
+
+        /* Ensure card expands inside the flex wrapper */
+        .biolum-float-wrapper > .widget-card,
+        .biolum-float-wrapper > .conclusion-widget,
+        .biolum-float-wrapper > .gallery-card,
+        .biolum-float-wrapper > .stat-box {
+            width: 100%;
+            flex: 1;
         }
 
-        /* Khi di chuột vào: Đổi sang màu tím oải hương và hiệu ứng phát sáng mạnh lên */
-        .conclusion-widget:hover .widget-value {
-            color: var(--accent-purple); /* Chuyển sắc chữ sang tím */
-            /* Phát sáng đa tầng màu tím rực rỡ và sắc nét */
+        /* 4 Distinct Asynchronous Drift Orbits (8-15s, Vertical ±6-10px, Horizontal ±2-4px, Rotation ±1°) */
+        .biolum-float-1 { animation: biolum-float-drift-1 11s ease-in-out infinite; }
+        .biolum-float-2 { animation: biolum-float-drift-2 13s ease-in-out infinite; }
+        .biolum-float-3 { animation: biolum-float-drift-3 10s ease-in-out infinite; }
+        .biolum-float-4 { animation: biolum-float-drift-4 15s ease-in-out infinite; }
+
+        @keyframes biolum-float-drift-1 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            33% { transform: translateY(-8px) translateX(2.5px) rotate(0.6deg); }
+            66% { transform: translateY(6px) translateX(-2px) rotate(-0.5deg); }
+        }
+        @keyframes biolum-float-drift-2 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            40% { transform: translateY(7px) translateX(-3px) rotate(-0.7deg); }
+            70% { transform: translateY(-9px) translateX(2px) rotate(0.5deg); }
+        }
+        @keyframes biolum-float-drift-3 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) translateX(-2px) rotate(0.4deg); }
+            75% { transform: translateY(5px) translateX(3px) rotate(-0.4deg); }
+        }
+        @keyframes biolum-float-drift-4 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            30% { transform: translateY(6px) translateX(2.5px) rotate(-0.5deg); }
+            60% { transform: translateY(-8px) translateX(-2.5px) rotate(0.7deg); }
+        }
+
+        /* Breathing Effects (Box-shadow, Border opacity, Glass blur flexing) */
+        .biolum-breath-1 { animation: biolum-breath-glow-1 7s ease-in-out infinite alternate; }
+        .biolum-breath-2 { animation: biolum-breath-glow-2 10s ease-in-out infinite alternate; }
+        .biolum-breath-3 { animation: biolum-breath-glow-3 8s ease-in-out infinite alternate; }
+
+        @keyframes biolum-breath-glow-1 {
+            0% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 12px rgba(192, 132, 252, 0.12);
+                border-color: rgba(255, 255, 255, 0.06);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+            }
+            100% {
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(192, 132, 252, 0.25), 0 0 35px rgba(34, 211, 238, 0.12);
+                border-color: rgba(192, 132, 252, 0.18);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+            }
+        }
+        @keyframes biolum-breath-glow-2 {
+            0% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 10px rgba(34, 211, 238, 0.1);
+                border-color: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+            }
+            100% {
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45), 0 0 22px rgba(192, 132, 252, 0.22), 0 0 30px rgba(34, 211, 238, 0.18);
+                border-color: rgba(34, 211, 238, 0.16);
+                backdrop-filter: blur(22px);
+                -webkit-backdrop-filter: blur(22px);
+            }
+        }
+        @keyframes biolum-breath-glow-3 {
+            0% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 15px rgba(192, 132, 252, 0.15);
+                border-color: rgba(255, 255, 255, 0.07);
+                backdrop-filter: blur(21px);
+                -webkit-backdrop-filter: blur(21px);
+            }
+            100% {
+                box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 28px rgba(192, 132, 252, 0.28), 0 0 40px rgba(34, 211, 238, 0.15);
+                border-color: rgba(192, 132, 252, 0.2);
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
+            }
+        }
+
+        /* Pause automatic orbits on mouse hover */
+        .biolum-float-wrapper:hover,
+        .biolum-float-wrapper:hover .gallery-card,
+        .biolum-float-wrapper:hover .conclusion-widget,
+        .biolum-float-wrapper:hover .widget-card,
+        .biolum-float-wrapper:hover .stat-box {
+            animation-play-state: paused !important;
+        }
+
+        /* Base element structural transitions */
+        .gallery-card, .conclusion-widget, .widget-card, .stat-box {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            /* Spring curve cubic-bezier for responsive elastic interactions */
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        backdrop-filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Dynamic Bubbles drifting behind contents */
+        .biolum-bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .biolum-bubble {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, rgba(192, 132, 252, 0.12) 70%, transparent 100%);
+            border-radius: 50%;
+            bottom: -20px;
+            animation: biolum-bubble-rise infinite linear;
+        }
+        @keyframes biolum-bubble-rise {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.35;
+            }
+            90% {
+                opacity: 0.35;
+            }
+            100% {
+                transform: translateY(-120%) translateX(var(--bubble-drift, 20px)) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* Layered content structure (Ensures bubbles stay behind content) */
+        .card-top, .card-title, .card-desc, .card-btn-group, 
+        .widget-label, .widget-value, .widget-content-expand,
+        .stat-num, .stat-label {
+            position: relative;
+            z-index: 2;
+            opacity: 0.85; /* Dimmed at rest state */
+            filter: saturate(0.95);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Sharper content fade-in on active hover */
+        .biolum-float-wrapper:hover .card-top,
+        .biolum-float-wrapper:hover .card-title,
+        .biolum-float-wrapper:hover .card-desc,
+        .biolum-float-wrapper:hover .card-btn-group,
+        .biolum-float-wrapper:hover .widget-label,
+        .biolum-float-wrapper:hover .widget-value,
+        .biolum-float-wrapper:hover .widget-content-expand,
+        .biolum-float-wrapper:hover .stat-num,
+        .biolum-float-wrapper:hover .stat-label {
+            opacity: 1;
+            filter: saturate(1.1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.15));
+        }
+
+        /* ---------------- Sibling Focus-Scale Overrides ---------------- */
+
+        /* Gallery Grid Focus */
+        .gallery-grid:hover .gallery-card {
+            opacity: 0.5;
+            transform: scale3d(0.95, 0.95, 0.95);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .gallery-grid:hover .biolum-float-wrapper:hover .gallery-card {
+            opacity: 1;
+            transform: translateY(-10px) scale3d(1.04, 1.04, 1.04);
+            background: rgba(15, 23, 42, 0.35) !important;
+            border-color: rgba(192, 132, 252, 0.5) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 35px rgba(192, 132, 252, 0.45), 
+                        0 0 50px rgba(34, 211, 238, 0.3) !important;
+        }
+
+        /* Profile widgets focus */
+        .profile-widgets-overlay:hover .widget-card {
+            opacity: 0.5;
+            transform: scale3d(0.95, 0.95, 0.95);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .profile-widgets-overlay:hover .biolum-float-wrapper:hover .widget-card {
+            opacity: 1;
+            transform: translateY(-10px) scale3d(1.04, 1.04, 1.04);
+            background: rgba(15, 23, 42, 0.35) !important;
+            border-color: rgba(192, 132, 252, 0.5) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 35px rgba(192, 132, 252, 0.45), 
+                        0 0 50px rgba(34, 211, 238, 0.3) !important;
+        }
+
+        /* Conclusion panel widgets focus */
+        .conclusion-panel:hover .conclusion-widget,
+        .conclusion-panel:hover .clickable-stat-box {
+            opacity: 0.5;
+            transform: scale3d(0.95, 0.95, 0.95);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .conclusion-panel:hover .biolum-float-wrapper:hover .conclusion-widget,
+        .conclusion-panel:hover .biolum-float-wrapper:hover .clickable-stat-box {
+            opacity: 1;
+            transform: translateY(-10px) scale3d(1.04, 1.04, 1.04);
+            background: rgba(15, 23, 42, 0.35) !important;
+            border-color: rgba(192, 132, 252, 0.5) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 35px rgba(192, 132, 252, 0.45), 
+                        0 0 50px rgba(34, 211, 238, 0.3) !important;
+        }
+
+        /* Expanded trigger synced with structural wrappers */
+        .biolum-float-wrapper:hover .widget-content-expand {
+            max-height: 800px;
+            opacity: 1;
+        }
+        .biolum-float-wrapper:hover .widget-value {
+            color: var(--accent-purple);
             text-shadow: 0 0 12px rgba(192, 132, 252, 1), 
                          0 0 24px rgba(192, 132, 252, 0.65), 
                          0 0 36px rgba(192, 132, 252, 0.35);
         }
+        .biolum-float-wrapper:hover .widget-label {
+            color: var(--accent-purple);
+        }
+
     </style>
 </head>
 <body>
@@ -1718,24 +1644,49 @@
                             <div class="profile-widgets-overlay">
                                 
                                 <!-- 1. Profile (Top wide capsule) - Đơn vị đào tạo (To hơn, nổi bật hơn) -->
-                                <div class="widget-card wide-card highlight-card">
-                                    <span class="widget-label">Đơn vị đào tạo</span>
-                                    <span class="widget-value">Trường Đại học Ngoại ngữ - ĐHQGHN</span>
+                                <div class="biolum-float-wrapper biolum-float-1">
+                                    <div class="widget-card wide-card highlight-card biolum-breath-1">
+                                        <div class="biolum-bubbles">
+                                            <div class="biolum-bubble" style="left: 10%; width: 5px; height: 5px; animation-duration: 8s; animation-delay: 0s; --bubble-drift: 12px;"></div>
+                                            <div class="biolum-bubble" style="left: 60%; width: 4px; height: 4px; animation-duration: 11s; animation-delay: -2s; --bubble-drift: -8px;"></div>
+                                            <div class="biolum-bubble" style="left: 85%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: 3s; --bubble-drift: 15px;"></div>
+                                        </div>
+                                        <span class="widget-label">Đơn vị đào tạo</span>
+                                        <span class="widget-value">Trường Đại học Ngoại ngữ - ĐHQGHN</span>
+                                    </div>
                                 </div>
 
                                 <!-- 3 Columns Grid of Profile Cards (Sắp xếp 3 cột hoàn hảo theo chiều dọc) -->
                                 <div class="widgets-vertical-stack">
-                                    <div class="widget-card">
-                                        <span class="widget-label">Mã sinh viên</span>
-                                        <span class="widget-value">25040190</span>
+                                    <div class="biolum-float-wrapper biolum-float-2">
+                                        <div class="widget-card biolum-breath-2">
+                                            <div class="biolum-bubbles">
+                                                <div class="biolum-bubble" style="left: 15%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 1s; --bubble-drift: 8px;"></div>
+                                                <div class="biolum-bubble" style="left: 75%; width: 5px; height: 5px; animation-duration: 8s; animation-delay: -1s; --bubble-drift: -12px;"></div>
+                                            </div>
+                                            <span class="widget-label">Mã sinh viên</span>
+                                            <span class="widget-value">25040190</span>
+                                        </div>
                                     </div>
-                                    <div class="widget-card">
-                                        <span class="widget-label">Ngành học</span>
-                                        <span class="widget-value">Sư phạm Tiếng Anh</span>
+                                    <div class="biolum-float-wrapper biolum-float-3">
+                                        <div class="widget-card biolum-breath-3">
+                                            <div class="biolum-bubbles">
+                                                <div class="biolum-bubble" style="left: 20%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: 2s; --bubble-drift: 10px;"></div>
+                                                <div class="biolum-bubble" style="left: 70%; width: 4px; height: 4px; animation-duration: 12s; animation-delay: -3s; --bubble-drift: -10px;"></div>
+                                            </div>
+                                            <span class="widget-label">Ngành học</span>
+                                            <span class="widget-value">Sư phạm Tiếng Anh</span>
+                                        </div>
                                     </div>
-                                    <div class="widget-card">
-                                        <span class="widget-label">Lớp học phần</span>
-                                        <span class="widget-value">VNU1001_E252057</span>
+                                    <div class="biolum-float-wrapper biolum-float-4">
+                                        <div class="widget-card biolum-breath-1">
+                                            <div class="biolum-bubbles">
+                                                <div class="biolum-bubble" style="left: 10%; width: 4px; height: 4px; animation-duration: 11s; animation-delay: 0s; --bubble-drift: 15px;"></div>
+                                                <div class="biolum-bubble" style="left: 80%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: -2s; --bubble-drift: -8px;"></div>
+                                            </div>
+                                            <span class="widget-label">Lớp học phần</span>
+                                            <span class="widget-value">NNA2504 (Công nghệ & AI)</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1746,7 +1697,6 @@
                 </section>
 
                 <!-- Conclusion Section -->
-                <!-- KHU VỰC TỔNG KẾT ĐÃ ĐƯỢC CHUẨN HÓA LAYOUT -->
                 <section id="conclusion">
                     <div class="container">
                         <div class="conclusion-panel">
@@ -1758,29 +1708,48 @@
                                 
                                 <div class="conclusion-widgets-container">
                                     <!-- Widget 1: Thuận lợi -->
-                                    <div class="conclusion-widget">
-                                        <span class="widget-label">✨ Ưu thế học thuật</span>
-                                        <span class="widget-value">THUẬN LỢI</span>
-                                        <div class="widget-content-expand">
-                                            <p>Nhìn lại hành trình của học phần, em cảm thấy biết ơn vì đã có cơ hội học tập trong một môi trường luôn khuyến khích sự đổi mới và sáng tạo. Sự tận tâm của các thầy cô không chỉ truyền đạt kiến thức mà còn truyền cảm hứng để em mạnh dạn khám phá, thử nghiệm và học hỏi từ những trải nghiệm của bản thân. Cùng với hệ thống học liệu phong phú và các nền tảng EdTech hiện đại, em có cơ hội tiếp cận công nghệ số và AI một cách bài bản, từ đó hình thành tư duy học tập chủ động và ý thức sử dụng công nghệ có trách nhiệm. Mỗi bài học và dự án đều giúp em trưởng thành hơn, không chỉ về kỹ năng mà còn về nhận thức rằng một người giáo viên trong thời đại số cần biết kết hợp tri thức, công nghệ và sự sáng tạo để mang đến những giá trị tích cực cho người học. Em tin rằng những trải nghiệm này sẽ là nền tảng vững chắc cho hành trình nghề nghiệp của mình trong tương lai.</p>
+                                    <div class="biolum-float-wrapper biolum-float-1">
+                                        <div class="conclusion-widget biolum-breath-1">
+                                            <div class="biolum-bubbles">
+                                                <div class="biolum-bubble" style="left: 8%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: 0s; --bubble-drift: 14px;"></div>
+                                                <div class="biolum-bubble" style="left: 50%; width: 4px; height: 4px; animation-duration: 13s; animation-delay: -1s; --bubble-drift: -10px;"></div>
+                                                <div class="biolum-bubble" style="left: 92%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: 2s; --bubble-drift: 12px;"></div>
+                                            </div>
+                                            <span class="widget-label">✨ Ưu thế học thuật</span>
+                                            <span class="widget-value">THUẬN LỢI</span>
+                                            <div class="widget-content-expand">
+                                                <p>Nhìn lại hành trình của học phần, em cảm thấy biết ơn vì đã có cơ hội học tập trong một môi trường luôn khuyến khích sự đổi mới và sáng tạo. Sự tận tâm của các thầy cô không chỉ truyền đạt kiến thức mà còn truyền cảm hứng để em mạnh dạn khám phá, thử nghiệm và học hỏi từ những trải nghiệm của bản thân. Cùng với hệ thống học liệu phong phú và các nền tảng EdTech hiện đại, em có cơ hội tiếp cận công nghệ số và AI một cách bài bản, từ đó hình thành tư duy học tập chủ động và ý thức sử dụng công nghệ có trách nhiệm. Mỗi bài học và dự án đều giúp em trưởng thành hơn, không chỉ về kỹ năng mà còn về nhận thức rằng một người giáo viên trong thời đại số cần biết kết hợp tri thức, công nghệ và sự sáng tạo để mang đến những giá trị tích cực cho người học. Em tin rằng những trải nghiệm này sẽ là nền tảng vững chắc cho hành trình nghề nghiệp của mình trong tương lai.</p>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <!-- Widget 2: Khó khăn -->
-                                    <div class="conclusion-widget">
-                                        <span class="widget-label">⚠️ Rào cản công nghệ</span>
-                                        <span class="widget-value">KHÓ KHĂN</span>
-                                        <div class="widget-content-expand">
-                                            <p>Thách thức lớn nhất trong lộ trình nghiên cứu số của em là ranh giới mong manh giữa việc sử dụng AI làm bệ phóng tư duy và thói quen ỷ lại kỹ thuật số (Digital Laziness). Ngoài ra, việc chọn lọc, đối chiếu dữ liệu để triệt tiêu các lỗi ảo tưởng ngôn ngữ của LLM cũng đòi hỏi tính cẩn trọng và năng lực phản biện không ngừng nghỉ.</p>
+                                    <div class="biolum-float-wrapper biolum-float-2">
+                                        <div class="conclusion-widget biolum-breath-2">
+                                            <div class="biolum-bubbles">
+                                                <div class="biolum-bubble" style="left: 12%; width: 4px; height: 4px; animation-duration: 11s; animation-delay: 1s; --bubble-drift: 8px;"></div>
+                                                <div class="biolum-bubble" style="left: 78%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: -3s; --bubble-drift: -15px;"></div>
+                                            </div>
+                                            <span class="widget-label">⚠️ Rào cản công nghệ</span>
+                                            <span class="widget-value">KHÓ KHĂN</span>
+                                            <div class="widget-content-expand">
+                                                <p>Thách thức lớn nhất trong lộ trình nghiên cứu số của em là ranh giới mong manh giữa việc sử dụng AI làm bệ phóng tư duy và thói quen ỷ lại kỹ thuật số (Digital Laziness). Ngoài ra, việc chọn lọc, đối chiếu dữ liệu để triệt tiêu các lỗi ảo tưởng ngôn ngữ của LLM cũng đòi hỏi tính cẩn trọng và năng lực phản biện không ngừng nghỉ.</p>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <!-- Widget 3: Bài học kinh nghiệm -->
-                                    <div class="conclusion-widget">
-                                        <span class="widget-label">💡 Đúc kết sư phạm</span>
-                                        <span class="widget-value">BÀI HỌC KINH NGHIỆM</span>
-                                        <div class="widget-content-expand">
-                                            <p>Học phần đã giúp em nhận ra rằng công nghệ chỉ thực sự phát huy giá trị khi được dẫn dắt bởi tư duy của con người và được sử dụng with trách nhiệm. AI hay các công cụ EdTech có thể hỗ trợ việc dạy và học hiệu quả hơn, nhưng không thể thay thế sự sáng tạo, khả năng thấu hiểu và tinh thần nhân văn trong giáo dục. Qua từng bài học và dự án, em không chỉ rèn luyện kỹ năng số mà còn hình thành tư duy làm việc khoa học, chủ động và sẵn sàng ứng dụng công nghệ để tạo nên những trải nghiệm học tập tích cực cho học sinh trong tương lai.</p>
+                                    <div class="biolum-float-wrapper biolum-float-3">
+                                        <div class="conclusion-widget biolum-breath-3">
+                                            <div class="biolum-bubbles">
+                                                <div class="biolum-bubble" style="left: 15%; width: 5px; height: 5px; animation-duration: 10s; animation-delay: 0s; --bubble-drift: 12px;"></div>
+                                                <div class="biolum-bubble" style="left: 85%; width: 4px; height: 4px; animation-duration: 12s; animation-delay: -2s; --bubble-drift: -8px;"></div>
+                                            </div>
+                                            <span class="widget-label">💡 Đúc kết sư phạm</span>
+                                            <span class="widget-value">BÀI HỌC KINH NGHIỆM</span>
+                                            <div class="widget-content-expand">
+                                                <p>Học phần đã giúp em nhận ra rằng công nghệ chỉ thực sự phát huy giá trị khi được dẫn dắt bởi tư duy của con người và được sử dụng với trách nhiệm. AI hay các công cụ EdTech có thể hỗ trợ việc dạy và học hiệu quả hơn, nhưng không thể thay thế sự sáng tạo, khả năng thấu hiểu và tinh thần nhân văn trong giáo dục. Qua từng bài học và dự án, em không chỉ rèn luyện kỹ năng số mà còn hình thành tư duy làm việc khoa học, chủ động và sẵn sàng ứng dụng công nghệ để tạo nên những trải nghiệm học tập tích cực cho học sinh trong tương lai.</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1788,9 +1757,15 @@
                             
                             <!-- Cột bên phải: Chỉ chứa duy nhất ô 06 Bài tập chuyển hướng -->
                             <div class="conclusion-stats">
-                                <div class="stat-box clickable-stat-box" onclick="slidePane('right'); rightScrollToTop();">
-                                    <div class="stat-num">06</div>
-                                    <div class="stat-label">Bài tập thực tế</div>
+                                <div class="biolum-float-wrapper biolum-float-4" style="height: auto;">
+                                    <div class="stat-box clickable-stat-box biolum-breath-1" onclick="slidePane('right'); rightScrollToTop();" style="width: 100%;">
+                                        <div class="biolum-bubbles">
+                                            <div class="biolum-bubble" style="left: 20%; width: 5px; height: 5px; animation-duration: 10s; --bubble-drift: 15px;"></div>
+                                            <div class="biolum-bubble" style="left: 80%; width: 4px; height: 4px; animation-duration: 12s; --bubble-drift: -10px;"></div>
+                                        </div>
+                                        <div class="stat-num">06</div>
+                                        <div class="stat-label">Bài tập thực tế</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -1823,98 +1798,136 @@
 
                     <div class="gallery-grid">
                         <!-- Card 1 -->
-                        <div class="gallery-card">
-                            <div class="card-top">
-                                <div class="card-num">1</div>
-                                <span class="card-status">Đã hoàn thành</span>
-                            </div>
-                            <div>
-                                <h3 class="card-title">Máy tính và thiết bị ngoại vi</h3>
-                                <p class="card-desc">Thiết lập nền tảng, tổ chức sơ đồ cây lưu trữ thư mục khoa học và định hình quy tắc đặt tên tệp tối ưu.</p>
-                            </div>
-                            <div class="card-btn-group">
-                                <button class="card-action" onclick="openModal(1)">Chi tiết</button>
-                                <a href="https://drive.google.com/file/d/1hg7ES0Lz_4SFlyO84o5T3WCLY7QwcJ8y/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                        <div class="biolum-float-wrapper biolum-float-1">
+                            <div class="gallery-card biolum-breath-1">
+                                <div class="biolum-bubbles">
+                                    <div class="biolum-bubble" style="left: 10%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: 0s; --bubble-drift: 15px;"></div>
+                                    <div class="biolum-bubble" style="left: 60%; width: 4px; height: 4px; animation-duration: 12s; animation-delay: -2s; --bubble-drift: -10px;"></div>
+                                    <div class="biolum-bubble" style="left: 85%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: 3s; --bubble-drift: 12px;"></div>
+                                </div>
+                                <div class="card-top">
+                                    <div class="card-num">1</div>
+                                    <span class="card-status">Đã hoàn thành</span>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Máy tính và thiết bị ngoại vi</h3>
+                                    <p class="card-desc">Thiết lập nền tảng, tổ chức sơ đồ cây lưu trữ thư mục khoa học và định hình quy tắc đặt tên tệp tối ưu.</p>
+                                </div>
+                                <div class="card-btn-group">
+                                    <button class="card-action" onclick="openModal(1)">Chi tiết</button>
+                                    <a href="https://drive.google.com/file/d/1hg7ES0Lz_4SFlyO84o5T3WCLY7QwcJ8y/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Card 2 -->
-                        <div class="gallery-card">
-                            <div class="card-top">
-                                <div class="card-num">2</div>
-                                <span class="card-status">Đã hoàn thành</span>
-                            </div>
-                            <div>
-                                <h3 class="card-title">Khai thác dữ liệu và thông tin</h3>
-                                <p class="card-desc">Kỹ thuật truy vấn thông tin học thuật nâng cao kết hợp mô hình kiểm định nguồn CRAAP uy tín.</p>
-                            </div>
-                            <div class="card-btn-group">
-                                <button class="card-action" onclick="openModal(2)">Chi tiết</button>
-                                <a href="https://drive.google.com/file/d/1YrH7FMfryK2P2yKjfNdQSdmcX70VK5mb/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                        <div class="biolum-float-wrapper biolum-float-2">
+                            <div class="gallery-card biolum-breath-2">
+                                <div class="biolum-bubbles">
+                                    <div class="biolum-bubble" style="left: 12%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 1s; --bubble-drift: 8px;"></div>
+                                    <div class="biolum-bubble" style="left: 78%; width: 5px; height: 5px; animation-duration: 8s; animation-delay: -3s; --bubble-drift: -15px;"></div>
+                                </div>
+                                <div class="card-top">
+                                    <div class="card-num">2</div>
+                                    <span class="card-status">Đã hoàn thành</span>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Khai thác dữ liệu và thông tin</h3>
+                                    <p class="card-desc">Kỹ thuật truy vấn thông tin học thuật nâng cao kết hợp mô hình kiểm định nguồn CRAAP uy tín.</p>
+                                </div>
+                                <div class="card-btn-group">
+                                    <button class="card-action" onclick="openModal(2)">Chi tiết</button>
+                                    <a href="https://drive.google.com/file/d/1YrH7FMfryK2P2yKjfNdQSdmcX70VK5mb/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Card 3 -->
-                        <div class="gallery-card">
-                            <div class="card-top">
-                                <div class="card-num">3</div>
-                                <span class="card-status">Đã hoàn thành</span>
-                            </div>
-                            <div>
-                                <h3 class="card-title">Tổng quan về trí tuệ nhân tạo</h3>
-                                <p class="card-desc">Xây dựng giải pháp kỹ nghệ Prompt Engineering (vai trò, bối cảnh) cải thiện kết quả ngôn ngữ học máy.</p>
-                            </div>
-                            <div class="card-btn-group">
-                                <button class="card-action" onclick="openModal(3)">Chi tiết</button>
-                                <a href="https://drive.google.com/file/d/19940-k2CX1aoSr7I8i1n9CBgAGFj4LrZ/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                        <div class="biolum-float-wrapper biolum-float-3">
+                            <div class="gallery-card biolum-breath-3">
+                                <div class="biolum-bubbles">
+                                    <div class="biolum-bubble" style="left: 15%; width: 5px; height: 5px; animation-duration: 11s; animation-delay: 0s; --bubble-drift: 12px;"></div>
+                                    <div class="biolum-bubble" style="left: 85%; width: 4px; height: 4px; animation-duration: 9s; animation-delay: -2s; --bubble-drift: -8px;"></div>
+                                </div>
+                                <div class="card-top">
+                                    <div class="card-num">3</div>
+                                    <span class="card-status">Đã hoàn thành</span>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Tổng quan về trí tuệ nhân tạo</h3>
+                                    <p class="card-desc">Xây dựng giải pháp kỹ nghệ Prompt Engineering (vai trò, bối cảnh) cải thiện kết quả ngôn ngữ học máy.</p>
+                                </div>
+                                <div class="card-btn-group">
+                                    <button class="card-action" onclick="openModal(3)">Chi tiết</button>
+                                    <a href="https://drive.google.com/file/d/19940-k2CX1aoSr7I8i1n9CBgAGFj4LrZ/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Card 4 -->
-                        <div class="gallery-card">
-                            <div class="card-top">
-                                <div class="card-num">4</div>
-                                <span class="card-status">Đã hoàn thành</span>
-                            </div>
-                            <div>
-                                <h3 class="card-title">Giao tiếp và hợp tác trong môi trường số</h3>
-                                <p class="card-desc">Ứng dụng công cụ kỹ thuật số trong thiết lập mục tiêu, phân phối đầu việc và theo dõi hiệu năng nhóm.</p>
-                            </div>
-                            <div class="card-btn-group">
-                                <button class="card-action" onclick="openModal(4)">Chi tiết</button>
-                                <a href="https://drive.google.com/file/d/1fXwbZSF18DPDm5VFjsDMSqi4tD800wlU/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                        <div class="biolum-float-wrapper biolum-float-4">
+                            <div class="gallery-card biolum-breath-1">
+                                <div class="biolum-bubbles">
+                                    <div class="biolum-bubble" style="left: 10%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: 0s; --bubble-drift: 15px;"></div>
+                                    <div class="biolum-bubble" style="left: 60%; width: 4px; height: 4px; animation-duration: 12s; animation-delay: -2s; --bubble-drift: -10px;"></div>
+                                    <div class="biolum-bubble" style="left: 85%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: 3s; --bubble-drift: 12px;"></div>
+                                </div>
+                                <div class="card-top">
+                                    <div class="card-num">4</div>
+                                    <span class="card-status">Đã hoàn thành</span>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Giao tiếp và hợp tác trong môi trường số</h3>
+                                    <p class="card-desc">Ứng dụng công cụ kỹ thuật số trong thiết lập mục tiêu, phân phối đầu việc và theo dõi hiệu năng nhóm.</p>
+                                </div>
+                                <div class="card-btn-group">
+                                    <button class="card-action" onclick="openModal(4)">Chi tiết</button>
+                                    <a href="https://drive.google.com/file/d/1fXwbZSF18DPDm5VFjsDMSqi4tD800wlU/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Card 5 -->
-                        <div class="gallery-card">
-                            <div class="card-top">
-                                <div class="card-num">5</div>
-                                <span class="card-status">Đã hoàn thành</span>
-                            </div>
-                            <div>
-                                <h3 class="card-title">Sáng tạo nội dung với AI sinh nghệ thuật</h3>
-                                <p class="card-desc">Thực thi quy trình thiết kế mỹ thuật ứng dụng, tinh chỉnh thẩm mỹ bằng công nghệ GenAI hiện đại.</p>
-                            </div>
-                            <div class="card-btn-group">
-                                <button class="card-action" onclick="openModal(5)">Chi tiết</button>
-                                <a href="https://drive.google.com/file/d/1j41mbKOmIQtgBWsmy57JvNxidVKx_7hE/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                        <div class="biolum-float-wrapper biolum-float-1">
+                            <div class="gallery-card biolum-breath-2">
+                                <div class="biolum-bubbles">
+                                    <div class="biolum-bubble" style="left: 12%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 1s; --bubble-drift: 8px;"></div>
+                                    <div class="biolum-bubble" style="left: 78%; width: 5px; height: 5px; animation-duration: 8s; animation-delay: -3s; --bubble-drift: -15px;"></div>
+                                </div>
+                                <div class="card-top">
+                                    <div class="card-num">5</div>
+                                    <span class="card-status">Đã hoàn thành</span>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Sáng tạo nội dung với AI sinh nghệ thuật</h3>
+                                    <p class="card-desc">Thực thi quy trình thiết kế mỹ thuật ứng dụng, tinh chỉnh thẩm mỹ bằng công nghệ GenAI hiện đại.</p>
+                                </div>
+                                <div class="card-btn-group">
+                                    <button class="card-action" onclick="openModal(5)">Chi tiết</button>
+                                    <a href="https://drive.google.com/file/d/1j41mbKOmIQtgBWsmy57JvNxidVKx_7hE/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Card 6 -->
-                        <div class="gallery-card">
-                            <div class="card-top">
-                                <div class="card-num">6</div>
-                                <span class="card-status">Đã hoàn thành</span>
-                            </div>
-                            <div>
-                                <h3 class="card-title">An toàn và liêm chính học thuật</h3>
-                                <p class="card-desc">Hệ thống nguyên tắc đạo đức và tư duy phản biện, phòng ngừa thiên kiến học máy trong nghiên cứu khoa học.</p>
-                            </div>
-                            <div class="card-btn-group">
-                                <button class="card-action" onclick="openModal(6)">Chi tiết</button>
-                                <a href="https://drive.google.com/file/d/18HhMDGGIiZ6cOkcLndAln6fuxNsljypb/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                        <div class="biolum-float-wrapper biolum-float-2">
+                            <div class="gallery-card biolum-breath-3">
+                                <div class="biolum-bubbles">
+                                    <div class="biolum-bubble" style="left: 15%; width: 5px; height: 5px; animation-duration: 11s; animation-delay: 0s; --bubble-drift: 12px;"></div>
+                                    <div class="biolum-bubble" style="left: 85%; width: 4px; height: 4px; animation-duration: 9s; animation-delay: -2s; --bubble-drift: -8px;"></div>
+                                </div>
+                                <div class="card-top">
+                                    <div class="card-num">6</div>
+                                    <span class="card-status">Đã hoàn thành</span>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">An toàn và liêm chính học thuật</h3>
+                                    <p class="card-desc">Hệ thống nguyên tắc đạo đức và tư duy phản biện, phòng ngừa thiên kiến học máy trong nghiên cứu khoa học.</p>
+                                </div>
+                                <div class="card-btn-group">
+                                    <button class="card-action" onclick="openModal(6)">Chi tiết</button>
+                                    <a href="https://drive.google.com/file/d/18HhMDGGIiZ6cOkcLndAln6fuxNsljypb/view?usp=drive_link" target="_blank" class="card-action-link">📁</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2000,7 +2013,7 @@
             
             if (navLinksList) {
                 navLinksList.addEventListener('mouseleave', () => {
-                    updateNavIndicator(); // Khôi phục về lại tab đang Active khi chuột rời khỏi Navbar
+                    updateNavIndicator(); // Khói phục về lại tab đang Active khi chuột rời khỏi Navbar
                 });
             }
 
@@ -2051,16 +2064,6 @@
             
             if (leftPaneElement && dynamicIsland) leftPaneElement.addEventListener('scroll', handleScroll);
             if (rightPaneElement && dynamicIsland) rightPaneElement.addEventListener('scroll', handleScroll);
-        });
-
-        // Dynamic z-index handling for the fanned portrait cards
-        document.querySelectorAll('.fan-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.zIndex = '10'; // Đưa ảnh đang được hover lên vị trí cao nhất ngay lập tức
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.zIndex = ''; // Trả về cấu trúc sắp xếp tĩnh ban đầu sau khi chuột rời đi
-            });
         });
 
         // Determine current logical page view state (0, 1, or 2)
@@ -2395,7 +2398,7 @@
 
         // 3D Apple-Style Tilt Card with Parallax & Fluffy Magnetic Buttons
         // Đồng bộ hoàn chỉnh hiệu ứng cho cả Bài tập (Gallery Cards), Widgets tổng kết (conclusion-widget) và Profile Giới thiệu (widget-card)
-        document.querySelectorAll('.gallery-card, .conclusion-widget, .widget-card').forEach(card => {
+        document.querySelectorAll('.gallery-card, .conclusion-widget, .widget-card, .clickable-stat-box').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left; // Tọa độ X tương đối
@@ -2412,9 +2415,9 @@
                 const shadowX = -rotateY * 1.5;
                 const shadowY = rotateX * 1.5;
                 
-                // Áp dụng góc nghiêng 3D, tỉ lệ scale nhẹ (1.04) đồng bộ cùng Sibling Focus-Scale
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04, 1.04, 1.04)`;
-                card.style.boxShadow = `${shadowX}px ${shadowY}px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(192, 132, 252, 0.22)`;
+                // Áp dụng góc nghiêng 3D, tỉ lệ scale nhẹ (1.04) kết hợp tịnh tiến nổi lên phía trước
+                card.style.transform = `perspective(1000px) translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04, 1.04, 1.04)`;
+                card.style.boxShadow = `${shadowX}px ${shadowY}px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(192, 132, 252, 0.45), 0 0 50px rgba(34, 211, 238, 0.3)`;
                 
                 // Hiệu ứng Parallax cho các thành phần nội dung bên trong
                 const cardNum = card.querySelector('.card-num, .reflection-icon');
@@ -2563,13 +2566,11 @@
 
         // Sinh phần tử phân tán rộng xung quanh con trỏ khi rê chuột
         window.addEventListener('mousemove', (e) => {
-            // Tỷ lệ sinh sản (0.3 = 30%). Bạn có thể giảm xuống 0.15 hoặc 0.1 để sinh ít hơn nữa.
             if (Math.random() < 0.9) { 
                 const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
                 const color = elementColors[Math.floor(Math.random() * elementColors.length)];
 
                 // ĐỘ PHÂN TÁN (SCATTER DISTANCE):
-                // Tăng số này (ví dụ: 60) để vùng xuất hiện rộng hơn, giảm xuống (ví dụ: 20) để gom sát lại.
                 const scatterDistance = 50; 
                 
                 const angle = Math.random() * Math.PI * 2;
@@ -2925,7 +2926,7 @@
                         <tbody>
                             <tr>
                                 <td><strong>Quá tải luồng tin nhắn trên Discord</strong></td>
-                                <td>Thành lập riêng một kệnh văn bản đặt tên là <code>#announcements-only</code> khóa tính năng chat thường. Chỉ ghim các quyết định cuối cùng kèm tag @everyone bắt buộc thả emoji xác nhận đã đọc.</td>
+                                <td>Thành lập riêng một kênh văn bản đặt tên là <code>#announcements-only</code> khóa tính năng chat thường. Chỉ ghim các quyết định cuối cùng kèm tag @everyone bắt buộc thả emoji xác nhận đã đọc.</td>
                             </tr>
                             <tr>
                                 <td><strong>Xung đột định dạng trên Google Docs</strong></td>
@@ -3064,256 +3065,4 @@
                     },
                     advanced: {
                         prompt: "Bạn là một giảng viên ngữ pháp tiếng Anh kỳ cựu. Hãy giải thích khái niệm ’Syntactic Ambiguity’ cho sinh viên năm nhất theo 2 cấp độ: (1) Định nghĩa bình dân kèm ví dụ hài hước; (2) Phân tích sơ đồ cây cú pháp sâu sắc. Hãy học theo cách giải thích mẫu sau: [Ví dụ mẫu về Lexical Ambiguity: ’Bank’ có thể là bờ sông hoặc ngân hàng]. Hãy thực hiện tương tự cho Syntactic Ambiguity.",
-                        response: "• CẤP ĐỘ 1 (BÌNH DÂN): Chào các tân sinh viên! Hãy tưởng tượng câu: 'Visiting relatives can be boring'. Việc đi thăm họ hàng chán, hay những người họ hàng đến thăm ta chán? Ngữ pháp chơi khăm chúng ta đấy!\n• CẤP ĐỘ 2 (SƠ ĐỒ CÂY CÚ PHÁP): Để giải quyết hiện tượng mơ hồ này, chúng ta cần vẽ sơ đồ phân rã cụm danh từ (NP) và cụm động từ (VP). Ví dụ trong câu 'I saw the man with the telescope', giới từ 'with' có thể gắn trực tiếp vào VP (hành động nhìn) hoặc gắn vào NP (nguyên nhân là người đàn ông có kính viễn vọng)."
-                    }
-                },
-                3: {
-                    name: "Tác vụ 3: Tạo bộ câu hỏi ôn tập học phần Văn hóa Anh - Mỹ",
-                    basic: {
-                        prompt: "Tạo cho tôi bài tập trắc nghiệm về văn hóa nước Anh.",
-                        response: "Câu 1: Thủ đô nước Anh là gì? A. London, B. Paris, C. New York. Đáp án đúng: A."
-                    },
-                    improved: {
-                        prompt: "Tạo bộ 5 câu hỏi trắc nghiệm kèm đáp án về chủ đề Hệ thống giáo dục Vương quốc Anh dành cho sinh viên đại học ngoại ngữ.",
-                        response: "Câu 1: Kỳ thi chuẩn quốc gia ở độ tuổi 16 tại Anh được gọi và gì? A. GCSE, B. A-Level, C. SAT. Đáp án đúng: A.\n(Hệ thống tự động hiển thị 5 câu hỏi chuẩn học thuật ngoại ngữ)."
-                    },
-                    advanced: {
-                        prompt: "Bạn là chuyên gia khảo thí và kiểm định giáo dục. Dựa trên tài liệu văn hóa Anh đính kèm, hãy tạo một bộ đề ôn tập gồm: 3 câu hỏi trắc nghiệm ở cấp độ ’Hiểu’ (Comprehension) và 2 câu hỏi tự luận ở cấp độ ’Phân tích phản biện’ (Critical Analysis). Đối với mỗi câu trắc nghiệm, cung cấp 4 đáp án gây nhiễu chất lượng và giải thích chi tiết lý do chọn đáp án đúng theo chuẩn tài liệu.",
-                        response: "• PHẦN TRẮC NGHIỆM (HIỂU):\nCâu 1: Sự phân cấp giữa 'State school' và 'Public school' phản ánh yếu tố nào trong xã hội Anh?\nA. Sự phân tầng giai cấp (Đáp án đúng)\nB. Sự khác biệt địa lý\nC. Quy mô phòng học\nD. Chính sách tài khóa công\nGiải thích: 'Public school' tại Anh thực chất là trường tư thục ưu tú, phản ánh ranh giới giai cấp sâu sắc.\n\n• PHẦN TỰ LUẬN (PHẢN BIỆN):\nCâu 4: Hãy phân tích ưu và nhược điểm của hệ thống kiểm thí quốc gia GCSE đối với cơ hội phát triển công bằng của học sinh nhập cư."
-                    }
-                }
-            },
-            4: {
-                todo: "Nhiệm vụ: Nghiên cứu tài liệu kỹ năng Đọc - Viết ULIS (Người phụ trách: Thảo)",
-                progress: "Nhiệm vụ: Xây dựng bộ câu hỏi khảo sát sinh viên K58 (Người phụ trách: Nam)",
-                done: "Nhiệm vụ: Tổng hợp kết quả dự án cẩm nang (Người phụ trách: Linh)"
-            },
-            5: {
-                1: "• Giai đoạn 1 (ChatGPT): Sử dụng Prompt phân cấp 3 lượt để định hình nội dung, bản địa hóa đoạn hội thoại nộp bài muộn chuẩn văn phong lịch sự, tinh tế của giảng đường ULIS.",
-                2: "• Giai đoạn 2 (Canva AI): Đưa văn bản vào mẫu infographic Edtech màu xanh dương, chuẩn hóa định dạng văn phạm APA và sinh các icon line-art cuốn sách, cây bút đồng bộ.",
-                3: "• Giai đoạn 3 (DALL-E 3): Ứng dụng Prompt mô tả nâng cao tích hợp logo ULIS sinh ra tranh biểu diện sinh viên học tập vui vẻ trong thư viện đại học ảo vô cùng hài hòa (Sản phẩm xuất bản b5.jpg)."
-            },
-            6: {
-                1: "<strong>1. Tư duy độc lập:</strong> Luôn chủ động tự suy nghĩ và tự thiết lập dàn ý bài luận sư phạm thô trước khi mở bất kỳ công cụ AI nào để không bị thiên kiến công nghệ dẫn dắt.",
-                2: "<strong>2. Minh bạch tuyệt đối:</strong> Công khai trung thực mức độ can thiệp và hỗ trợ của AI trong mọi sản phẩm nộp cho nhà trường thông qua tờ tuyên bố sử dụng AI Disclosure.",
-                3: "<strong>3. Màng lọc phản biện:</strong> Coi mọi dữ liệu AI trả về là nguồn tin có nguy cơ ảo tưởng cao. Luôn chủ động đối chiếu, kiểm chứng chéo với các tài liệu sách giáo khoa, thư viện chính thống.",
-                4: "<strong>4. Bảo mật dữ liệu:</strong> Tuyệt đối không đăng tải thông tin cá nhân của bản thân, thông tin học sinh, tài liệu nội bộ nhà trường hoặc bài làm của bạn bè lên mô hình AI công cộng.",
-                5: "<strong>5. Làm chủ ngôn ngữ:</strong> Giữ vững bản sắc cá nhân (authorial voice). AI chỉ được sửa lỗi ngữ pháp, không được phép thay thế giọng văn biểu đạt cảm xúc sư phạm của chính mình.",
-                6: "<strong>6. Phát triển bền vững:</strong> Chỉ sử dụng AI với mục đích nâng cao hiệu suất học tập, tuyệt đối không dùng AI để đối phó với các kỳ thi hoặc bài đánh giá năng lực cốt lõi."
-            }
-        };
-
-        // Render Widget Content dynamically
-        function initInteractiveWidget(id) {
-            if (id === 1) {
-                toggleFileExplorer('root');
-            } else if (id === 2) {
-                filterPapers('all');
-            } else if (id === 3) {
-                currentPromptTask = 1;
-                currentPromptLevel = 'basic';
-                renderPromptSimulator();
-            } else if (id === 4) {
-                currentKanbanIndex = 1;
-                renderKanbanBoard();
-            } else if (id === 5) {
-                selectDesignTimeline(1);
-            } else if (id === 6) {
-                selectEthicalRule(1);
-            }
-        }
-
-        // Widget 1: File Explorer Controller
-        function toggleFileExplorer(dir) {
-            const display = document.getElementById('file-list-display');
-            const btnRoot = document.getElementById('btn-root-dir');
-            const btnChild = document.getElementById('btn-child-dir');
-
-            if (dir === 'root') {
-                btnRoot.classList.add('active');
-                btnChild.classList.remove('active');
-                display.innerHTML = widgetContents[1].root;
-            } else {
-                btnRoot.classList.remove('active');
-                btnChild.classList.add('active');
-                display.innerHTML = widgetContents[1].child;
-            }
-        }
-
-        // Widget 2: Paper Filter Controller
-        function filterPapers(category) {
-            const body = document.getElementById('papers-table-body');
-            const btnAll = document.getElementById('filter-all');
-            const btnArt = document.getElementById('filter-articles');
-            const btnBook = document.getElementById('filter-books');
-            const btnRep = document.getElementById('filter-reports');
-
-            // Reset buttons
-            [btnAll, btnArt, btnBook, btnRep].forEach(btn => btn.classList.remove('active'));
-
-            if (category === 'all') btnAll.classList.add('active');
-            else if (category === 'article') btnArt.classList.add('active');
-            else if (category === 'book') btnBook.classList.add('active');
-            else if (category === 'report') btnRep.classList.add('active');
-
-            let filtered = widgetContents[2];
-            if (category !== 'all') {
-                filtered = widgetContents[2].filter(p => p.type === category);
-            }
-
-            body.innerHTML = filtered.map((p, idx) => `
-                <tr>
-                    <td>${idx + 1}</td>
-                    <td>${p.title}</td>
-                    <td style="text-transform: capitalize;">${p.type === 'article' ? 'Bài báo' : p.type === 'book' ? 'Sách' : 'Báo cáo'}</td>
-                    <td>${p.desc}</td>
-                    <td style="color: var(--accent-purple); font-weight: bold;">${p.rank}</td>
-                </tr>
-            `).join('');
-        }
-
-        // Widget 3: Prompt Simulator Controller
-        function selectPromptTask(taskIdx) {
-            currentPromptTask = taskIdx;
-            // Update active buttons
-            for (let i = 1; i <= 3; i++) {
-                document.getElementById('p-task-' + i).classList.remove('active');
-            }
-            document.getElementById('p-task-' + taskIdx).classList.add('active');
-            renderPromptSimulator();
-        }
-
-        function selectPromptLevel(level) {
-            currentPromptLevel = level;
-            // Update active buttons
-            ['basic', 'improved', 'advanced'].forEach(lvl => {
-                document.getElementById('p-level-' + lvl).classList.remove('active');
-            });
-            document.getElementById('p-level-' + level).classList.add('active');
-            renderPromptSimulator();
-        }
-
-        function renderPromptSimulator() {
-            const promptBox = document.getElementById('prompt-sender-box');
-            const responseBox = document.getElementById('prompt-receiver-box');
-            const data = widgetContents[3][currentPromptTask][currentPromptLevel];
-
-            promptBox.textContent = data.prompt;
-            responseBox.textContent = "";
-
-            // Simple typewriting emulation effect
-            let i = 0;
-            const text = data.response;
-            function typeWriter() {
-                if (i < text.length) {
-                    responseBox.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 4);
-                }
-            }
-            typeWriter();
-        }
-
-        // Widget 4: Kanban Board Controller
-        function moveKanbanTask(direction) {
-            if (direction === 'next' && currentKanbanIndex < 3) currentKanbanIndex++;
-            else if (direction === 'prev' && currentKanbanIndex > 1) currentKanbanIndex--;
-            renderKanbanBoard();
-        }
-
-        function renderKanbanBoard() {
-            const colTodo = document.getElementById('kanban-col-todo');
-            const colProgress = document.getElementById('kanban-col-progress');
-            const colDone = document.getElementById('kanban-col-done');
-
-            // Clear existing tasks
-            const titleTodo = ` <strong style="color: #ef4444; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">📋 CẦN LÀM (TO DO)</strong> `;
-            const titleProgress = ` <strong style="color: #3b82f6; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">⏳ ĐANG LÀM (IN PROGRESS)</strong> `;
-            const titleDone = ` <strong style="color: #10b981; font-size: 0.85rem; display: block; margin-bottom: 0.8rem;">✅ HOÀN TẤT (DONE)</strong> `;
-
-            colTodo.innerHTML = titleTodo;
-            colProgress.innerHTML = titleProgress;
-            colDone.innerHTML = titleDone;
-
-            const cardHTML = `
-                <div class="modal-kanban-card">
-                    <strong>${widgetContents[4].todo}</strong>
-                </div>
-                <div class="modal-kanban-card">
-                    <strong>${widgetContents[4].progress}</strong>
-                </div>
-                <div class="modal-kanban-card">
-                    <strong>${widgetContents[4].done}</strong>
-                </div>
-            `;
-
-            if (currentKanbanIndex === 1) colTodo.innerHTML += cardHTML;
-            else if (currentKanbanIndex === 2) colProgress.innerHTML += cardHTML;
-            else if (currentKanbanIndex === 3) colDone.innerHTML += cardHTML;
-        }
-
-        // Widget 5: Timeline Controller
-        function selectDesignTimeline(step) {
-            currentDesignTimelineStep = step;
-            for (let i = 1; i <= 3; i++) {
-                document.getElementById('btn-timeline-' + i).classList.remove('active');
-            }
-            document.getElementById('btn-timeline-' + step).classList.add('active');
-
-            const desc = document.getElementById('design-timeline-description');
-            desc.textContent = widgetContents[5][step];
-        }
-
-        // Widget 6: Ethical Radar Controller
-        function selectEthicalRule(idx) {
-            currentEthicalRuleIndex = idx;
-            for (let i = 1; i <= 6; i++) {
-                document.getElementById('btn-rule-' + i).classList.remove('active');
-            }
-            document.getElementById('btn-rule-' + idx).classList.add('active');
-
-            const display = document.getElementById('ethical-rule-display');
-            display.innerHTML = widgetContents[6][idx];
-        }
-
-        // Modal triggers (with dynamically adjusted responsive width)
-        function openModal(id) {
-            const overlay = document.getElementById('modalOverlay');
-            const content = document.getElementById('modalContent');
-            const modalWindow = document.querySelector('.modal-window');
-
-            // Inject content
-            content.innerHTML = modalData[id];
-
-            // Adjust width for Bài 2 and Bài 4 to display table nicely
-            if (id === 2 || id === 4) {
-                modalWindow.style.maxWidth = '1150px';
-            } else {
-                modalWindow.style.maxWidth = '850px';
-            }
-
-            // Activate modal view
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Lock background scrolling
-
-            // Initialize interactive widgets for the opened modal
-            initInteractiveWidget(id);
-        }
-
-        function closeModal() {
-            const overlay = document.getElementById('modalOverlay');
-            overlay.classList.remove('active');
-            document.body.style.overflow = ''; // Unlock scrolling
-        }
-
-        function closeModalOnOuterClick(event) {
-            const modalWindow = document.querySelector('.modal-window');
-            if (!modalWindow.contains(event.target)) {
-                closeModal();
-            }
-        }
-    </script>
-</body>
-</html>
-
-
+                        response: "• CẤP ĐỘ 1 (BÌNH DÂN): Chào các tân sinh viên! Hãy tưởng tượng câu: 'Visiting relatives can be boring'. Việc đi thăm họ hàng chán, hay những người họ hàng đến thăm ta chán? Ngữ pháp chơi khăm chúng ta đấy!\n• CẤ
