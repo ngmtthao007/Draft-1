@@ -1,4 +1,4 @@
-Toàn bộ mã nguồn HTML hoàn chỉnh:
+
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -20,7 +20,7 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             --accent-purple: #c084fc; /* Sắc tím oải hương phát sáng nhẹ */
             --accent-soft: rgba(192, 132, 252, 0.15);
             --accent-warm: rgba(255, 255, 255, 0.05);
-            --glass-bg: rgba(15, 23, 42, 0.45); /* Khung kính mờ tối sang trọng */
+            --glass-bg: rgba(10, 15, 30, 0.35); /* ĐÃ ĐIỀU CHỈNH: Hạ nhẹ độ mờ kính giúp gợn sóng ẩn hiện tinh tế */
             --glass-border: rgba(255, 255, 255, 0.08);
             --transition-gentle: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -74,7 +74,7 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             pointer-events: none;
             background-color: var(--bg-canvas); /* Màu tối dự phòng ở đây để làm nền lót cho video */
             
-            /* ĐÃ SỬA: Áp dụng hiệu ứng bộ lọc khúc xạ lên khung container và tạo layer GPU riêng biệt */
+            /* Áp dụng hiệu ứng bộ lọc khúc xạ lên khung container và tạo layer GPU riêng biệt */
             filter: saturate(0.9) url(#water-distortion-filter);
             will-change: transform, filter;
             transform: translateZ(0); 
@@ -718,7 +718,7 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
 
         /* Enlarged and Spaced Out Profile Widget Cards */
         .widget-card {
-            background: rgba(15, 23, 42, 0.65);
+            background: rgba(10, 15, 30, 0.45); /* ĐÃ ĐIỀU CHỈNH: Giảm nhẹ sắc mờ giúp dải gợn sóng nổi hình khối */
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(24px); /* Tăng độ mờ viền kính cho thẻ thêm sắc nét */
             border-radius: 20px; /* Bo góc tròn lớn hơn hiện đại */
@@ -729,10 +729,11 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             gap: 0.25rem; /* Tăng khoảng cách giữa nhãn và giá trị */
             cursor: pointer;
             position: relative;
+            z-index: 1; /* Thiết lập mức mặc định để dải gợn sóng lan tỏa mượt */
             overflow: hidden;
             transform-style: preserve-3d;
             /* Phản hồi mượt mà khi di chuột ra khỏi thẻ */
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
                         box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
                         opacity 0.45s ease;
@@ -825,16 +826,16 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
         }
 
        .section-title-large {
-    font-family: 'Lexend', sans-serif; /* Đã chuyển đổi sang phông Lexend */
-    font-size: 4.8rem;
-    font-weight: 800; /* Thiết lập độ đậm tối ưu cho phông Lexend */
-    line-height: 1.1;
-    color: var(--text-primary);
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.85), 
-                 0 0 30px rgba(192, 132, 252, 0.7), 
-                 0 0 50px rgba(34, 211, 238, 0.45);
-}
+            font-family: 'Lexend', sans-serif; /* Đã chuyển đổi sang phông Lexend */
+            font-size: 4.8rem;
+            font-weight: 800; /* Thiết lập độ đậm tối ưu cho phông Lexend */
+            line-height: 1.1;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.85), 
+                         0 0 30px rgba(192, 132, 252, 0.7), 
+                         0 0 50px rgba(34, 211, 238, 0.45);
+        }
 
         /* Custom Glassmorphic Google Drive Button - Harmonized to glow with the design */
         .btn-drive-glass {
@@ -903,11 +904,12 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             flex-direction: column;
             justify-content: space-between;
             min-height: 320px;
-            position: relative; /* Chứa hiệu ứng vệt sáng tuyệt đối */
+            position: relative; 
+            z-index: 1; /* Thiết lập mức mặc định để dải gợn sóng lan tỏa mượt */
             overflow: hidden; /* Ngăn chặn vệt sáng tràn ra ngoài thẻ */
             transform-style: preserve-3d; /* Cho phép các thành phần bên trong hiển thị hiệu ứng Parallax 3D thực thụ */
             /* Phản hồi mượt mà khi di chuột ra khỏi thẻ */
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
                         box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
                         opacity 0.45s ease;
@@ -1344,8 +1346,9 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
         .clickable-stat-box {
             cursor: pointer;
             position: relative;
+            z-index: 1; /* Thiết lập mức mặc định để dải gợn sóng lan tỏa mượt */
             /* Đàn hồi lò xo mượt kiểu Apple khi chuột rời đi */
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         border-color 0.4s ease, 
                         background 0.4s ease, 
                         box-shadow 0.4s ease,
@@ -1487,13 +1490,15 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
         }
 
         .conclusion-widget {
-            background: rgba(15, 23, 42, 0.65);
+            background: rgba(10, 15, 30, 0.45); /* ĐÃ ĐIỀU CHỈNH: Giảm nhẹ sắc mờ giúp dải gợn sóng nổi hình khối */
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border-radius: 20px;
             padding: 1.4rem 1.8rem;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+            position: relative;
+            z-index: 1; /* Thiết lập mức mặc định để dải gợn sóng lan tỏa mượt */
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
                         box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
                         opacity 0.45s ease;
@@ -1503,7 +1508,6 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             display: flex;
             flex-direction: column;
             gap: 0.25rem;
-            position: relative;
             transform-style: preserve-3d; /* Hỗ trợ Parallax 3D cho các lớp con bên trong */
         }
 
@@ -1562,19 +1566,6 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
             opacity: 1;
         }
 
-        /* Thiết lập chữ in hoa và độ phát sáng mặc định nhẹ màu TRẮNG trùng màu chữ khi tĩnh */
-        .conclusion-widget .widget-value {
-            font-family: 'Lexend', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-transform: uppercase; /* Chuyển chữ in hoa */
-            transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            letter-spacing: 1px;
-            /* Phát sáng nhẹ màu trắng đồng bộ sắc độ chữ */
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.45), 0 0 16px rgba(255, 255, 255, 0.2); 
-        }
-
         /* Khi di chuột vào: Đổi sang màu tím oải hương và hiệu ứng phát sáng mạnh lên */
         .conclusion-widget:hover .widget-value {
             color: var(--accent-purple); /* Chuyển sắc chữ sang tím */
@@ -1586,14 +1577,16 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
 
         /* =====================================================================
            Bioluminescent Gentle Drifting Keyframes (Floating System Only)
-           - Vertical displacement: ±12-16px (ĐÃ TĂNG: hoạt ảnh lơ lửng rõ ràng hơn)
-           - Horizontal displacement: ±6-8px (ĐÃ TĂNG: hoạt ảnh lơ lửng rõ ràng hơn)
-           - Slight Rotation angle: ±1.5° (ĐÃ TĂNG: hoạt ảnh lơ lửng rõ ràng hơn)
-           - Scale dynamic breathing: 0.985 - 1.02 (ĐÃ THÊM: hoạt ảnh co giãn/nở ra co vào)
-           - Border opacity fluctuation: 8% - 22% (chênh lệch ~14%)
+           - Vertical displacement: ±12-16px
+           - Horizontal displacement: ±6-8px
+           - Slight Rotation angle: ±1.5°
+           - Scale dynamic breathing: 0.985 - 1.02
+           - Border opacity fluctuation: 8% - 22%
            - Glass blur fluctuation: 18px - 24px
            - Glowing color shift: Tím Lavender và xanh Cyan biển sâu thay đổi tinh tế
            - Multi-phase asynchronous rate cycles: 10s - 16s
+           - ĐÃ NÂNG CẤP: Thêm dải gợn sóng đồng tâm (concentric shadows) phát tán nhẹ,
+             tạo cảm giác sóng nước tỏa ra mềm mại mà không bị cấu trúc thẻ cắt xén.
            ===================================================================== */
         @keyframes drift-phase-1 {
             0%, 100% { 
@@ -1601,14 +1594,22 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
                 border-color: rgba(192, 132, 252, 0.08); /* 8% border opacity */
                 backdrop-filter: blur(18px);
                 -webkit-backdrop-filter: blur(18px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 12px rgba(192, 132, 252, 0.12); /* Sắc tím Lavender nhẹ */
+                /* Gợn sóng đồng tâm ở trạng thái tĩnh */
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                            0 0 0 0px rgba(192, 132, 252, 0.25),
+                            0 0 0 6px rgba(192, 132, 252, 0.12),
+                            0 0 0 12px rgba(192, 132, 252, 0.05); 
             }
             50% { 
                 transform: translateY(-16px) translateX(8px) rotate(1.5deg) scale(1.02); 
                 border-color: rgba(34, 211, 238, 0.22); /* 22% border opacity (dao động ~14%) */
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
-                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 0 0 28px rgba(34, 211, 238, 0.35), 0 0 10px rgba(192, 132, 252, 0.15); /* Sắc xanh Cyan rực hơn kết hợp Tím */
+                /* Dải gợn sóng mở rộng dãn biên ra ngoài rìa mượt mà */
+                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 
+                            0 0 0 12px rgba(34, 211, 238, 0),
+                            0 0 0 24px rgba(192, 132, 252, 0),
+                            0 0 0 36px rgba(34, 211, 238, 0); 
             }
         }
 
@@ -1618,14 +1619,20 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
                 border-color: rgba(34, 211, 238, 0.08); 
                 backdrop-filter: blur(24px);
                 -webkit-backdrop-filter: blur(24px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 12px rgba(34, 211, 238, 0.12);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                            0 0 0 0px rgba(34, 211, 238, 0.25),
+                            0 0 0 6px rgba(34, 211, 238, 0.12),
+                            0 0 0 12px rgba(34, 211, 238, 0.05);
             }
             50% { 
                 transform: translateY(15px) translateX(-7px) rotate(-1.4deg) scale(0.985); 
                 border-color: rgba(192, 132, 252, 0.22); 
                 backdrop-filter: blur(18px);
                 -webkit-backdrop-filter: blur(18px);
-                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 0 0 28px rgba(192, 132, 252, 0.35), 0 0 10px rgba(34, 211, 238, 0.15);
+                box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45), 
+                            0 0 0 12px rgba(192, 132, 252, 0),
+                            0 0 0 24px rgba(34, 211, 238, 0),
+                            0 0 0 36px rgba(192, 132, 252, 0);
             }
         }
 
@@ -1635,14 +1642,20 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
                 border-color: rgba(192, 132, 252, 0.09); 
                 backdrop-filter: blur(19px);
                 -webkit-backdrop-filter: blur(19px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 14px rgba(192, 132, 252, 0.1);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                            0 0 0 0px rgba(192, 132, 252, 0.25),
+                            0 0 0 6px rgba(192, 132, 252, 0.12),
+                            0 0 0 12px rgba(192, 132, 252, 0.05);
             }
             50% { 
                 transform: translateY(-15px) translateX(-8px) rotate(1.6deg) scale(1.015); 
                 border-color: rgba(34, 211, 238, 0.23); 
                 backdrop-filter: blur(23px);
                 -webkit-backdrop-filter: blur(23px);
-                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), 0 0 32px rgba(34, 211, 238, 0.38), 0 0 12px rgba(192, 132, 252, 0.2);
+                box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), 
+                            0 0 0 12px rgba(34, 211, 238, 0),
+                            0 0 0 24px rgba(192, 132, 252, 0),
+                            0 0 0 36px rgba(34, 211, 238, 0);
             }
         }
 
@@ -1652,14 +1665,20 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
                 border-color: rgba(34, 211, 238, 0.09); 
                 backdrop-filter: blur(23px);
                 -webkit-backdrop-filter: blur(23px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 14px rgba(34, 211, 238, 0.12);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                            0 0 0 0px rgba(34, 211, 238, 0.25),
+                            0 0 0 6px rgba(34, 211, 238, 0.12),
+                            0 0 0 12px rgba(34, 211, 238, 0.05);
             }
             50% { 
                 transform: translateY(14px) translateX(6px) rotate(-1.5deg) scale(0.99); 
                 border-color: rgba(192, 132, 252, 0.23); 
                 backdrop-filter: blur(19px);
                 -webkit-backdrop-filter: blur(19px);
-                box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42), 0 0 28px rgba(192, 132, 252, 0.35), 0 0 12px rgba(34, 211, 238, 0.2);
+                box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42), 
+                            0 0 0 12px rgba(192, 132, 252, 0),
+                            0 0 0 24px rgba(34, 211, 238, 0),
+                            0 0 0 36px rgba(192, 132, 252, 0);
             }
         }
 
@@ -1718,9 +1737,10 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
         .gallery-card:hover,
         .conclusion-widget:hover,
         .clickable-stat-box:hover {
-            animation: none !important; /* Temporarily kills CSS loop path on touch to let spring curve lift card */
+            animation: none !important; /* Tạm ngắt vòng lặp CSS khi chạm để lò xo kéo thẻ lên */
             transform: translateY(-12px) scale(1.03) !important;
             box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25) !important;
+            z-index: 15 !important; /* ĐÃ THÊM: Đẩy lớp thẻ tương tác lên trên cùng để gợn sóng không bị đè khuất */
         }
         /* Căn lề đều hai bên (justify) cho các phân đoạn văn bản mô tả chính */
         .card-desc, 
@@ -2064,7 +2084,7 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
         </div>
     </div>
 
-    <!-- SVG Filter tạo hiệu ứng Khúc xạ nước động (Đã nâng cấp thông số rõ rệt) -->
+    <!-- SVG Filter tạo hiệu ứng Khúc xạ nước động -->
     <svg style="display: block; position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
         <defs>
             <filter id="water-distortion-filter" x="-10%" y="-10%" width="120%" height="120%">
@@ -3501,4 +3521,3 @@ Toàn bộ mã nguồn HTML hoàn chỉnh:
     </script>
 </body>
 </html>
-
