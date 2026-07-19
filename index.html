@@ -1,12 +1,3 @@
-Tôi xin lỗi vì sơ suất trong lượt tối ưu trước đó đã làm tệp tin bị cắt bớt
-(truncate) ở đoạn mã JavaScript cuối trang, dẫn đến việc các hàm điều hướng, mở
-hộp thoại chi tiết và tính năng tương tác của trang bài tập bị lỗi không hoạt
-động được.
-
-Dưới đây là toàn bộ tệp mã nguồn HTML hoàn chỉnh 100% không bị cắt bớt. Bạn chỉ
-cần sao chép toàn bộ khối mã này, dán đè thay thế hoàn toàn tệp cũ là mọi tính
-năng sẽ hoạt động bình thường, ổn định:
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -826,17 +817,17 @@ năng sẽ hoạt động bình thường, ổn định:
             max-width: 500px;
         }
 
-        .section-title-large {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4.8rem; /* ĐÃ SỬA LỖI CÚ PHÁP: Thêm ngoặc đóng mở đầy đủ và đồng bộ hiệu ứng phát sáng của 6 bài tập */
-            font-weight: 700;
-            line-height: 1.1;
-            color: var(--text-primary);
-            letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.85), 
-                         0 0 30px rgba(192, 132, 252, 0.7), 
-                         0 0 50px rgba(34, 211, 238, 0.45);
-        }
+       .section-title-large {
+    font-family: 'Lexend', sans-serif; /* Đã chuyển đổi sang phông Lexend */
+    font-size: 4.8rem;
+    font-weight: 800; /* Thiết lập độ đậm tối ưu cho phông Lexend */
+    line-height: 1.1;
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.85), 
+                 0 0 30px rgba(192, 132, 252, 0.7), 
+                 0 0 50px rgba(34, 211, 238, 0.45);
+}
 
         /* Custom Glassmorphic Google Drive Button - Harmonized to glow with the design */
         .btn-drive-glass {
@@ -1921,7 +1912,7 @@ năng sẽ hoạt động bình thường, ổn định:
                             <div class="conclusion-stats">
                                 <div class="stat-box clickable-stat-box" onclick="slidePane('right'); rightScrollToTop();">
                                     <div class="stat-num">06</div>
-                                    <div class="stat-label">Bài tập thực tế</div>
+                                    <div class="stat-label">BÀI TẬP</div>
                                 </div>
                             </div>
 
