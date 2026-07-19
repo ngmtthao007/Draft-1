@@ -1,4 +1,4 @@
-
+idget:
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -20,7 +20,7 @@
             --accent-purple: #c084fc; /* Sắc tím oải hương phát sáng nhẹ */
             --accent-soft: rgba(192, 132, 252, 0.15);
             --accent-warm: rgba(255, 255, 255, 0.05);
-            --glass-bg: rgba(10, 15, 30, 0.35); /* ĐÃ ĐIỀU CHỈNH: Hạ nhẹ độ mờ kính giúp gợn sóng ẩn hiện tinh tế */
+            --glass-bg: rgba(10, 15, 30, 0.35); /* ĐÃ ĐIỀU CHỈNH: Hạ nhẹ độ mờ kính giúp gợn sóng và bong bóng nổi hình */
             --glass-border: rgba(255, 255, 255, 0.08);
             --transition-gentle: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -342,7 +342,7 @@
             transform: skewX(-25deg);
             pointer-events: none;
             animation: islandSweep 8s infinite cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 1;
+            z-index: 2;
         }
 
         @keyframes islandSweep {
@@ -359,7 +359,7 @@
             text-decoration: none;
             letter-spacing: 0.5px;
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
         .island-divider {
@@ -367,7 +367,7 @@
             height: 18px;
             background: rgba(255, 255, 255, 0.15);
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
         .nav-links {
@@ -380,7 +380,7 @@
 
         .nav-links li {
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
         .nav-links a {
@@ -1740,7 +1740,7 @@
             animation: none !important; /* Tạm ngắt vòng lặp CSS khi chạm để lò xo kéo thẻ lên */
             transform: translateY(-12px) scale(1.03) !important;
             box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 25px rgba(192, 132, 252, 0.25) !important;
-            z-index: 15 !important; /* ĐÃ THÊM: Đẩy lớp thẻ tương tác lên trên cùng để gợn sóng không bị đè khuất */
+            z-index: 15 !important; /* Đẩy lớp thẻ tương tác lên trên cùng để gợn sóng không bị đè khuất */
         }
         /* Căn lề đều hai bên (justify) cho các phân đoạn văn bản mô tả chính */
         .card-desc, 
@@ -1749,6 +1749,61 @@
         .intro-content-expand p,
         .section-intro-text {
             text-align: justify;
+        }
+
+        /* =====================================================================
+           HỆ THỐNG HẠT BONG BÓNG SINH VẬT BIỂN SÂU (MICRO BUBBLE ECOSYSTEM)
+           ===================================================================== */
+        /* Đảm bảo toàn bộ nội dung tĩnh của thẻ luôn nổi lên phía trước lớp bong bóng */
+        .widget-card > *, .gallery-card > *, .conclusion-widget > *, .clickable-stat-box > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Thiết lập lớp chứa bong bóng nằm ở trung gian phía sau văn bản nhưng trên nền thẻ */
+        .gallery-card > .card-bubble-container, 
+        .widget-card > .card-bubble-container, 
+        .conclusion-widget > .card-bubble-container, 
+        .clickable-stat-box > .card-bubble-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0; /* Đẩy lớp bong bóng xuống dưới nội dung */
+        }
+
+        .card-bubble {
+            position: absolute;
+            bottom: -20px;
+            /* Tạo hình dạng bong bóng 3D bóng bẩy ánh tím nhạt */
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.65), rgba(192, 132, 252, 0.2) 50%, rgba(34, 211, 238, 0.05) 80%);
+            border: 0.5px solid rgba(192, 132, 252, 0.3);
+            box-shadow: 0 0 4px rgba(192, 132, 252, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float-bubble linear infinite;
+        }
+
+        /* Hoạt ảnh bong bóng trồi lên và dạt nhẹ sang ngang theo biến luồng nước */
+        @keyframes float-bubble {
+            0% {
+                transform: translateY(10%) translateX(0) scale(0.5);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.55; /* Hiện rõ trong nước */
+            }
+            85% {
+                opacity: 0.55;
+            }
+            100% {
+                /* Float lên quá mép trên thẻ và dạt nhẹ theo trục hoành dầm sương */
+                transform: translateY(-120%) translateX(var(--drift-x, 20px)) scale(1.15);
+                opacity: 0; /* Hòa tan/tan biến ở mép trên */
+            }
         }
     </style>
 </head>
@@ -2121,7 +2176,58 @@
             // Khởi tạo kích thước thanh Liquid Indicator lần đầu tiên
             setTimeout(updateNavIndicator, 200);
             setTimeout(updateNavIndicator, 600); // Kích hoạt dự phòng khi phông chữ đã render xong
+
+            // Khởi tạo hệ sinh thái bong bóng mini cho mỗi thẻ widget
+            initCardBubbles();
         });
+
+        // Khởi tạo các dải hạt bong bóng sinh vật biển sâu bên trong mỗi thẻ widget
+        function initCardBubbles() {
+            const cards = document.querySelectorAll('.widget-card, .gallery-card, .conclusion-widget, .clickable-stat-box');
+            cards.forEach(card => {
+                const container = document.createElement('div');
+                container.className = 'card-bubble-container';
+                card.appendChild(container);
+
+                // Điền trước một số bong bóng ở các độ cao ngẫu nhiên khác nhau để thẻ không bị trống lúc tải trang
+                const initialCount = Math.floor(Math.random() * 3) + 3; // 3 đến 5 hạt ban đầu
+                for (let i = 0; i < initialCount; i++) {
+                    createBubble(container, true);
+                }
+
+                // Liên tục sinh thêm hạt bong bóng mới theo tần suất
+                setInterval(() => {
+                    if (container.children.length < 6) {
+                        createBubble(container, false);
+                    }
+                }, 1600);
+            });
+        }
+
+        function createBubble(container, isInitial) {
+            const bubble = document.createElement('div');
+            bubble.className = 'card-bubble';
+            
+            const size = Math.random() * 6 + 2; // Kích thước bong bóng từ 2px đến 8px cực kỳ tinh tế
+            const left = Math.random() * 90 + 5; // Độ giãn dòng hoành: tránh sát mép viền (5% đến 95%)
+            const duration = Math.random() * 5 + 6; // Thời gian chuyển động chậm lững lờ từ 6s đến 11s
+            const delay = isInitial ? Math.random() * -10 : 0; // Trì hoãn âm để bong bóng xuất hiện ngay lơ lửng mid-air
+            const driftX = (Math.random() - 0.5) * 25; // Độ xê dịch trục hoành nhẹ nhàng khi trồi lên
+
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${left}%`;
+            bubble.style.animationDuration = `${duration}s`;
+            bubble.style.animationDelay = `${delay}s`;
+            bubble.style.setProperty('--drift-x', `${driftX}px`);
+
+            container.appendChild(bubble);
+
+            // Tự động dọn dẹp phần tử khi hoạt ảnh kết thúc để tối ưu tài nguyên trình duyệt
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+            });
+        }
 
         // Dynamic Active Tab Sliding Liquid Indicator Logic
         function updateNavIndicator() {
